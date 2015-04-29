@@ -1,0 +1,22 @@
+{
+  "name": "mod_dmelearn",
+  "version": "1.0.0",
+  "authors": [
+    "Digital Media e-learning"
+  ],
+  "private": true,
+  "main": "css/main.css",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fontawesome-3": "fontawesome#3.2.1",
+    "fontawesome": "4.3.0"
+  },
+  "devDependencies": {
+  }
+}
