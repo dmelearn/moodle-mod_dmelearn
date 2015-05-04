@@ -52,18 +52,24 @@
         })(window);
         $(function() {
             var path = 'elmo_ajax_ws.php?request=';
-            // might be possible to hijack the requests here
             $.ajaxSetup({
                 global: true,
                 beforeSend: function(jqXHR, settings) {
+                    // Current url
                     var before_url = settings.url;
-                    var matches = before_url.match(/client_api(.*)+/);
+                    // Split the string at /client_api because we need the string that follows this text.
+                    var matches = before_url.split("/client_api");
+                    // If there is only one string left over then that "/client_api" string didn't exist.
+                    if($(matches).length === 1 ){
+                        matches = null;
+                    }
+                    // If there was a result
                     if (matches !== null) {
                         // remap
-                        settings.url = path + matches[1];
+                        settings.url = path + matches[1]; 
                     } else if(before_url.indexOf("<?php echo $ELMO_ENV; ?>") == 0){ // Brightcookie script
                         // remap
-                        settings.url = path+before_url;
+                        settings.url = path + before_url;
                     }
                 }
             });
@@ -87,8 +93,6 @@
                             url: 'elmo_ajax_ws_reset.php',
                             data: {course_path: "<?php echo($page_request['data']['cert_data']['course_path']); ?>", user_id: "<?php echo($page_request['data']['cert_data']['user_id']); ?>"},
                             success: function (data, status) {
-                                console.log(data);
-                                console.log(status);
                                 if (data == 1) {
                                     reset_button.parents('.modal').modal('hide');
                                     window.location.href = '<?php echo $lmscontenturl; ?>';
@@ -106,6 +110,9 @@
                 }
                 reset_course();
         });
+       
+       
+       
     </script>
         <!-- DEPENDANCY SCRIPTS -->
         <?php if (isset($course_request['configuration']['dependancy_scripts'])): ?>
