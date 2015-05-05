@@ -1,3 +1,4 @@
 /content/bower_components
 /content/node_modules
 /content/vendor
+.idea/**
