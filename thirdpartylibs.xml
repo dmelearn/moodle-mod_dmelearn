@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<libraries>
+    <library>
+        <location>content/css</location>
+        <name>Font Awesome</name>
+        <version>3.2.1</version>
+        <license>MIT</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>content/vendor/guzzle/guzzle/</location>
+        <name>guzzle</name>
+        <version>v3.9.3</version>
+        <license>MIT</license>
+        <licenseversion></licenseversion>
+    </library>
+</libraries>
