@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with moodle-mod_dmelearn. If not, see <http://www.gnu.org/licenses/>.
 //
-// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal)
+// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal).
 
 /**
  * @package       mod_dmelearn
@@ -24,10 +24,10 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(dirname(dirname(dirname(__FILE__))) . '/config.php'); // Moodle Config
+require_once(dirname(dirname(dirname(__FILE__))) . '/config.php'); // Moodle Config.
 require_once("lib.php");
 
-$id = required_param('id', PARAM_INT); // Course
+$id = required_param('id', PARAM_INT); // Course.
 
 if (!$course = $DB->get_record("course", array("id" => $id))) {
     print_error("Course ID is incorrect");
@@ -86,7 +86,7 @@ foreach ($elmos as $elmo) {
 
     $context = get_context_instance(CONTEXT_MODULE, $elmo->coursemodule);
 
-    // Section
+    // Section.
     $printsection = '';
     if ($elmo->section !== $currentsection) {
         if ($elmo->section) {
@@ -102,15 +102,15 @@ foreach ($elmos as $elmo) {
         $table->data[$i][] = $printsection;
     }
 
-    // Link
+    // Link.
     if (!$elmo->visible) {
-        //Show dimmed if the mod is hidden.
+        // Show dimmed if the mod is hidden.
         $table->data[$i][] = "<a class=\"dimmed\" href=\"view.php?id=$elmo->coursemodule\">"
-            . format_string($elmo->name,true) . "</a>";
+            . format_string($elmo->name, true) . "</a>";
     } else {
-        //Show normal if the mod is visible.
+        // Show normal if the mod is visible.
         $table->data[$i][] = "<a href=\"view.php?id=$elmo->coursemodule\">"
-            . format_string($elmo->name,true) . "</a>";
+            . format_string($elmo->name, true) . "</a>";
     }
 
     // Description.
@@ -128,8 +128,8 @@ echo "<br />";
 echo html_writer::table($table);
 
 // Using newer logging method only for Moodle 2.7 or newer.
-if ($CFG->version >= 2014051200) // Check if Moodle is 2.7.X or newer.
-{
+// Check if Moodle is 2.7.X or newer.
+if ($CFG->version >= 2014051200) {
     // Use the new $event->trigger() for logging.
     $params = array(
         'context' => context_course::instance($course->id)

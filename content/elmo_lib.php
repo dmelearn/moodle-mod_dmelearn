@@ -23,19 +23,19 @@
  *
  */
 
-include_once(dirname(dirname(dirname(dirname(__FILE__)))) . "/config.php");
-include_once 'elmo_web_service_hash.php';
+require_once(dirname(dirname(dirname(dirname(__FILE__)))) . "/config.php");
+require_once('elmo_web_service_hash.php');
 
 // Brightcookie to put the lms setting back to ELMO content page.
 $ELMO_ENV = get_config('mod_dmelearn', 'elmourl');
 
 // Include guzzle and the libs we need.
-include_once 'vendor/autoload.php';
-include_once 'navigation.php';
-include_once 'include/constants.php';
-include_once 'include/functions.php';
+require_once('vendor/autoload.php');
+require_once('navigation.php');
+require_once('include/constants.php');
+require_once('include/functions.php');
 // A caching class.
-include_once 'include/cache.php';
+require_once('include/cache.php');
 // Header data - example its hardwired so change it.
 
 use Guzzle\Http\Client;
@@ -49,7 +49,7 @@ use mod_dmelearn\cache\Cache;
  */
 function get_key_courses() {
 
-    global $CFG,$USER;
+    global $CFG, $USER;
 
     // SOME USER DATA needed to make a request.
     $firstname  = $USER->firstname;
@@ -67,22 +67,17 @@ function get_key_courses() {
     $client = new Client(API_URL);
     $return = new StdClass();
     try {
-
          $request = course_request(
              $client,
              ( API_URL . '/'. API_KEY_COURSES . $public_key ),
              make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
          );
-
          $page_request = $request->json();
-
-         $return->result= $page_request;
+         $return->result = $page_request;
 
     } catch (Guzzle\Common\Exception\RuntimeException $e) {
-
-        $return->result= false;
-        $return->message= $e->getMessage();
-
+        $return->result = false;
+        $return->message = $e->getMessage();
     }
 
     return $return;

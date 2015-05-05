@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with moodle-mod_dmelearn. If not, see <http://www.gnu.org/licenses/>.
 //
-// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal)
+// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal).
 
 /**
  * @package       mod_dmelearn
@@ -30,7 +30,7 @@ require_once($CFG->dirroot . '/mod/dmelearn/backup/moodle2/restore_dmelearn_step
 /**
  * elmo restore task that provides all the settings and steps to perform one complete restore of the activity
  */
- 
+
 class restore_dmelearn_activity_task extends restore_activity_task {
 
     protected function define_my_settings() {
@@ -43,7 +43,7 @@ class restore_dmelearn_activity_task extends restore_activity_task {
     static public function define_decode_contents() {
         $contents = array();
         $contents[] = new restore_decode_content('dmelearn', array('intro'), 'dmelearn');
-        $contents[] = new restore_decode_content('dmelearn_entries', array('grade','trackdata'), 'dmelearn_entry');
+        $contents[] = new restore_decode_content('dmelearn_entries', array('grade', 'trackdata'), 'dmelearn_entry');
         return $contents;
     }
 
@@ -51,7 +51,8 @@ class restore_dmelearn_activity_task extends restore_activity_task {
         $rules = array();
         $rules[] = new restore_decode_rule('ELMOINDEX', '/mod/dmelearn/index.php?id=$1', 'course');
         $rules[] = new restore_decode_rule('ELMOVIEWBYID', '/mod/dmelearn/view.php?id=$1', 'course_module');
-        $rules[] = new restore_decode_rule('ELMOREPORT', '/mod/dmelearn/report.php?id=$1', 'course_module'); // this part for future report
+        // This part for future report.
+        $rules[] = new restore_decode_rule('ELMOREPORT', '/mod/dmelearn/report.php?id=$1', 'course_module');
         $rules[] = new restore_decode_rule('ELMOEDIT', '/mod/dmelearn/edit.php?id=$1', 'course_module');
         return $rules;
     }

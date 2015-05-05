@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with moodle-mod_dmelearn. If not, see <http://www.gnu.org/licenses/>.
 //
-// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal)
+// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal).
 
 /**
  * This file is used to add the DMELEARN settings into Moodle.

@@ -25,7 +25,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['modulename'] = 'DM e-Learning';
 $string['modulenameplural'] = 'DM e-Learning modules';
-$string['modulename_help'] = 'This Digital Media e-Learning activity module enables e-Learning courses from the Digital Media e-Learning site to be loaded into Moodle. 
+$string['modulename_help'] = 'This Digital Media e-Learning activity module enables e-Learning courses from the Digital Media e-Learning site to be loaded into Moodle.
 <br><br> To load a course from this site the activity module will need to be connected through the sites API using a key provided by it\'s administrators';
 $string['dmelearnsetting'] = 'Digital Media e-Learning settings';
 $string['dmelearnname'] = 'Digital Media e-Learning name';

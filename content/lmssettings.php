@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with moodle-mod_dmelearn. If not, see <http://www.gnu.org/licenses/>.
 //
-// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal)
+// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal).
 
 /**
  * @package       mod_dmelearn
@@ -144,11 +144,13 @@ function check_progress_page($eid, $course_info) {
         }
 
         // The request module and page are both not set and the moodle $trackdata page and module both exist.
-        if (!isset($_REQUEST["module"]) && !isset($_REQUEST["page"]) && isset($trackdata->page) && $trackdata->page != "" && isset($trackdata->module) && $trackdata->module != "") {
+        if (!isset($_REQUEST["module"]) && !isset($_REQUEST["page"]) && isset($trackdata->page) && $trackdata->page != "" && isset($trackdata->module)
+            && $trackdata->module != "") {
             // This was intially a confirm prompt which redirected on comfirmation but did nothing when canceled.
             echo '<script>window.location.href="' . $lmscontenturl . '&module=' . $trackdata->module . '&page=' . $trackdata->page . '";</script>';
             die();
-        } else if (isset($_REQUEST["module"]) && !isset($_REQUEST["page"]) && isset($trackdata->page) && $trackdata->page != "" && isset($trackdata->module) && $trackdata->module != "") {
+        } else if (isset($_REQUEST["module"]) && !isset($_REQUEST["page"]) && isset($trackdata->page) && $trackdata->page != "" && isset($trackdata->module)
+            && $trackdata->module != "") {
             // The request module exists but page does not exist and the moodle $trackdata page and module both exist.
             echo '<script>window.location.href="' . $lmscontenturl . '&module=' . $trackdata->module . '&page=' . $trackdata->page . '";</script>';
             die();
@@ -174,7 +176,7 @@ function check_progress_page($eid, $course_info) {
             // Upgrade the grade item.
             if (isset($course_info["course_complete"])) {
 
-                // Using new syntax (ordered params)
+                // Using new syntax (ordered params).
                 $params = array($eid, $COURSE->id);
                 $sql = "SELECT *
                         FROM {grade_items}

@@ -41,9 +41,9 @@
     </script>
    <!-- ROUTE REMAP -->
    <script>
-        // rewire and remap
+        // Rewire and remap.
         (function(window, document, undefined) {
-            var r = window.routes; // reference routes
+            var r = window.routes; // Reference routes.
             r.base = '<?php echo ELMO_WEB_BASE_URL; ?>';
             r.course.path = r.base + 'courses/<?php echo $course; ?>/';
             r.course.img = r.base + 'images/';
@@ -55,39 +55,39 @@
             $.ajaxSetup({
                 global: true,
                 beforeSend: function(jqXHR, settings) {
-                    // Current url
+                    // Current url.
                     var before_url = settings.url;
                     // Split the string at /client_api because we need the string that follows this text.
                     var matches = before_url.split("/client_api");
                     // If there is only one string left over then that "/client_api" string didn't exist.
-                    if($(matches).length === 1 ){
+                    if ($(matches).length === 1) {
                         matches = null;
                     }
-                    // If there was a result
+                    // If there was a result.
                     if (matches !== null) {
                         // remap
                         settings.url = path + matches[1];
-                    } else if(before_url.indexOf("<?php echo $ELMO_ENV; ?>") == 0){ // Brightcookie script
+                    } else if (before_url.indexOf("<?php echo $ELMO_ENV; ?>") == 0){ // Brightcookie script.
                         // remap
                         settings.url = path + before_url;
                     }
                 }
             });
-            // init plugins 
+            // Init plugins.
             if (typeof $.fn.elmo_multipleChoice !== null || 'undefined') {
                 $('.question').elmo_multipleChoice({
                     imagePath: window.routes.img,
                     courseImages: window.routes.course.images
                 });
             }
-            // Finds the reset assessments button
+            // Finds the reset assessments button.
                 var reset_button = $('.reset_button');
                 var pos = this;
-                var reset_course = function () {
+                var reset_course = function() {
 
-                    reset_button.on('click', function () {
+                    reset_button.on('click', function() {
                         reset_button.unbind('click');
-                        //AJAX REQUEST -send the course_path and user_id back to ELMO to reset it in the database
+                        // AJAX REQUEST -send the course_path and user_id back to ELMO to reset it in the database.
                         var request = $.ajax({
                             type: 'POST',
                             url: 'elmo_ajax_ws_reset.php',
@@ -110,9 +110,6 @@
                 }
                 reset_course();
         });
-       
-       
-       
     </script>
         <!-- DEPENDANCY SCRIPTS -->
         <?php if (isset($course_request['configuration']['dependancy_scripts'])): ?>
@@ -134,13 +131,13 @@
         <script>
             // DOM ready
             $(function() {
-                // Select Box Fix For IE
-                if (!Modernizr.borderradius) { // using borderradius as a test
+                // Select Box Fix For IE.
+                if (!Modernizr.borderradius) { // Using borderradius as a test.
                     var el;
                     $("select")
                             .each(function() {
                                 el = $(this);
-                                el.data("origWidth", el.outerWidth()) // IE 8 can haz padding
+                                el.data("origWidth", el.outerWidth()) // IE 8 has padding.
                             })
                             .mouseenter(function() {
                                 $(this).css("width", "auto");
@@ -150,26 +147,26 @@
                                 el.css("width", el.data("origWidth"));
                             });
                 }
-                // Bootstrap tooltips
-                $('a').tooltip(); // DEPRECIATED - use rel="tooltip" to call your tooltips instead
+                // Bootstrap tooltips.
+                $('a').tooltip(); // DEPRECIATED - use rel="tooltip" to call your tooltips instead.
                 $('a[rel=tooltip]').tooltip();
-                $('.popover-owner').popover(); // DEPRECIATED - use rel="popover" on the popover button/link to call your popup
+                $('.popover-owner').popover(); // DEPRECIATED - use rel="popover" on the popover button/link to call your popup.
                 $("a[rel=popover]")
                         .popover()
                         .click(function(e) {
                             e.preventDefault();
                         });
-                // Remove popover by clicking anywhere
+                // Remove popover by clicking anywhere.
                 $('body').on('click', function(e) {
                     $("a[rel=popover]").each(function() {
-                        //the 'is' for buttons that trigger popups
-                        //the 'has' for icons within a button that triggers a popup
+                        // The 'is' for buttons that trigger popups.
+                        // The 'has' for icons within a button that triggers a popup.
                         if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
                             $(this).popover('hide');
                         }
                     });
                 });
-                // accordion collapse bootstrap
+                // accordion collapse bootstrap.
                 $('#notification-popover').popover({
                     'placement': 'bottom',
                     'trigger': 'hover',
@@ -182,7 +179,7 @@
                     'title': 'Well done!',
                     'content': 'You\'ve completed the assessment for this course.'
                 });
-                // Force external links to open in a new window
+                // Force external links to open in a new window.
                 $('a').each(function() {
                     var a = new RegExp('/' + window.location.host + '/');
                     if (!a.test(this.href)) {
@@ -193,7 +190,7 @@
                         });
                     }
                 });
-                // Assessment summary dropdown
+                // Assessment summary drop-down.
                 var assessment_sum_parent = $('table.quiz_summary');
                 var sum_a_tag_ = assessment_sum_parent.find('a.dropdown_summary');
                 sum_a_tag_.on('click', function(event) {
@@ -218,8 +215,8 @@
                         i_tag.attr('class', 'icon-chevron-up');
                     }
                 });
-                // The following code came from course.main.js
-                var nav = $('.course_nav'); // Navigation - click on module with multiple pages and it opens up
+                // The following code came from course.main.js.
+                var nav = $('.course_nav'); // Navigation - click on module with multiple pages and it opens up.
                 var nav_group = nav.find('.accordion-group');
                 nav_group.each(function() {
                     if ($(this).find('ul').length > 0) {
@@ -230,12 +227,12 @@
                         window.location.href = link;
                     });
                 });
-                // Collapsable elements
-                // Swap arrow sprite on hide/show
+                // Collapsable elements.
+                // Swap arrow sprite on hide/show.
                 $('.accordion').on('show hide', function(n) {
                     $(n.target).siblings('.accordion-heading').find('.accordion-toggle i').toggleClass('icon-chevron-up icon-chevron-down');
                 });
-                //Changes the colours of other accordion items when one is clicked (but not closed)
+                //Changes the colours of other accordion items when one is clicked (but not closed).
                 var active_colour = null;
                 var select_accordion = $('.course_body').find('.accordion-group');
                 select_accordion.on('click', function(event) {
@@ -247,10 +244,10 @@
                     $(this).css({'background-color': active_colour});
                     $(this).siblings('.accordion-group').css({'background-color': collapsed_colour});
                 });
-                // Popover
+                // Popover.
                 $(document).click(function() {
-                    // Removes popovers when clicking anywhere on the page
-                    // Close a popover on click of popover close button as well
+                    // Removes popovers when clicking anywhere on the page.
+                    // Close a popover on click of popover close button as well.
                     $('.popover-owner').popover('destroy');
                 });
             });
@@ -313,7 +310,7 @@
                 <?php if (isset($page_request['data']['assessment_summary'])) {
                 include 'template/views/assessment_summary.php';
                 }
-                elseif (isset($page_request['content'])) {
+                else if (isset($page_request['content'])) {
                     echo $page_request['content'];
                 } ?>
             </div>

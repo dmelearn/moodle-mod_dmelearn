@@ -32,19 +32,19 @@
  */
 
 // Include guzzle and the libs we need.
-include_once 'elmo_web_service_hash.php';
+require_once('elmo_web_service_hash.php');
 
 // BC to put the lms seeting back to ELMO content page.
-include_once './lmssettings.php';
+require_once('./lmssettings.php');
 
-include_once './vendor/autoload.php';
-include_once 'navigation.php';
+require_once('./vendor/autoload.php');
+require_once('navigation.php');
 
-include_once './include/constants.php';
-include_once './include/functions.php';
+require_once('./include/constants.php');
+require_once('./include/functions.php');
 
 // A caching class.
-include_once './include/cache.php';
+require_once('./include/cache.php');
 
 use Guzzle\Http\Client;
 use Guzzle\Http\Exception\MultiTransferException;
@@ -67,24 +67,21 @@ $page   = (string) (isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SAN
 
 // MAKE REQUESTs to course first to get all user information/scripts/etc.
 // We have course = courseName, make a request for information on the course.
-try
-{
+try {
     $request = course_request(
         $client,
         API_URL . '/' . API_COURSES . $course,
         make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
     );
     $course_request = $request->json();
-}
-catch (Guzzle\Common\Exception\RuntimeException $e)
-{
-    // Check if we are Unauthorized '401'
+} catch (Guzzle\Common\Exception\RuntimeException $e) {
+    // Check if we are Unauthorized '401'.
     if ($e->getResponse()->getStatusCode() == '401') {
         include_once('include/noAccess.php');
     } else {
         // We are Authorized but another issue has occured.
         // Dump Guzzle exception message if debug is enabled in Moodle.
-        if( isset($CFG->debug) && !$CFG->debug == 0) {
+        if (isset($CFG->debug) && !$CFG->debug == 0) {
             echo "The following exceptions were encountered:\n";
             echo $e->getMessage();
             echo $request->getMessage();
@@ -92,21 +89,15 @@ catch (Guzzle\Common\Exception\RuntimeException $e)
     }
 }
 
-if(isset($module) && !isset($page))
-{
+if (isset($module) && !isset($page)) {
     // We have a module but need to get the FIRST page.
-    // $page = key($module['pages']);
-}
-else if(!isset($module) && !isset($page))
-{   // We need to get module and page to make a page_request.
-    if($course_request['user']['last_visited'])
-    {
+} else if (!isset($module) && !isset($page)) {
+    // We need to get module and page to make a page_request.
+    if ($course_request['user']['last_visited']) {
         // We want to request the following page.
         $module = $course_request['user']['last_visited']['module'];
         $page   = $course_request['user']['last_visited']['page'];
-    }
-    else
-    {
+    } else {
         // We need to get the FIRST module and page.
         $module = key($course_request['navigation']);
         $page   = key($course_request['navigation'][$module]['pages']);
@@ -114,8 +105,7 @@ else if(!isset($module) && !isset($page))
 }
 
 // Make a page request.
-try
-{
+try {
     // If the page is already cached.
     $cached = Cache::retrieve("{$course}_{$module}_{$page}");
 
@@ -137,9 +127,7 @@ try
     {
         $page_request['content'] = $cached;
     }
-}
-catch (Guzzle\Common\Exception\RuntimeException $e)
-{
+} catch (Guzzle\Common\Exception\RuntimeException $e) {
     if ($e->getResponse()->getStatusCode() == '404') {
         // 404 - Page not found on the API providers site.
         
@@ -183,7 +171,7 @@ $navigation = new Navigation(
     )
 );
 
-$previous_url = $navigation->previous_url(); 
+$previous_url = $navigation->previous_url();
 
 $next_url = $navigation->next_url();
 
@@ -198,4 +186,4 @@ define('ELMO_WEB_COURSE_RESOURCES', ELMO_WEB_BASE_COURSES . $course . '/resource
 define('ELMO_WEB_COURSE_IMAGES', ELMO_WEB_COURSE_RESOURCES . 'images/');
 
 // Below is a working template, it must be kept up-to-date.
-include 'template/base.php';
+require('template/base.php');

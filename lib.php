@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with moodle-mod_dmelearn. If not, see <http://www.gnu.org/licenses/>.
 //
-// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal)
+// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal).
 
 /**
  * @package       mod_dmelearn
@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-// STANDARD MODULE FUNCTIONS
+// STANDARD MODULE FUNCTIONS.
 
 /**
  * Saves a new instance of a dmelearn record into the database
@@ -112,17 +112,26 @@ function dmelearn_delete_instance($id) {
  */
 function dmelearn_supports($feature) {
     switch ($feature) {
-        case FEATURE_MOD_INTRO:               return true;
-        case FEATURE_GRADE_HAS_GRADE:         return true;
-        case FEATURE_GRADE_OUTCOMES:          return false;
-        case FEATURE_RATE:                    return false;
-        case FEATURE_GROUPS:                  return true;
-        case FEATURE_GROUPINGS:               return true;
-        case FEATURE_GROUPMEMBERSONLY:        return true;
-        case FEATURE_COMPLETION_TRACKS_VIEWS: return false;
-        case FEATURE_BACKUP_MOODLE2:          return true;
-
-        default: return null;
+        case FEATURE_MOD_INTRO:
+            return true;
+        case FEATURE_GRADE_HAS_GRADE:
+            return true;
+        case FEATURE_GRADE_OUTCOMES:
+            return false;
+        case FEATURE_RATE:
+            return false;
+        case FEATURE_GROUPS:
+            return true;
+        case FEATURE_GROUPINGS:
+            return true;
+        case FEATURE_GROUPMEMBERSONLY:
+            return true;
+        case FEATURE_COMPLETION_TRACKS_VIEWS:
+            return false;
+        case FEATURE_BACKUP_MOODLE2:
+            return true;
+        default:
+            return null;
     }
 }
 
@@ -229,10 +238,9 @@ function dmelearn_print_recent_activity($course, $isteacher, $timestart) {
     }
 
     $content = false;
-    $elmos = NULL;
+    $elmos = null;
 
     // Log table should not be used here.
-
     $select = "time > ? AND
                course = ? AND
                module = 'dmelearn' AND
@@ -281,27 +289,27 @@ function dmelearn_get_participants($elearnid) {
 
     global $DB;
 
-    //Get students
+    // Get students.
     $students = $DB->get_records_sql("SELECT DISTINCT u.id
                                       FROM {user} u,
                                       {dmelearn_entries} dme
                                       WHERE dme.dmelearn = ?
                                       AND u.id = dme.userid", array($elearnid));
 
-    //Get teachers
+    // Get teachers.
     $teachers = $DB->get_records_sql("SELECT DISTINCT u.id
                                       FROM {user} u,
                                       {dmelearn_entries} dme
                                       WHERE dme.dmelearn = ?
                                       AND u.id = dme.teacher", array($elearnid));
 
-    //Add teachers to students
+    // Add teachers to students.
     if ($teachers) {
         foreach ($teachers as $teacher) {
             $students[$teacher->id] = $teacher;
         }
     }
-    //Return students array (it contains an array of unique users)
+    // Return students array (it contains an array of unique users).
     return ($students);
 }
 
@@ -438,7 +446,7 @@ function dmelearn_print_overview($courses, &$htmlarray) {
 
         if ($elmoopen) {
             $str = '<div class="elmo overview"><div class="name">' .
-                   $strelmo . ': <a ' . ($elmo->visible?'':' class="dimmed"').
+                   $strelmo . ': <a ' . ($elmo->visible ? '' : ' class="dimmed"') .
                    ' href="' . $CFG->wwwroot . '/mod/dmelearn/view.php?id=' . $elmo->coursemodule . '">' .
                    $elmo->name . '</a></div></div>';
 
@@ -484,7 +492,7 @@ function dmelearn_get_user_grades($elmo, $userid = 0) {
         }
 
         if ($grades) {
-            foreach ($grades as $key=>$grade) {
+            foreach ($grades as $key => $grade) {
                 $grades[$key]->id = $grade->userid;
             }
         } else {
@@ -506,7 +514,8 @@ function dmelearn_update_grades($elmo = null, $userid = 0, $nullifnone = true) {
 
     global $CFG, $DB;
 
-    if (!function_exists('grade_update')) { //workaround for buggy PHP versions
+    if (!function_exists('grade_update')) {
+        // Workaround for buggy PHP versions.
         require_once($CFG->libdir . '/gradelib.php');
     }
 
@@ -516,7 +525,7 @@ function dmelearn_update_grades($elmo = null, $userid = 0, $nullifnone = true) {
         } else if ($userid && $nullifnone) {
             $grade = new object();
             $grade->userid   = $userid;
-            $grade->rawgrade = NULL;
+            $grade->rawgrade = null;
             dmelearn_grade_item_update($elmo, $grade);
         } else {
             dmelearn_grade_item_update($elmo);
@@ -531,7 +540,7 @@ function dmelearn_update_grades($elmo = null, $userid = 0, $nullifnone = true) {
                 ON cm.instance = dm.id
                 WHERE m.name = 'dmelearn'";
         if ($recordset = $DB->get_records_sql($sql)) {
-           foreach ($recordset as $elmo) {
+            foreach ($recordset as $elmo) {
                 if ($elmo->grade != false) {
                     dmelearn_update_grades($elmo);
                 } else {
@@ -551,14 +560,15 @@ function dmelearn_update_grades($elmo = null, $userid = 0, $nullifnone = true) {
  */
 function dmelearn_grade_item_update($elmo, $grades = null) {
     global $CFG;
-    if (!function_exists('grade_update')) { //workaround for buggy PHP versions
+    if (!function_exists('grade_update')) {
+        // Workaround for buggy PHP versions.
         require_once($CFG->libdir . '/gradelib.php');
     }
 
     if (array_key_exists('cmidnumber', $elmo)) {
-        $params = array('itemname'=>$elmo->name, 'idnumber'=>$elmo->cmidnumber);
+        $params = array('itemname' => $elmo->name, 'idnumber' => $elmo->cmidnumber);
     } else {
-        $params = array('itemname'=>$elmo->name);
+        $params = array('itemname' => $elmo->name);
     }
 
     if ($elmo->grade > 0) {
@@ -569,7 +579,7 @@ function dmelearn_grade_item_update($elmo, $grades = null) {
 
     } else if ($elmo->grade < 0) {
         $params['gradetype'] = GRADE_TYPE_SCALE;
-        $params['scaleid']   = -$elmo->grade;
+        $params['scaleid']   = -($elmo->grade);
 
     } else {
         $params['gradetype']  = GRADE_TYPE_NONE;
@@ -595,10 +605,10 @@ function dmelearn_grade_item_delete($elmo) {
 
     require_once($CFG->libdir . '/gradelib.php');
 
-    return grade_update('mod/dmelearn', $elmo->course, 'mod', 'dmelearn', $elmo->id, 0, null, array('deleted'=>1));
+    return grade_update('mod/dmelearn', $elmo->course, 'mod', 'dmelearn', $elmo->id, 0, null, array('deleted' => 1));
 }
 
-// SQL FUNCTIONS
+// SQL FUNCTIONS.
 
 /**
  * @param $elmo
@@ -608,7 +618,7 @@ function dmelearn_grade_item_delete($elmo) {
 function dmelearn_get_users_done($elmo, $currentgroup) {
     global $DB;
 
-    // Group users
+    // Group users.
     if ($currentgroup != 0) {
         $params = array($currentgroup, $elmo->id);
         $sql = "SELECT u.*

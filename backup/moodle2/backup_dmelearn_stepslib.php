@@ -35,9 +35,9 @@ class backup_dmelearn_activity_structure_step extends backup_activity_structure_
         $entries = new backup_nested_element('entries');
 
         $entry = new backup_nested_element('entry', array('id'), array(
-            'userid', 'grade','trackdata', 'modified'));
+            'userid', 'grade', 'trackdata', 'modified'));
 
-        // elmo -> entries -> entry
+        // elmo -> entries -> entry.
         $dmelearn->add_child($entries);
         $entries->add_child($entry);
 
@@ -52,9 +52,9 @@ class backup_dmelearn_activity_structure_step extends backup_activity_structure_
         $entry->annotate_ids('user', 'userid');
 
         // Define file annotations.
-        $dmelearn->annotate_files('mod_dmelearn', 'intro', null); // This file areas haven't itemid
-        $entry->annotate_files('mod_dmelearn_entries', 'grade', null); // This file areas haven't itemid
-        $entry->annotate_files('mod_dmelearn_entries', 'trackdata', null); // This file areas haven't itemid
+        $dmelearn->annotate_files('mod_dmelearn', 'intro', null); // This file areas haven't itemid.
+        $entry->annotate_files('mod_dmelearn_entries', 'grade', null); // This file areas haven't itemid.
+        $entry->annotate_files('mod_dmelearn_entries', 'trackdata', null); // This file areas haven't itemid.
 
         return $this->prepare_activity_structure($dmelearn);
     }

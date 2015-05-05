@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with moodle-mod_dmelearn. If not, see <http://www.gnu.org/licenses/>.
 //
-// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal)
+// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal).
 
 /**
  * @package       mod_dmelearn
@@ -56,8 +56,8 @@ if (!$cw = $DB->get_record('course_sections', array('id' => $coursemodule->secti
 }
 
 // Using newer logging method only for Moodle 2.7 or newer.
-if ($CFG->version >= 2014051200) // If Moodle is 2.7.X or newer.
-{
+// If Moodle is 2.7.X or newer.
+if ($CFG->version >= 2014051200) {
     // Use the new $event->trigger() for logging.
     $event = \mod_dmelearn\event\course_module_viewed::create(array(
         'objectid' => $PAGE->cm->instance,

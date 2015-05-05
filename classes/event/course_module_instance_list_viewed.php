@@ -17,23 +17,16 @@ namespace mod_dmelearn\event;
 // You should have received a copy of the GNU General Public License
 // along with moodle-mod_dmelearn. If not, see <http://www.gnu.org/licenses/>.
 
-/**
- * The mod_dmelearn instance list viewed event.
- *
- * @package    mod_dmelearn
- * @author     AJ Dunn, Digital Media e-learning
- * @copyright  2015 Digital Media e-learning
- * @version    1.0.0
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Class course_module_instance_list_viewed
- * The mod_dmelearn instance list viewed event class.
+ * The mod_dmelearn instance list viewed event.
  *
- * @package mod_dmelearn\event
+ * @package     mod_dmelearn\event
+ * @author      AJ Dunn, Digital Media e-learning
+ * @copyright   2015 Digital Media e-learning
+ * @version     1.0.0
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class course_module_instance_list_viewed extends \core\event\course_module_instance_list_viewed {
     // TODO: Add any custom code if needed here.

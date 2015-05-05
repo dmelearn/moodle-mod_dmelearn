@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with moodle-mod_dmelearn. If not, see <http://www.gnu.org/licenses/>.
 //
-// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal)
+// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal).
 
 /**
  * @package       mod_dmelearn
@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once ($CFG->dirroot . '/course/moodleform_mod.php');
+require_once($CFG->dirroot . '/course/moodleform_mod.php');
 
 /**
  * Class mod_dmelearn_mod_form
@@ -47,10 +47,9 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         $elmocoursearr = array();
 
         // TODO: Add more comments.
-        if ($elmocourses->result){
-
+        if ($elmocourses->result) {
             foreach($elmocourses->result as $elmocourse){
-               $elmocoursearr[$elmocourse["path"]] = $elmocourse["course_short_name"];
+                $elmocoursearr[$elmocourse["path"]] = $elmocourse["course_short_name"];
             }
         }
 
@@ -59,8 +58,8 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         // Adding the "general" fieldset, where all the common settings are showed.
         $mform->addElement('header', 'general', get_string('general', 'form'));
 
-        // Adding the standard "name" field
-        $mform->addElement('text', 'name', get_string('dmelearnname', 'dmelearn'), array('size'=>'64'));
+        // Adding the standard "name" field.
+        $mform->addElement('text', 'name', get_string('dmelearnname', 'dmelearn'), array('size' => '64'));
 
         if (!empty($CFG->formatstringstriptags)) {
             $mform->setType('name', PARAM_TEXT);

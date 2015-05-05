@@ -22,10 +22,10 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-include_once(dirname(dirname(dirname(dirname(__FILE__))))."/config.php");
+require_once(dirname(dirname(dirname(dirname(__FILE__))))."/config.php");
 
 // TODO: Add Comments
-if(!$USER->id && $USER->id<2){
+if (!$USER->id && $USER->id<2) {
     die();
 }
 
@@ -44,10 +44,10 @@ $secret_key = get_config('mod_dmelearn', 'elmosecretkey');
 $app_name = get_config('mod_dmelearn', 'elmoappname');
 $ELMO_ENV = get_config('mod_dmelearn', 'elmourl');
 
-include_once 'elmo_web_service_hash.php';
-include_once './vendor/autoload.php';
-include_once './include/constants.php';
-include_once './include/functions.php';
+require_once('elmo_web_service_hash.php');
+require_once('./vendor/autoload.php');
+require_once('./include/constants.php');
+require_once('./include/functions.php');
 
 use Guzzle\Http\Client;
 use Guzzle\Http\Exception\MultiTransferException;
@@ -70,13 +70,12 @@ try {
     $page_request = $request->json();
     exit($page_request);
     die();
-    
+
 } catch (Guzzle\Common\Exception\RuntimeException $e) {
     // Dump Guzzle exception message if debug is enabled in Moodle.
-    if( isset($CFG->debug) && !$CFG->debug == 0){
+    if (isset($CFG->debug) && !$CFG->debug == 0) {
         echo "The following exceptions were encountered:\n";
         echo $e->getMessage();
         echo $request->getMessage();
     }
-
 }

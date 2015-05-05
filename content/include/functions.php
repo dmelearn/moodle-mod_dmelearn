@@ -154,7 +154,7 @@ function elmo_parse_config_page_scripts($module, $page, $data) {
  * @param $url
  * @return mixed
  */
-function get_ajax_content($url){
+function get_ajax_content($url) {
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     $result = curl_exec($curl);
@@ -162,12 +162,11 @@ function get_ajax_content($url){
     $path_explode = explode('/', $url);
     $result = preg_replace_callback('/src="([^"]+)"/i', function ($matches) {
         global $path_explode;
-        if(strpos($matches[0],"http://")!==0){
-            return str_replace('src="','src="http://'.$path_explode[2].'/',$matches[0]);
-        } else{
+        if (strpos($matches[0],"http://")!==0) {
+            return str_replace('src="', 'src="http://' . $path_explode[2].'/', $matches[0]);
+        } else {
             return ("21".$matches[0]);
         }
     }, $result);
-	echo $content;
-	return $result;
+    return $result;
 }

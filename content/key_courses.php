@@ -23,16 +23,16 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-include_once 'elmo_web_service_hash.php';
+require_once('elmo_web_service_hash.php');
 // BC to put the lms seeting back to ELMO content page.
-include_once './lmssettings.php';
+require_once('./lmssettings.php');
 // Include guzzle and the libs we need.
-include_once './vendor/autoload.php';
-include_once 'navigation.php';
-include_once './include/constants.php';
-include_once './include/functions.php';
+require_once('./vendor/autoload.php');
+require_once('navigation.php');
+require_once('./include/constants.php');
+require_once('./include/functions.php');
 // A caching class.
-include_once './include/cache.php';
+require_once('./include/cache.php');
 
 use Guzzle\Http\Client;
 use Guzzle\Http\Exception\MultiTransferException;
@@ -44,7 +44,6 @@ $client = new Client(API_URL);
 $return = new StdClass();
 
 try {
-    // print_r(API_URL . '/' . API_KEY_COURSES . $public_key);
     $request = course_request(
         $client,
         (API_URL . '/' . API_KEY_COURSES . $public_key),

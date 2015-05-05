@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with moodle-mod_dmelearn. If not, see <http://www.gnu.org/licenses/>.
 //
-// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal)
+// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal).
 
 /**
  * @package       mod_dmelearn
@@ -30,7 +30,8 @@ require_once($CFG->dirroot . '/mod/dmelearn/backup/moodle2/backup_dmelearn_steps
 
 class backup_dmelearn_activity_task extends backup_activity_task {
 
-    protected function define_my_settings() {}
+    protected function define_my_settings() {
+    }
 
     protected function define_my_steps() {
         $this->add_step(new backup_dmelearn_activity_structure_step('dmelearn_structure', 'dmelearn.xml'));
@@ -39,7 +40,7 @@ class backup_dmelearn_activity_task extends backup_activity_task {
     static public function encode_content_links($content) {
         global $CFG;
 
-        $base = preg_quote($CFG->wwwroot.'/mod/dmelearn','#');
+        $base = preg_quote($CFG->wwwroot . '/mod/dmelearn', '#');
 
         $pattern = "#(".$base."\/index.php\?id\=)([0-9]+)#";
         $content = preg_replace($pattern, '$@ELMOINDEX*$2@$', $content);
@@ -47,7 +48,7 @@ class backup_dmelearn_activity_task extends backup_activity_task {
         $pattern = "#(".$base."\/view.php\?id\=)([0-9]+)#";
         $content = preg_replace($pattern, '$@ELMOVIEWBYID*$2@$', $content);
 
-        // This part for future report if needed
+        // This part for future report if needed.
         $pattern = "#(".$base."\/report.php\?id\=)([0-9]+)#";
         $content = preg_replace($pattern, '$@ELMOREPORT*$2@$', $content);
 

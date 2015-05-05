@@ -17,21 +17,16 @@ namespace mod_dmelearn\event;
 // You should have received a copy of the GNU General Public License
 // along with moodle-mod_dmelearn. If not, see <http://www.gnu.org/licenses/>.
 
-/**
- *  The mod_dmelearn module viewed event.
- *
- * @package       mod_dmelearn
- * @author        Kien Vu
- * @copyright     2015 BrightCookie (http://www.brightcookie.com.au), Digital Media e-learning
- * @version       1.0.0
- * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Class course_module_viewed
- * @package mod_dmelearn\event
+ *  The mod_dmelearn module viewed event.
+ *
+ * @package     mod_dmelearn\event
+ * @author      Kien Vu
+ * @copyright   2015 BrightCookie (http://www.brightcookie.com.au), Digital Media e-learning
+ * @version     1.0.0
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class course_module_viewed extends \core\event\course_module_viewed {
     protected function init() {

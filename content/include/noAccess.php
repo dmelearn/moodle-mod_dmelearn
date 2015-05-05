@@ -23,7 +23,7 @@
  *
  */
 
-echo $lmsmenu; // Show the LMS Top Menu Navigation
+echo $lmsmenu; // Show the LMS Top Menu Navigation.
 ?>
 <br><br>
 <div style="font-size: 20px; margin:25px;">

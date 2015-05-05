@@ -22,14 +22,14 @@
  * @version       1.0.0
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- 
+
 defined('MOODLE_INTERNAL') || die();
 
 $logs = array(
-    array('module'=>'dmelearn', 'action'=>'view', 'mtable'=>'dmelearn', 'field'=>'name'),
-    array('module'=>'dmelearn', 'action'=>'view all', 'mtable'=>'dmelearn', 'field'=>'name'),
-    array('module'=>'dmelearn', 'action'=>'view responses', 'mtable'=>'dmelearn', 'field'=>'name'),
-    array('module'=>'dmelearn', 'action'=>'add entry', 'mtable'=>'dmelearn', 'field'=>'name'),
-    array('module'=>'dmelearn', 'action'=>'update entry', 'mtable'=>'dmelearn', 'field'=>'name'),
-    array('module'=>'dmelearn', 'action'=>'update feedback', 'mtable'=>'dmelearn', 'field'=>'name')
+    array('module' => 'dmelearn', 'action' => 'view', 'mtable' => 'dmelearn', 'field' => 'name'),
+    array('module' => 'dmelearn', 'action' => 'view all', 'mtable' => 'dmelearn', 'field' => 'name'),
+    array('module' => 'dmelearn', 'action' => 'view responses', 'mtable' => 'dmelearn', 'field' => 'name'),
+    array('module' => 'dmelearn', 'action' => 'add entry', 'mtable' => 'dmelearn', 'field' => 'name'),
+    array('module' => 'dmelearn', 'action' => 'update entry', 'mtable' => 'dmelearn', 'field' => 'name'),
+    array('module' => 'dmelearn', 'action' => 'update feedback', 'mtable' => 'dmelearn', 'field' => 'name')
 );

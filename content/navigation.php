@@ -37,8 +37,7 @@ class Navigation {
      *
      * @param $config
      */
-    public function __construct($config)
-    {
+    public function __construct($config) {
         $this->show_summary     = $config['show_summary'];
         $this->navigation       = $config['navigation'];
         $this->site_url         = $config['site_url'];
@@ -46,7 +45,7 @@ class Navigation {
         $this->module           = $config['module'];
         $this->page             = $config['page'];
     }
-    
+
     protected $show_summary;
     protected $navigation;
     protected $site_url;
@@ -59,8 +58,7 @@ class Navigation {
      *
      * @return string Returns a HTML string with the navigation layout ready to be injected into a view
      */
-    public function make()
-    {
+    public function make() {
         // BC: changed to use Moodle ULR in naviagtion.
         global $lmscontenturl;
 
@@ -71,7 +69,7 @@ class Navigation {
         if (strtolower($this->show_summary) == 'true' ) {
             $this->navigation['assessment_summary'] = array(
                 'title' => 'Assessment summary',
-                'pages' => array('assessment'=>'Assessment Summary'));
+                'pages' => array('assessment' => 'Assessment Summary'));
         }
 
         $navigation = $this->navigation; // A decoded navigation.json array
@@ -79,20 +77,20 @@ class Navigation {
         $course     = $this->course; // Current Course
         $module     = $this->module; // Current module
         $page       = $this->page; // Current page
-        
+
         $return_string = "<ul class='modules nav nav-list' >";
-        
+
         // We need to get current - page && module.
         $keys = array_keys($navigation);
-        
+
         // Need to work out where and how to get the current navigation highlighted.
-        foreach($navigation as $module_key => $module_data) {
+        foreach ($navigation as $module_key => $module_data) {
             if (count($module_data['pages']) == 1) {
                 $page_key = key($module_data['pages']);
-                
+
                 $return_string .= "<li class='module accordion-group ";
                 if ($module_key == $module) {
-                    $return_string .= " active 1";                    
+                    $return_string .= " active 1";
                 }
                 $return_string .= "'>"
                     . "<span class='accordion-heading'><a class='accordion-toggle' data-parent='#accordion_menu' href='"
@@ -109,13 +107,12 @@ class Navigation {
                 if ($module_key == $module) {
                     $return_string .= "active 2a";
                 }
-                $return_string .="'>"
+                $return_string .= "'>"
                     . "<span class='accordion-heading'>"
                     . "<a href='----Tobereplaced----' data-target='#"
                     . $module_key."' class='accordion-toggle' data-parent='#accordion_menu'>"
                     . "".$module_data['title']."</a>"
                     . "</span>";
-                
                 // Inner list.
                 $return_string .= "<ul class='pages accordion-body collapse";
 
@@ -127,7 +124,7 @@ class Navigation {
 
                 $i = 0;
                 $moduleurl = "#";
-                foreach ($module_data['pages']  as $page_key => $page_title) {
+                foreach ($module_data['pages'] as $page_key => $page_title) {
                     $return_string .= "<li class='page ";
 
                     if (($module_key === $module) && ($page_key === $page)) {
@@ -165,8 +162,7 @@ class Navigation {
      *
      * @return array|null
      */
-    public function previous_url()
-    {
+    public function previous_url() {
         // If the array pointer cannot go previous then the pointer head is
         // at the beginning make a clone of the navigation.
         $nav = $this->navigation;
@@ -219,12 +215,11 @@ class Navigation {
      *
      * @return array|null
      */
-    public function next_url()
-    {
+    public function next_url() {
         // Determine where the next pointer should go navigate between the modules
         // if the array pointer cannot go previous then the pointer head is
         // at the beginning.
-        if($this->module == 'assessment_summary') {
+        if ($this->module == 'assessment_summary') {
             return null;
         }
         // Make a clone of the navigation.
@@ -239,17 +234,16 @@ class Navigation {
         $current_module = current($nav);
         
         // Move the internal pointer in the current_module.
-        while(key($current_module['pages']) !== $this->page ){
+        while (key($current_module['pages']) !== $this->page) {
             next($current_module['pages']);
         }
-        
+
         $current_page = current($current_module['pages']);
         $next_page = next($current_module['pages']);
 
         if (!$next_page) {
             // Move the module page.
             $next_module = next($nav);
-            
             if (!$next_module) {
                 // No next page or module.
                 // Return null unless there is a summary to show (dynamic page).
@@ -266,7 +260,7 @@ class Navigation {
                 return array('module' => key($nav), 'page' => key($next_module['pages']) );
             }
         } else {
-            // All good
+            // All good.
             return array('module' => key($nav), 'page' => key($current_module['pages']));
         }
     }

@@ -38,9 +38,7 @@ abstract class Elmo_web_service_hash
      * @param $secret_key
      * @return string       The generated hash token
      */
-    static public function generate($first_name, $last_name, $email, $secret_key)
-    {
+    static public function generate($first_name, $last_name, $email, $secret_key) {
         return hash_hmac('sha256', $first_name . $last_name . $email, $secret_key);
     }
-
 }

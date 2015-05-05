@@ -27,7 +27,7 @@ namespace mod_dmelearn\cache;
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class Cache {
-    
+
     protected static $cache_dir = "cache/";
 
     /**
@@ -38,10 +38,10 @@ class Cache {
      * @param $string
      * @todo re-implement limited caching for static content.
      */
-    public static function cache($filename, $string){
-        //$f = fopen(self::$cache_dir.$filename.'.txt', 'w+');
-        //fwrite($f, $string);
-        //fclose($f);
+    public function __construct($filename, $string) {
+        // $f = fopen(self::$cache_dir.$filename.'.txt', 'w+');.
+        // fwrite($f, $string);.
+        // fclose($f);.
     }
 
     /**
@@ -53,15 +53,13 @@ class Cache {
     public static function retrieve($filename) {
         $filename = $filename.'.txt';
         $path = self::$cache_dir.$filename;
-        if(file_exists($path))
-        {
+        if (file_exists($path)) {
             // Read the file into a string.
             $handle = fopen($path, "r+");
             $contents = fread($handle, filesize($path));
             fclose($handle);
             return $contents;
-        } else
-        {
+        } else {
             // File not found.
             return false;
         }
