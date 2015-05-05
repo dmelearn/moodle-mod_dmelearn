@@ -66,7 +66,7 @@
                     // If there was a result
                     if (matches !== null) {
                         // remap
-                        settings.url = path + matches[1]; 
+                        settings.url = path + matches[1];
                     } else if(before_url.indexOf("<?php echo $ELMO_ENV; ?>") == 0){ // Brightcookie script
                         // remap
                         settings.url = path + before_url;

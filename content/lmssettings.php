@@ -75,7 +75,7 @@ $lmscourse = $DB->get_record('course', array('id' => $elmo->course));
 $lmsmenu = '
 <div class="lmsmenu">
   <div class="lmsmenuleft">
-    <img src="../pix/home.png" class="lmsimg"/> <a href="' . $CFG->wwwroot . '">Home</a>  >>  <img src="../pix/course.png"  class="lmsimg"/> <a href="' . $CFG->wwwroot.'/course/view.php?id=' . $elmo->course . '">' . $lmscourse->fullname . '</a>
+    <i class="icon-home"></i> <a href="' . $CFG->wwwroot . '"> Home</a> <i class="icon-double-angle-right"></i> <i class="icon-tasks"></i><a href="' . $CFG->wwwroot.'/course/view.php?id=' . $elmo->course . '"> ' . $lmscourse->fullname . '</a>
   </div>
   <div class="lmsmenuright">
     You are logged in as ' . $USER->firstname . ' ' . $USER->lastname . ' (<a href="' . $CFG->wwwroot . '/login/logout.php">Log out</a>)
