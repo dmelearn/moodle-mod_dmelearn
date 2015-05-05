@@ -38,10 +38,10 @@ class Cache {
      * @param $string
      * @todo re-implement limited caching for static content.
      */
-    public function __construct($filename, $string) {
-        // $f = fopen(self::$cache_dir.$filename.'.txt', 'w+');.
-        // fwrite($f, $string);.
-        // fclose($f);.
+    public static function caching($filename, $string){
+        //$f = fopen(self::$cache_dir.$filename.'.txt', 'w+');
+        //fwrite($f, $string);
+        //fclose($f);
     }
 
     /**

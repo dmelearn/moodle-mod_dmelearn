@@ -120,7 +120,7 @@ try {
         $page_request = $request->json();
         // Attempt to cache the page.
         if (isset($page_request['content'])){
-            Cache::cache("{$course}_{$module}_{$page}", $page_request['content']);
+            Cache::caching("{$course}_{$module}_{$page}", $page_request['content']);
         }
     }
     else
