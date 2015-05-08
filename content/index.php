@@ -171,9 +171,25 @@ $navigation = new Navigation(
     )
 );
 
-$previous_url = $navigation->previous_url();
+// Handling previous and next button urls.
+// Gets the nav button info from the page request.
+$nav_buttons = $page_request['nav_btn'];
 
-$next_url = $navigation->next_url();
+// Splits the minus string into module & page and sets the previous url array.
+if (isset($nav_buttons['minus'])) {
+    $prev = explode('/', $nav_buttons['minus']);
+    $previous_url = array('module' => $prev[0], 'page' => $prev[1]);
+} else {
+    $previous_url = false;
+}
+
+// Splits the minus string into module & page and sets the next url array.
+if (isset($nav_buttons['plus'])) {
+    $next = explode('/', $nav_buttons['plus']);
+    $next_url = array('module' => $next[0], 'page' => $next[1]);
+} else {
+    $next_url = false;
+}
 
 // BC: Check progress page.
 check_progress_page($elearnid, $course_request);
