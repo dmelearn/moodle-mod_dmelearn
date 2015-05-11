@@ -20,11 +20,13 @@
  * @package       mod_dmelearn
  * @author        Kien Vu, AJ Dunn
  * @copyright     2015 BrightCookie (http://www.brightcookie.com.au), Digital Media e-learning
- * @version       1.0.0
+ * @version       1.0.1
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 include_once(dirname(dirname(dirname(dirname(__FILE__)))) . "/config.php");
+// Require gradelib to update grades correctly with grade_update function.
+require_once($CFG->libdir.'/gradelib.php');
 
 // Check if Request id is valid.
 if (!isset($_REQUEST["id"]) || !$_REQUEST["id"]) {
@@ -123,7 +125,6 @@ function check_progress_page($eid, $course_info) {
                                   ORDER BY id DESC
                                   LIMIT 1
                                   OFFSET 0", array($eid, $USER->id));
-
     if (!$edata) {
         $edata = new StdClass();
         $trackdata = new StdClass();
@@ -142,7 +143,6 @@ function check_progress_page($eid, $course_info) {
             $trackdata->page = "";
             $trackdata->module = "";
         }
-
         // The request module and page are both not set and the moodle $trackdata page and module both exist.
         if (!isset($_REQUEST["module"]) && !isset($_REQUEST["page"]) && isset($trackdata->page) && $trackdata->page != "" && isset($trackdata->module)
             && $trackdata->module != "") {
@@ -172,11 +172,8 @@ function check_progress_page($eid, $course_info) {
             else {
                 $DB->update_record('dmelearn_entries', $edata);
             }
-
             // Upgrade the grade item.
             if (isset($course_info["course_complete"])) {
-
-                // Using new syntax (ordered params).
                 $params = array($eid, $COURSE->id);
                 $sql = "SELECT *
                         FROM {grade_items}
@@ -187,9 +184,9 @@ function check_progress_page($eid, $course_info) {
                         LIMIT 1
                         OFFSET 0";
                 $grade_item = $DB->get_record_sql($sql, $params);
-
+                // Check if record exists in grade_items.
                 if ($grade_item) {
-                    // Using new syntax (ordered params).
+                    // Record in grade_item exists.
                     $params = array($grade_item->id, $USER->id);
                     $sql = "SELECT *
                             FROM {grade_grades}
@@ -198,7 +195,9 @@ function check_progress_page($eid, $course_info) {
                             LIMIT 1
                             OFFSET 0";
                     $grade_grades = $DB->get_record_sql($sql, $params);
+                    // Check if record exists in $grade_grades.
                     if (!$grade_grades) {
+                        // Record in grade_grades does not exist.
                         $grade_grades = new StdClass();
                         $grade_grades->itemid = $grade_item->id;
                         $grade_grades->userid = $USER->id;
@@ -211,22 +210,27 @@ function check_progress_page($eid, $course_info) {
                         $grade_grades->timecreated = time();
                         $grade_grades->timemodified = time();
                         if ($course_info["course_complete"] == 1) {
+                            // Set grade to 100% complete.
                             $grade_grades->rawgrade = $grade_item->grademax;
                             $grade_grades->finalgrade = $grade_item->grademax;
                         } else {
+                            // Set grade to 0% complete.
                             $grade_grades->rawgrade = $grade_item->grademin;
                             $grade_grades->finalgrade = $grade_item->grademin;
                         }
                         $grade_grades->id = $DB->insert_record("grade_grades", $grade_grades);
                     } else {
+                        // Record in grade_grades exists.
+                        $grade_grades->timemodified = time();
                         if ($course_info["course_complete"] == 1 && $grade_grades->rawgrade != $grade_item->grademax) {
+                            // Set grade to 100% complete.
                             $grade_grades->rawgrade = $grade_item->grademax;
-                            $grade_grades->finalgrade = $grade_item->grademax;
-                            $DB->update_record("grade_grades", $grade_grades);
+                            grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $eid, 0, $grade_grades);
                         } else if ($course_info["course_complete"] != 1 && $grade_grades->rawgrade != $grade_item->grademin) {
+                            // Set grade to 0% complete.
                             $grade_grades->rawgrade = $grade_item->grademin;
-                            $grade_grades->finalgrade = $grade_item->grademin;
-                            $DB->update_record("grade_grades", $grade_grades);
+                            $grade_grades->overridden = time();
+                            grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $eid, 0, $grade_grades);
                         }
                     }
                 }
