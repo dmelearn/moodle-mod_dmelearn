@@ -81,7 +81,7 @@
                 });
             }
             // Finds the reset assessments button.
-                var reset_button = $('.reset_button');
+                var reset_button = $('#reset_modal').find('.reset_button');
                 var pos = this;
                 var reset_course = function() {
 
