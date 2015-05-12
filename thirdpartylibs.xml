@@ -14,4 +14,11 @@
         <license>MIT</license>
         <licenseversion></licenseversion>
     </library>
+    <library>
+        <location>content/vendor/symfony/event-dispatcher/</location>
+        <name>EventDispatcher</name>
+        <version>2.5.0</version>
+        <license>MIT</license>
+        <licenseversion></licenseversion>
+    </library>
 </libraries>
