@@ -25,11 +25,10 @@ namespace mod_dmelearn\navigation;
  * @package    mod_dmelearn\navigation
  * @author     Chris Barton, Digital Media e-learning
  * @copyright  2015 Chris Barton, Digital Media e-learning
- * @version    1.0.0
+ * @version    1.0.1
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
-
 class Navigation {
 
     /**
