@@ -81,36 +81,36 @@
                 });
             }
             // Finds the reset assessments button.
-                var reset_button = $('#reset_modal').find('.reset_button');
-                var pos = this;
-                var reset_course = function() {
+            var reset_button = $('.reset_button');
+            var pos = this;
+            var reset_course = function() {
 
-                    reset_button.on('click', function() {
-                        reset_button.unbind('click');
-                        // AJAX REQUEST -send the course_path and user_id back to ELMO to reset it in the database.
-                        var request = $.ajax({
-                            type: 'POST',
-                            url: 'elmo_ajax_ws_reset.php',
-                            data: {course_path: "<?php echo($page_request['data']['cert_data']['course_path']); ?>", user_id: "<?php echo($page_request['data']['cert_data']['user_id']); ?>"},
-                            success: function (data, status) {
-                                if (data == 1) {
-                                    reset_button.parents('.modal').modal('hide');
-                                    window.location.href = '<?php echo $lmscontenturl; ?>';
-                                    reset_course();
-                                }
-                                else {
-                                    reset_button.parents('.modal').modal('hide');
-                                    alert('Sorry something went wrong. This course assessment could not be reset.');
-                                    reset_course();
-                                }
+                reset_button.on('click', function() {
+                    reset_button.unbind('click');
+                    // AJAX REQUEST -send the course_path and user_id back to ELMO to reset it in the database.
+                    var request = $.ajax({
+                        type: 'POST',
+                        url: 'elmo_ajax_ws_reset.php',
+                        data: {course_path: "<?php echo($page_request['data']['cert_data']['course_path']); ?>", user_id: "<?php echo($page_request['data']['cert_data']['user_id']); ?>"},
+                        success: function (data, status) {
+                            if (data == 1) {
+                                reset_button.parents('.modal').modal('hide');
+                                window.location.href = '<?php echo $lmscontenturl; ?>';
+                                reset_course();
                             }
-                        });
-
+                            else {
+                                reset_button.parents('.modal').modal('hide');
+                                alert('Sorry something went wrong. This course assessment could not be reset.');
+                                reset_course();
+                            }
+                        }
                     });
-                }
-                reset_course();
+
+                });
+            }
+            reset_course();
         });
-    </script>
+   </script>
         <!-- DEPENDANCY SCRIPTS -->
         <?php if (isset($course_request['configuration']['dependancy_scripts'])): ?>
             <?php foreach ($course_request['configuration']['dependancy_scripts'] as $dependant_scripts) : ?>
@@ -128,130 +128,7 @@
             <?php endforeach; ?>
         <?php endif; ?>
         <!-- COURSE JAVASCRIPT -->
-        <script>
-            // DOM ready
-            $(function() {
-                // Select Box Fix For IE.
-                if (!Modernizr.borderradius) { // Using borderradius as a test.
-                    var el;
-                    $("select")
-                            .each(function() {
-                                el = $(this);
-                                el.data("origWidth", el.outerWidth()) // IE 8 has padding.
-                            })
-                            .mouseenter(function() {
-                                $(this).css("width", "auto");
-                            })
-                            .bind("blur change", function() {
-                                el = $(this);
-                                el.css("width", el.data("origWidth"));
-                            });
-                }
-                // Bootstrap tooltips.
-                $('a').tooltip(); // DEPRECIATED - use rel="tooltip" to call your tooltips instead.
-                $('a[rel=tooltip]').tooltip();
-                $('.popover-owner').popover(); // DEPRECIATED - use rel="popover" on the popover button/link to call your popup.
-                $("a[rel=popover]")
-                        .popover()
-                        .click(function(e) {
-                            e.preventDefault();
-                        });
-                // Remove popover by clicking anywhere.
-                $('body').on('click', function(e) {
-                    $("a[rel=popover]").each(function() {
-                        // The 'is' for buttons that trigger popups.
-                        // The 'has' for icons within a button that triggers a popup.
-                        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-                            $(this).popover('hide');
-                        }
-                    });
-                });
-                // accordion collapse bootstrap.
-                $('#notification-popover').popover({
-                    'placement': 'bottom',
-                    'trigger': 'hover',
-                    'html': true
-                });
-                $('.notification-assessmentcomplete').popover({
-                    'placement': 'bottom',
-                    'trigger': 'click',
-                    'html': true,
-                    'title': 'Well done!',
-                    'content': 'You\'ve completed the assessment for this course.'
-                });
-                // Force external links to open in a new window.
-                $('a').each(function() {
-                    var a = new RegExp('/' + window.location.host + '/');
-                    if (!a.test(this.href)) {
-                        $(this).click(function(event) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                            window.open(this.href, '_blank');
-                        });
-                    }
-                });
-                // Assessment summary drop-down.
-                var assessment_sum_parent = $('table.quiz_summary');
-                var sum_a_tag_ = assessment_sum_parent.find('a.dropdown_summary');
-                sum_a_tag_.on('click', function(event) {
-                    event.preventDefault();
-                    // Get closest
-                    var i_tag = $(this).find('i');
-                    var tr = $(this).parents('tr');
-                    var second_tier = tr.next('tr.second-tier');
-
-                    if (second_tier.hasClass('open'))
-                    {
-                        // close
-                        second_tier.hide(400);
-                        second_tier.removeClass('open');
-                        i_tag.attr('class', 'icon-chevron-down');
-                    }
-                    else
-                    {
-                        // open
-                        second_tier.show(400);
-                        second_tier.addClass('open');
-                        i_tag.attr('class', 'icon-chevron-up');
-                    }
-                });
-                // The following code came from course.main.js.
-                var nav = $('.course_nav'); // Navigation - click on module with multiple pages and it opens up.
-                var nav_group = nav.find('.accordion-group');
-                nav_group.each(function() {
-                    if ($(this).find('ul').length > 0) {
-                        var anch = $(this).children('ul').find('a');
-                        var link = anch[0].href;
-                    }
-                    $(this).click(function() {
-                        window.location.href = link;
-                    });
-                });
-                // Collapsable elements.
-                // Swap arrow sprite on hide/show.
-                $('.accordion').on('show hide', function(n) {
-                    $(n.target).siblings('.accordion-heading').find('.accordion-toggle i').toggleClass('icon-chevron-up icon-chevron-down');
-                });
-                //Changes the colours of other accordion items when one is clicked (but not closed).
-                var active_colour = null;
-                var select_accordion = $('.course_body').find('.accordion-group');
-                select_accordion.on('click', function(event) {
-                    var collapsed_colour = $('.icon-chevron-down').parents('.accordion-toggle').css("background-color");
-                    if (active_colour == null) {
-                        active_colour = $(this).css('background-color');
-                    }
-                    $(this).siblings('.accordion-group').find('.accordion-toggle').addClass('collapsed');
-                    $(this).css({'background-color': active_colour});
-                    $(this).siblings('.accordion-group').css({'background-color': collapsed_colour});
-                });
-                // Popover.
-                $(document).click(function() {
-                    // Removes popovers when clicking anywhere on the page.
-                    // Close a popover on click of popover close button as well.
-                    $('.popover-owner').popover('destroy');
-                });
-            });
-        </script>
+        <script src="js/dmelearn.min.js"></script>
 </head>
 <body style="padding-top:0px; background-color: #f9f9f9; font-family:'Arial'" id="course-controller">
     <?php echo $lmsmenu; // brightcookie - LMS menu ?>
@@ -287,19 +164,12 @@
             <?php if (isset($navigation)): ?>
                 <nav id="accordion_menu" class="course_nav accordion span3">
                     <!-- Next and Back Buttons inside navigation -->
-                    <div class="nextback">
-                        <?php if (isset($previous_url) && $previous_url): ?>
-                            <!-- BrightCookie changed-->
-                           <a href="<?php echo $lmscontenturl; ?>&module=<?php echo $previous_url['module']; ?>&page=<?php echo $previous_url['page']; ?>">
-                                <img alt="back" src="<?php echo ELMO_WEB_BASE_IMAGES; ?>/btn-blk-left.png"/>
-                            </a>
+                    <div class = "prev_next">
+                        <?php if ($previous_url): ?>
+                        <a class="button-flat-primary prev_button" href="<?php echo $lmscontenturl; ?>&module=<?php echo $previous_url['module']; ?>&page=<?php echo $previous_url['page']; ?>"><i class="icon icon-chevron-left"></i>PREV<span class="drop_small">IOUS</span></a>
                         <?php endif; ?>
-
-                        <?php if (isset($next_url) && $next_url): ?>
-                        <!-- BrightCookie changed-->
-                            <a href="<?php echo $lmscontenturl; ?>&module=<?php echo $next_url['module']; ?>&page=<?php echo $next_url['page']; ?> ">
-                                <img alt="next" src="<?php echo ELMO_WEB_BASE_IMAGES; ?>/btn-blk-right.png"/>
-                            </a>
+                        <?php if ($next_url): ?>
+                            <a class="button-flat-primary next_button" href="<?php echo $lmscontenturl; ?>&module=<?php echo $next_url['module']; ?>&page=<?php echo $next_url['page']; ?> ">NEXT<i class="icon icon-chevron-right"></i></a>
                         <?php endif; ?>
                     </div>
                     <!-- NAVIGATION -->
@@ -315,23 +185,25 @@
                 } ?>
             </div>
             <!-- NEXT AND BACK BUTTONS -->
-            <div class="span9 offset3">
-                <div class="nextback right">
-                    <?php if ($previous_url): ?>
-                        <!-- BrightCookie changed-->
-                        <a class="prev" href="<?php echo $lmscontenturl; ?>&module=<?php echo $previous_url['module']; ?>&page=<?php echo $previous_url['page']; ?>">
-                            <img alt="back" src="<?php echo ELMO_WEB_BASE_IMAGES; ?>/btn-blk-left.png"/>
-                        </a>
-                    <?php endif; ?>
-                    <?php if ($next_url): ?>
-                        <!-- BrightCookie changed-->
-                        <a class="next" href="<?php echo $lmscontenturl; ?>&module=<?php echo $next_url['module']; ?>&page=<?php echo $next_url['page']; ?> ">
-                            <img alt="next" src="<?php echo ELMO_WEB_BASE_IMAGES; ?>/btn-blk-right.png"/>
-                        </a>
-                    <?php endif; ?>
+            <div class="span12">
+                <div class="span3 bottom-pn">
+                    <div class = "prev_next">
+                        <?php if ($previous_url): ?>
+                        <a class="button-flat-primary prev_button" href="<?php echo $lmscontenturl; ?>&module=<?php echo $previous_url['module']; ?>&page=<?php echo $previous_url['page']; ?>"><i class="icon icon-chevron-left"></i>PREV<span class="drop_small">IOUS</span></a>
+                        <?php endif; ?>
+                        <?php if ($next_url): ?>
+                            <a class="button-flat-primary next_button" href="<?php echo $lmscontenturl; ?>&module=<?php echo $next_url['module']; ?>&page=<?php echo $next_url['page']; ?> ">NEXT<i class="icon icon-chevron-right"></i></a>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
             <!-- END NEXT AND BACK BUTTONS -->
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <hr class="clear">
+            <p class="version-stamp">Brought to you by the WCHN Digital Media e-Learning Team - &copy; <?php echo date('Y'); ?></p>
         </div>
     </div>
     <!-- JQUERY-UI -->

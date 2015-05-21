@@ -1,9 +1,11 @@
 // Setup gulp packages
 var gulp = require('gulp');
 var rename = require('gulp-rename');
+var uglify = require('gulp-uglify');
 
 // Directories
 var targetCSSDir = 'css';
+var targetJSDir = 'js';
 var targetFontDir = 'font';
 var targetFontsDir = 'fonts';
 
@@ -33,7 +35,16 @@ gulp.task('fontawesome-3-css', function () {
             .pipe(gulp.dest(targetCSSDir));
 });
 
+//Bootstrap JS
+gulp.task('compress-js', function () {
+    return gulp.src(['js/*.js', '!js/*.min.js'])
+        .pipe(gulp.dest(targetJSDir))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(uglify())
+        .pipe(gulp.dest(targetJSDir))
+});
+
 // Default: (this runs when you just run gulp on the command line)
 gulp.task('default', ['fontawesome-fonts', 'fontawesome-3-fonts',
-    'fontawesome-css', 'fontawesome-3-css'
+    'fontawesome-css', 'fontawesome-3-css', 'compress-js'
 ]);
