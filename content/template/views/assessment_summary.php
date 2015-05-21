@@ -28,8 +28,8 @@
                 <!-- Loc Link if Available -->
                 <td class="link">
                     <?php if (isset($block['loc']) && !empty($block['loc'])): ?>
-            <a class="btn" href='<?php echo site_url("/course/run/") . "/" . $block['loc']; ?>'>go to assessment</a>
-        <?php endif; ?>
+                        <a class="btn" href="<?php call_user_func_array('make_api_url', (list($course, $module, $page) = explode('/', $block['loc']))); ?>">go to assessment</a>
+                    <?php endif; ?>
                 </td>
                 <tr class="second-tier" style="display:none;">
                     <td colspan="4" class="second-td">
