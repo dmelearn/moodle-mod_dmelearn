@@ -141,7 +141,7 @@
         <div class="row course_content">
             <?php if ($page_request['data']['cert_data']['has_certificate']): ?>
                     <div class="alert alert-info clearfix row-fliud reset_and_cert_buttons">
-                        <p class='pull-left'><strong>Well Done! </strong> This course has been 100% completed.</p>
+                        <p class='pull-left'><strong>Well Done!</strong>  You have completed the assessment for this course.</p>
                         <a class='btn pull-right btn-success' href="<?php echo ELMO_WEB_BASE_URL . 'api/cert/download/' . $page_request['data']['cert_data']['course_path'] . '/' . $page_request['data']['cert_data']['user_id'] . '/' . $page_request['data']['cert_data']['assessment_id'] ?>">Download Certificate (PDF)</a>
                         <a class="btn pull-right btn-danger" href ='#reset_modal' data-toggle="modal">Reset Course</a>
                     </div>
