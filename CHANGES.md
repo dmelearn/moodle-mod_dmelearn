@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.0.4 (2015052800)
+- Updated the navigation side menu and previous next buttons.
+
 ## v1.0.3 (2015052500)
 - Fixed a potential bug where the reset_button could possibly be found elsewhere throughout courses.
 - Fixed assessment summary pages that include questions that are randomised from a (block) bank.
