@@ -163,17 +163,17 @@
                     </div>
                 <?php endif; ?>
             <?php if (isset($navigation)): ?>
-                <nav id="accordion_menu" class="course_nav accordion span3">
+                <nav class="span3">
                     <!-- Next and Back Buttons inside navigation -->
-                    <div class = "prev_next">
+                    <div class = "prev_next row-fluid">
                         <?php if ($previous_url): ?>
-                        <a class="button-flat-primary prev_button" href="<?php echo $lmscontenturl; ?>&module=<?php echo $previous_url['module']; ?>&page=<?php echo $previous_url['page']; ?>"><i class="icon icon-chevron-left"></i>PREV<span class="drop_small">IOUS</span></a>
+                        <a class="button-flat-primary prev_button span6" href="<?php echo $lmscontenturl; ?>&module=<?php echo $previous_url['module']; ?>&page=<?php echo $previous_url['page']; ?>"><i class="icon icon-angle-left"></i>PREV<span class="drop_small">IOUS</span></a>
                         <?php endif; ?>
                         <?php if ($next_url): ?>
-                            <a class="button-flat-primary next_button" href="<?php echo $lmscontenturl; ?>&module=<?php echo $next_url['module']; ?>&page=<?php echo $next_url['page']; ?> ">NEXT<i class="icon icon-chevron-right"></i></a>
+                            <a class="button-flat-primary next_button span6" href="<?php echo $lmscontenturl; ?>&module=<?php echo $next_url['module']; ?>&page=<?php echo $next_url['page']; ?> ">NEXT<i class="icon icon-angle-right"></i></a>
                         <?php endif; ?>
                     </div>
-                    <!-- NAVIGATION -->
+                    <!-- NAVIGATION --> 
                     <?php echo $navigation->make(); ?>
                 </nav>
             <?php endif; ?>
@@ -188,12 +188,12 @@
             <!-- NEXT AND BACK BUTTONS -->
             <div class="span12">
                 <div class="span3 bottom-pn">
-                    <div class = "prev_next">
+                    <div class = "prev_next row-fluid">
                         <?php if ($previous_url): ?>
-                        <a class="button-flat-primary prev_button" href="<?php echo $lmscontenturl; ?>&module=<?php echo $previous_url['module']; ?>&page=<?php echo $previous_url['page']; ?>"><i class="icon icon-chevron-left"></i>PREV<span class="drop_small">IOUS</span></a>
+                        <a class="button-flat-primary prev_button span6" href="<?php echo $lmscontenturl; ?>&module=<?php echo $previous_url['module']; ?>&page=<?php echo $previous_url['page']; ?>"><i class="icon icon-angle-left"></i>PREV<span class="drop_small">IOUS</span></a>
                         <?php endif; ?>
                         <?php if ($next_url): ?>
-                            <a class="button-flat-primary next_button" href="<?php echo $lmscontenturl; ?>&module=<?php echo $next_url['module']; ?>&page=<?php echo $next_url['page']; ?> ">NEXT<i class="icon icon-chevron-right"></i></a>
+                            <a class="button-flat-primary next_button span6" href="<?php echo $lmscontenturl; ?>&module=<?php echo $next_url['module']; ?>&page=<?php echo $next_url['page']; ?> ">NEXT<i class="icon icon-angle-right"></i></a>
                         <?php endif; ?>
                     </div>
                 </div>

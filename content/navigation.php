@@ -77,82 +77,73 @@ class Navigation {
         $module     = $this->module; // Current module
         $page       = $this->page; // Current page
 
-        $return_string = "<ul class='modules nav nav-list' >";
+        $return_string = "<div class='course_nav'><ul class='modules nav nav-list'>";
 
         // We need to get current - page && module.
         $keys = array_keys($navigation);
-
         // Need to work out where and how to get the current navigation highlighted.
         foreach ($navigation as $module_key => $module_data) {
+            // If there is only one page in the module then it links straight to the page.
             if (count($module_data['pages']) == 1) {
+                // The page name.
                 $page_key = key($module_data['pages']);
-
-                $return_string .= "<li class='module accordion-group ";
+                $return_string .= "<li class='module";
+                // The module is active.
                 if ($module_key == $module) {
-                    $return_string .= " active 1";
+                    $return_string .= " active";
                 }
                 $return_string .= "'>"
-                    . "<span class='accordion-heading'><a class='accordion-toggle' data-parent='#accordion_menu' href='"
+                    . "<a href='"
                     . $lmscontenturl."&module="
                     . $module_key."&page="
                     . $page_key
                     . "'>"
                     . $module_data['title']
-                    . "</a>"
-                    . "</span>";
+                    . "</a></li>";
             } else {
+                $page_key = key($module_data['pages']);
                 // More than 1 page in the module.
-                $return_string .= "<li class='module  accordion-group ";
-                if ($module_key == $module) {
-                    $return_string .= "active 2a";
+                $return_string .= "<li class='module ";
+                if ($module_key === $module) {
+                    $return_string .= "active";
                 }
                 $return_string .= "'>"
-                    . "<span class='accordion-heading'>"
-                    . "<a href='----Tobereplaced----' data-target='#"
-                    . $module_key."' class='accordion-toggle' data-parent='#accordion_menu'>"
-                    . "".$module_data['title']."</a>"
-                    . "</span>";
-                // Inner list.
-                $return_string .= "<ul class='pages accordion-body collapse";
+                    . "<a href='"
+                    . $lmscontenturl."&module="
+                    . $module_key."&page="
+                    . $page_key
+                    . "'>"
+                    . $module_data['title']
+                    . "</a>";
+                
+                // The module is active.
+                if ($module_key === $module) {
+                // Inner dropdown.
+                $return_string .= "<ul class='pages in'>";
 
-                if ($module_key == $module) {
-                    $return_string .= " in ";
-                }
-
-                $return_string .= "' id='" . $module_key . "'>";
-
-                $i = 0;
-                $moduleurl = "#";
                 foreach ($module_data['pages'] as $page_key => $page_title) {
-                    $return_string .= "<li class='page ";
+                    $return_string .= "<li class='page";
 
                     if (($module_key === $module) && ($page_key === $page)) {
-                        $return_string .= "active 2";
+                        $return_string .= " active";
                     }
                     $return_string .= "'>"
                         . "<a href='"
-                        .$lmscontenturl."&module="
+                        . $lmscontenturl."&module="
                         . $module_key
                         . "&page="
                         . $page_key
-                        . "' class='accordion-toggle' data-parent='#accordion_menu'>"
-                        . ""
+                        . "'>"
                         . $page_title
-                        ."</a>";
-
-                    $i++;
-                    if ($i == 1) {
-                        $moduleurl = $lmscontenturl . "&module=" . $module_key . "&page=" . $page_key;
-                    }
+                        . "</a>";
+                    
                     $return_string .= "</li>";
                 }
-                $return_string .= "</ul>";
-                // BC: Replace module href with first subitem link.
-                $return_string = str_replace("----Tobereplaced----", $moduleurl, $return_string);
-                $return_string .= "</li>";
+                $return_string .= "</ul></li>";
+                }
             }
         }
-        $return_string .= "</ul>";
-        return $return_string;
+         $return_string .= "</ul></div>";
+         return $return_string;
     }
 }
