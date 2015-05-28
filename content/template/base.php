@@ -24,7 +24,6 @@
     <?php foreach ($course_request['course_css'] as $course_css): ?>
         <link rel="stylesheet" type="text/css" href="<?php echo $course_css; ?>">
     <?php endforeach; ?>
-    <!--[if lt IE 9]><script src="<?php echo ELMO_WEB_BASE_JAVASCRIPT . "html5shiv.min.js"; ?>"></script><![endif]-->
     <!-- JQUERY -->
     <script src="<?php echo ELMO_WEB_BASE_JAVASCRIPT . "jquery.min.js"; ?>"></script>
     <!-- Utility Scripts -->
