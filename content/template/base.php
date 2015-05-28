@@ -24,6 +24,7 @@
     <?php foreach ($course_request['course_css'] as $course_css): ?>
         <link rel="stylesheet" type="text/css" href="<?php echo $course_css; ?>">
     <?php endforeach; ?>
+    <!--[if lt IE 9]><script src="<?php echo ELMO_WEB_BASE_JAVASCRIPT . "html5shiv.min.js"; ?>"></script><![endif]-->
     <!-- JQUERY -->
     <script src="<?php echo ELMO_WEB_BASE_JAVASCRIPT . "jquery.min.js"; ?>"></script>
     <!-- Utility Scripts -->
@@ -40,8 +41,8 @@
         yep: '<?php echo ELMO_WEB_BASE_JAVASCRIPT . 'retina.min.js' ?>'
     });
     </script>
-   <!-- ROUTE REMAP -->
-   <script>
+    <!-- ROUTE REMAP -->
+    <script>
     // Rewire and remap.
     (function(window, document, undefined) {
         var r = window.routes; // Reference routes.
@@ -111,25 +112,25 @@
         }
         reset_course();
     });
-   </script>
-        <!-- DEPENDANCY SCRIPTS -->
-        <?php if (isset($course_request['configuration']['dependancy_scripts'])): ?>
-            <?php foreach ($course_request['configuration']['dependancy_scripts'] as $dependant_scripts) : ?>
-                <script src="<?php echo ELMO_WEB_BASE_JAVASCRIPT . "{$dependant_scripts['path']}/{$dependant_scripts['script']}.js"; ?>"></script>
-            <?php endforeach; ?>
-        <?php endif; ?>
-        <!-- BASE SCRIPTS -->
-        <?php foreach ($course_request['configuration']['base_scripts'] as $base_scripts): ?>
-            <script src="<?php echo ELMO_WEB_BASE_JAVASCRIPT . "{$base_scripts['path']}/{$base_scripts['script']}.js"; ?>"></script>
+    </script>
+    <!-- DEPENDANCY SCRIPTS -->
+    <?php if (isset($course_request['configuration']['dependancy_scripts'])): ?>
+        <?php foreach ($course_request['configuration']['dependancy_scripts'] as $dependant_scripts) : ?>
+            <script src="<?php echo ELMO_WEB_BASE_JAVASCRIPT . "{$dependant_scripts['path']}/{$dependant_scripts['script']}.js"; ?>"></script>
         <?php endforeach; ?>
-        <!-- PAGE SCRIPTS -->
-        <?php if (isset($course_request['configuration']['page_scripts'])): ?>
-            <?php foreach ($course_request['configuration']['page_scripts'] as $page_scripts): ?>
-                <?php elmo_parse_config_page_scripts($module, $page, $page_scripts); ?>
-            <?php endforeach; ?>
-        <?php endif; ?>
-        <!-- COURSE JAVASCRIPT -->
-        <script src="js/dmelearn.min.js"></script>
+    <?php endif; ?>
+    <!-- BASE SCRIPTS -->
+    <?php foreach ($course_request['configuration']['base_scripts'] as $base_scripts): ?>
+        <script src="<?php echo ELMO_WEB_BASE_JAVASCRIPT . "{$base_scripts['path']}/{$base_scripts['script']}.js"; ?>"></script>
+    <?php endforeach; ?>
+    <!-- PAGE SCRIPTS -->
+    <?php if (isset($course_request['configuration']['page_scripts'])): ?>
+        <?php foreach ($course_request['configuration']['page_scripts'] as $page_scripts): ?>
+            <?php elmo_parse_config_page_scripts($module, $page, $page_scripts); ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+    <!-- COURSE JAVASCRIPT -->
+    <script src="js/dmelearn.min.js"></script>
 </head>
 <body style="padding-top:0px; background-color: #f9f9f9; font-family:'Arial'" id="course-controller">
     <?php echo $lmsmenu; // brightcookie - LMS menu ?>
