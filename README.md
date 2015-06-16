@@ -5,7 +5,7 @@
 
 ## Setup
 ### To add required third party components (Developers)
-- Requires [Composer](https://getcomposer.org/), [Bower](http://bower.io/), [Gulp](http://gulpjs.com/) and [gulp-rename](https://www.npmjs.com/package/gulp-rename) to be setup and installed.
+- Requires [Composer](https://getcomposer.org/), [Bower](http://bower.io/), [Gulp](http://gulpjs.com/), [gulp-rename](https://www.npmjs.com/package/gulp-rename) and [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) to be setup and installed.
 - Open the `content` folder inside this plugin from the terminal/command line.
 - Run `composer install`.
 - Run `bower install`.
