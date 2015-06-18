@@ -1,5 +1,6 @@
 {
     "require": {
-        "guzzle/guzzle": "3.9.3"
+        "guzzle/guzzle": "3.9.3",
+        "twig/twig": "~1.0"
     }
 }

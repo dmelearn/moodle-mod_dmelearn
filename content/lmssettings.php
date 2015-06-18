@@ -50,7 +50,6 @@ if (!isset($ELMO_ENV, $public_key, $secret_key, $app_name)) {
 // Set $elearnid to the id 'integer' from the REQUEST.
 $elearnid = filter_var($_REQUEST['id'], FILTER_SANITIZE_NUMBER_INT);
 
-
 require_login();
 
 $elmo = $DB->get_record('dmelearn', array('id' => $elearnid));

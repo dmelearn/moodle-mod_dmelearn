@@ -1,0 +1,82 @@
+{# Assessment Summary #}
+<section>
+    <table class="table quiz_summary">
+        {% for block in page_data.data.assessment_summary.block_data %}
+            <tr>
+                {# Block name #}
+                <td>
+                    {% if block.questions is defined %}
+                        {% if version == 1 %}
+                            <a class="dropdown_summary" href="#"><i class="icon-chevron-down" style:"font-size:22px;"></i>{{ block.title }}</a>
+                        {% else %}
+                            <a class="dropdown_summary" href="#"><i class="fa fa-chevron-down" style:"font-size:22px;"></i>{{ block.title }}</a>
+                        {% endif %}
+                    {% endif %}
+                </td>
+                {# Number correct #}
+                <td>{{ block.number_completed }} out of {{ block.mark }} questions completed</td>
+                {# If Complete Show a tick#}
+                <td>
+                    {% if block.complete %}
+                        <img src="{{ course_constants.course_img }}tick_default.png">
+                    {% else %}
+                        <img src="{{ constants.base_img }}course_default/assessment-sum-roundel.png">
+                    {% endif %}
+                </td>
+
+                {# Loc Link if Available #}
+                <td class="link">
+                    {% if block.loc is defined and block.loc is not empty %}
+                        {% set cmp = block.loc | split('/') %}
+                        <a class="btn" href="?id={{ course_id }}&course={{ cmp.0 }}&module={{ cmp.1 }}&page={{ cmp.2 }}">go to assessment</a>
+                    {% endif %}
+                </td>
+
+            <tr class="second-tier" style="display:none;">
+                <td colspan="4" class="second-td">
+                    <table class="table">
+                        <tbody>
+                            {% if block.randomised == true %}
+                                <tr class="question-level">
+                                    <td colspan="4">The {{ block.mark }} questions are randomised from a bank</td>
+                                </tr>
+                            {% else %}
+                                {% for question_data in block.questions %}
+                                    <tr class="question-level">
+                                        <td>{{ question_data.name }}</td>
+                                        <td class="middle">{{ question_data.type }}</td>
+                                        {% if question_data.loc is empty %}
+                                            <td colspan='2'>
+                                            {% else %}
+                                            <td>
+                                            {% endif %}
+                                            {% if question_data.completed %}
+                                                <img src="{{ course_constants.course_img }}tick_default.png">
+                                            {% else %}
+                                                <img src="{{ constants.base_img }}course_default/assessment-sum-roundel.png">
+                                            {% endif %}
+                                        </td>
+                                        {% if question_data.loc is defined and question_data.loc is not empty %}
+                                            <td class="middle">
+                                                {% set cmp = question_data.loc | split('/') %}
+                                                <a class="btn" href="?id={{ course_id }}&course={{ cmp.0 }}&module={{ cmp.1 }}&page={{ cmp.2 }}">Go to Question</a>
+                                            </td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tr>
+        {% endfor %}
+    </table>
+    {# Overall progress #}
+    <div class="summary_progess_bar">
+        <h2 class="assessment-sum-head"> You are {{ page_data.data.assessment_summary.progress.percentage }}% complete ( {{ page_data.data.assessment_summary.progress.completed_questions }} of {{ page_data.data.assessment_summary.progress.total_questions }} questions correct) </h2>
+        <div class="progress assessment-sum-bar">
+            <div class="bar bar-success" style="width:{{ page_data.data.assessment_summary.progress.percentage }}%"></div>
+        </div>
+    </div>
+</section>

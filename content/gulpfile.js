@@ -8,6 +8,7 @@ var targetCSSDir = 'css';
 var targetJSDir = 'js';
 var targetFontDir = 'font';
 var targetFontsDir = 'fonts';
+var targetTemplateJSDir = 'template/views/js';
 
 // All Tasks
 
@@ -42,6 +43,15 @@ gulp.task('compress-js', function () {
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
         .pipe(gulp.dest(targetJSDir))
+});
+
+// Template JS
+gulp.task('compress-template-js', function () {
+    return gulp.src([targetTemplateJSDir+'/*.js', targetTemplateJSDir+'!js/*.min.js'])
+        .pipe(gulp.dest(targetTemplateJSDir))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(uglify())
+        .pipe(gulp.dest(targetTemplateJSDir))
 });
 
 // Default: (this runs when you just run gulp on the command line)

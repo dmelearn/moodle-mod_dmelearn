@@ -1,0 +1,53 @@
+{# set vars #}
+{% set coursepath = page_data.data.cert_data.course_path %}
+{# header #}
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+{# Google fonts #}
+<link href='http://fonts.googleapis.com/css?family=Bitter|Roboto+Slab' rel='stylesheet' type='text/css'>
+{# CSS #}
+<link rel="stylesheet" type="text/css" href="{{ constants.base_css }}main_v2.css">
+{# jQuery UI Bootstrap Theme #}
+<link rel="stylesheet" href="{{ constants.base_css }}jquery-ui-for-bootstrap.css">
+{# Font Awesome 4.2.0  NOT USED YET #}
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"> 
+{# Course CSS #}
+<link rel="stylesheet" type="text/css" href="{{ constants.base_css }}course_boilerplate.css">
+{% for css in  course_data.course_css %}
+    <link rel="stylesheet" type="text/css" href="{{ css }}">
+{% endfor %}
+{# jQuery #}
+<script src="{{ constants.base_js }}jquery.min.js"></script>
+{# Utility Scripts #}
+<script src="{{ constants.base_js }}modernizr.custom.min.js"></script>
+{# Routes #}
+<script src="{{ constants.base_js }}util/routes.min.js"></script>
+<script src="{{ constants.base_js }}util/util.min.js"></script>
+{# Course scripts #}
+<script src="{{ course_constants.course_js }}script.min.js"></script>
+<script>
+    {# Rewire, remap, retina.js, reset btn #}
+    {% include 'views/js/template.min.js' %}
+</script>
+{# Dependancy Scripts #}
+{% if course_data.configuration.dependancy_scripts is defined %}
+    {% for dscript in course_data.configuration.dependancy_scripts %}
+        <script src="{{ constants.base_js }}{{ dscript.path }}/{{ dscript.script }}.js"></script>
+    {% endfor %}
+{% endif %}
+{# Base Scripts #}
+{% for bscript in course_data.configuration.base_scripts %}
+    <script src="{{ constants.base_js }}{{ bscript.path }}/{{ bscript.script }}.js"></script>
+{% endfor %}
+{# Page Scripts #}
+{% if course_data.configuration.page_scripts is defined %}
+    {% for pscript in course_data.configuration.page_scripts %}
+        {% if  module == pscript.module and page == pscript.page %}
+            <script src="{{ course_constants.course_js }}{{ pscript.script }}"></script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</script>
+{# Course JS #}
+<script src="js/dmelearn.min.js"></script>

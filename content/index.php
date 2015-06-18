@@ -30,7 +30,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
-
 // Include guzzle and the libs we need.
 require_once('elmo_web_service_hash.php');
 
@@ -61,17 +60,14 @@ $client = new Client(API_URL);
  *
  * @note : Remember to secure this
  */
-
 $module = (string) (isset($_GET['module'])) ? filter_var($_GET['module'], FILTER_SANITIZE_STRING) : null;
-$page   = (string) (isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SANITIZE_STRING) : null;
+$page = (string) (isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SANITIZE_STRING) : null;
 
 // MAKE REQUESTs to course first to get all user information/scripts/etc.
 // We have course = courseName, make a request for information on the course.
 try {
     $request = course_request(
-        $client,
-        API_URL . '/' . API_COURSES . $course,
-        make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
+            $client, API_URL . '/' . API_COURSES . $course, make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
     );
     $course_request = $request->json();
 } catch (Guzzle\Common\Exception\RuntimeException $e) {
@@ -96,11 +92,11 @@ if (isset($module) && !isset($page)) {
     if ($course_request['user']['last_visited']) {
         // We want to request the following page.
         $module = $course_request['user']['last_visited']['module'];
-        $page   = $course_request['user']['last_visited']['page'];
+        $page = $course_request['user']['last_visited']['page'];
     } else {
         // We need to get the FIRST module and page.
         $module = key($course_request['navigation']);
-        $page   = key($course_request['navigation'][$module]['pages']);
+        $page = key($course_request['navigation'][$module]['pages']);
     }
 }
 
@@ -109,66 +105,60 @@ try {
     // If the page is already cached.
     $cached = Cache::retrieve("{$course}_{$module}_{$page}");
 
-    if (!$cached)
-    {
+    if (!$cached) {
         // Make a new request.
         $request = course_request(
-            $client,
-            (API_URL . '/' . API_COURSES . $course . '/' . API_MODULES . $module . '/' . API_PAGES . $page),
-            make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
+                $client, (API_URL . '/' . API_COURSES . $course . '/' . API_MODULES . $module . '/' . API_PAGES . $page), make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
         );
         $page_request = $request->json();
         // Attempt to cache the page.
-        if (isset($page_request['content'])){
+        if (isset($page_request['content'])) {
             Cache::caching("{$course}_{$module}_{$page}", $page_request['content']);
         }
-    }
-    else
-    {
+    } else {
         $page_request['content'] = $cached;
     }
 } catch (Guzzle\Common\Exception\RuntimeException $e) {
     if ($e->getResponse()->getStatusCode() == '404') {
         // 404 - Page not found on the API providers site.
-        
         // We need to get the FIRST module and page.
         $module = key($course_request['navigation']);
-        $page   = key($course_request['navigation'][$module]['pages']);
-        
-        if (isset($page) && $page!="" && isset($module) && $module!="") {
-            echo '<script>window.location.href="'.$lmscontenturl.'&module='.$module.'&page='.$page.'";</script>';
+        $page = key($course_request['navigation'][$module]['pages']);
+
+        if (isset($page) && $page != "" && isset($module) && $module != "") {
+            echo '<script>window.location.href="' . $lmscontenturl . '&module=' . $module . '&page=' . $page . '";</script>';
         } else {
             echo('Oops something went wrong. Page not found.');
         }
-        
+
         die();
     } else if ($e->getResponse()->getStatusCode() == '400') {
         // This will happen when no page is specified in the request URL.
         // lmssettings.php will redirect the users to the last saved page.
-        if (isset($CFG->debug) && !$CFG->debug == 0){
-             echo('Note: Moodle debugging is enabled.<br>');
+        if (isset($CFG->debug) && !$CFG->debug == 0) {
+            echo('Note: Moodle debugging is enabled.<br>');
         }
         echo('Redirecting ...');
     } else {
         // Dump Guzzle exception message if debug is enabled in moodle.
-        if (isset($CFG->debug) && !$CFG->debug == 0){
+        if (isset($CFG->debug) && !$CFG->debug == 0) {
             echo "The following exceptions were encountered:\n";
             echo $e->getMessage();
             echo $request->getMessage();
         }
     }
 }
- 
+
 // Setup the navigation using the supplied mod_dmelearn navigation class.
 $navigation = new Navigation(
-    array(
-        'show_summary'      => $course_request['configuration']['include_assessment_summary'],
-        'navigation'        => $course_request['navigation'],
-        'site_url'          => $_SERVER['PHP_SELF'],
-        'course'            => $course,
-        'module'            => $module,
-        'page'              => $page
-    )
+        array(
+    'show_summary' => $course_request['configuration']['include_assessment_summary'],
+    'navigation' => $course_request['navigation'],
+    'site_url' => $_SERVER['PHP_SELF'],
+    'course' => $course,
+    'module' => $module,
+    'page' => $page
+        )
 );
 
 // Handling previous and next button urls.
@@ -201,5 +191,32 @@ define('ELMO_WEB_COURSE_JAVASCRIPT', ELMO_WEB_BASE_COURSES . $course . '/js/');
 define('ELMO_WEB_COURSE_RESOURCES', ELMO_WEB_BASE_COURSES . $course . '/resources/');
 define('ELMO_WEB_COURSE_IMAGES', ELMO_WEB_COURSE_RESOURCES . 'images/');
 
+$courseConstants = Array(
+    'course_js' => ELMO_WEB_COURSE_JAVASCRIPT,
+    'course_resources' => ELMO_WEB_COURSE_RESOURCES,
+    'course_img' => ELMO_WEB_COURSE_IMAGES
+);
+
 // Below is a working template, it must be kept up-to-date.
-require('template/base.php');
+$loader = new Twig_Loader_Filesystem('template');
+$twig = new Twig_Environment($loader);
+
+echo $twig->render('base.twig', array(
+    'course_data' => $course_request,
+    'page_data' => $page_request,
+    'constants' => $frontEndConstants,
+    'content_url' => $lmscontenturl,
+    'page' => $page,
+    'module' => $module,
+    'course_constants' => $courseConstants,
+    'lmsmenu' => $lmsmenu,
+    'wwwroot' => $CFG->wwwroot,
+    'fullname' => $lmscourse->fullname,
+    'first_name' => $USER->firstname,
+    'last_name' => $USER->lastname,
+    'course_id' => $elearnid,
+    'previous_url' => $previous_url,
+    'next_url' => $next_url,
+    'navigation' => $navigation->make(),
+    'lmscontenturl' => $lmscontenturl
+));

@@ -73,3 +73,14 @@ define('API_KEY_COURSES', 'keys/');
  * Reset
  */
 define('API_RESET', 'reset/');
+
+$frontEndConstants = Array(
+    
+    'elmo_env' => $ELMO_ENV,
+    'base_url' => ELMO_WEB_BASE_URL,
+    'base_css' => ELMO_WEB_BASE_CSS,
+    'base_js' => ELMO_WEB_BASE_JAVASCRIPT,
+    'base_img' => ELMO_WEB_BASE_IMAGES,
+    'base_courses' => ELMO_WEB_BASE_COURSES
+);
+
