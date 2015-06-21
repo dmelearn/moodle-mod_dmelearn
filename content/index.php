@@ -199,7 +199,9 @@ $courseConstants = Array(
 
 // Below is a working template, it must be kept up-to-date.
 $loader = new Twig_Loader_Filesystem('template');
-$twig = new Twig_Environment($loader);
+$twig = new Twig_Environment($loader, array(
+    'cache' => 'template_cache',
+));
 
 echo $twig->render('base.twig', array(
     'course_data' => $course_request,
