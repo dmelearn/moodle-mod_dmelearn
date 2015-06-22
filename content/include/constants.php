@@ -20,7 +20,7 @@
  * @package    mod_dmelearn
  * @author     Chris Barton, AJ Dunn
  * @copyright  2015 Chris Barton, Digital Media e-learning
- * @version    1.0.0
+ * @version    1.1.0
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
@@ -74,8 +74,10 @@ define('API_KEY_COURSES', 'keys/');
  */
 define('API_RESET', 'reset/');
 
-$frontEndConstants = Array(
-    
+/**
+ * Array of values to pass to the twig template.
+ */
+$frontEndConstants = array(
     'elmo_env' => $ELMO_ENV,
     'base_url' => ELMO_WEB_BASE_URL,
     'base_css' => ELMO_WEB_BASE_CSS,
@@ -83,4 +85,3 @@ $frontEndConstants = Array(
     'base_img' => ELMO_WEB_BASE_IMAGES,
     'base_courses' => ELMO_WEB_BASE_COURSES
 );
-
