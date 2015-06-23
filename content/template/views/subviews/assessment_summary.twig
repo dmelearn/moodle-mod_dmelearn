@@ -28,7 +28,7 @@
                 <td class="link">
                     {% if block.loc is defined and block.loc is not empty %}
                         {% set cmp = block.loc | split('/') %}
-                        <a class="btn" href="?id={{ course_id }}&course={{ cmp.0 }}&module={{ cmp.1 }}&page={{ cmp.2 }}">go to assessment</a>
+                        <a class="btn" href="?id={{ mod_id }}&course={{ cmp.0 }}&module={{ cmp.1 }}&page={{ cmp.2 }}">go to assessment</a>
                     {% endif %}
                 </td>
 
@@ -59,7 +59,7 @@
                                         {% if question_data.loc is defined and question_data.loc is not empty %}
                                             <td class="middle">
                                                 {% set cmp = question_data.loc | split('/') %}
-                                                <a class="btn" href="?id={{ course_id }}&course={{ cmp.0 }}&module={{ cmp.1 }}&page={{ cmp.2 }}">Go to Question</a>
+                                                <a class="btn" href="?id={{ mod_id }}&course={{ cmp.0 }}&module={{ cmp.1 }}&page={{ cmp.2 }}">Go to Question</a>
                                             </td>
                                         {% endif %}
                                     </tr>
