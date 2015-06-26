@@ -55,7 +55,7 @@ $(function() {
                 url: 'elmo_ajax_ws_reset.php',
                 data: {course_path: "{{ coursepath }}", user_id: "{{ page_data.data.cert_data.user_id }}"},
                 success: function (data, status) {
-                    console.log(data);
+                    // If data returned is true refresh the current page.
                     if (data == 1) {
                         reset_button.parents('.modal').modal('hide');
                         window.location.href = '{{ content_url }}';
