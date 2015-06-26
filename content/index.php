@@ -181,8 +181,9 @@ if (isset($nav_buttons['plus'])) {
     $next_url = false;
 }
 
+
 // BC: Check progress page.
-check_progress_page($elearnid, $course_request);
+check_progress_page($elearnid, $course_request["course_complete"], $page_request['data']['cert_data']['percentage']);
 
 /**
  * DEFINE COURSE SPECIFIC CONSTANTS

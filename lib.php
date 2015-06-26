@@ -59,8 +59,6 @@ function dmelearn_supports($feature) {
             return true;
         case FEATURE_GROUPINGS:
             return true;
-        case FEATURE_GROUPMEMBERSONLY:
-            return true;
         case FEATURE_COMPLETION_TRACKS_VIEWS:
             return false;
         case FEATURE_BACKUP_MOODLE2:
@@ -112,6 +110,7 @@ function dmelearn_update_instance(stdClass $dmelearn, mod_dmelearn_mod_form $mfo
 
     $result = $DB->update_record('dmelearn', $dmelearn);
     dmelearn_grade_item_update($dmelearn);
+    dmelearn_update_grades($dmelearn, 0, false);
 
     return $result;
 }
@@ -406,7 +405,7 @@ function dmelearn_grade_item_delete($dmelearn) {
  * Needed by {@link grade_update_mod_grades()}.
  *
  * @param stdClass $dmelearn instance object with extra cmidnumber and modname property
- * @param int $userid update grade of specific user only, 0 means all participants
+ * @param int $userid update grade_grades of specific user only, 0 means all participants
  * @param boolean $nullifnone null if grade does not exist
  */
 function dmelearn_update_grades(stdClass $dmelearn = null, $userid = 0, $nullifnone = true) {
@@ -417,7 +416,7 @@ function dmelearn_update_grades(stdClass $dmelearn = null, $userid = 0, $nullifn
         if ($grades = dmelearn_get_user_grades($dmelearn, $userid)) {
             dmelearn_grade_item_update($dmelearn, $grades);
         } else if ($userid && $nullifnone) {
-            $grade = new object();
+            $grade = new stdClass();
             $grade->userid   = $userid;
             $grade->rawgrade = null;
             dmelearn_grade_item_update($dmelearn, $grade);
@@ -749,7 +748,7 @@ function dmelearn_get_users_done($dmelearn, $currentgroup) {
     // Remove unenrolled participants.
     foreach ($dmelearns as $key => $user) {
 
-        $context = get_context_instance(CONTEXT_MODULE, $coursemodule->id);
+        $context = context_module::instance($coursemodule->id);
 
         $canadd = has_capability('mod/dmelearn:addentries', $context, $user);
         $entriesmanager = has_capability('mod/dmelearn:manageentries', $context, $user);
@@ -774,7 +773,7 @@ function dmelearn_count_entries($dmelearn, $groupid = 0) {
     global $DB;
 
     $coursemodule = dmelearn_get_coursemodule($dmelearn->id);
-    $context = get_context_instance(CONTEXT_MODULE, $coursemodule->id);
+    $context = context_module::instance($coursemodule->id);
 
     if ($groupid) { // How many in a particular group?
 
