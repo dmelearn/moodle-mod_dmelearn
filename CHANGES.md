@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.0 (2015062900)
+- Add twig template engine and setup to allow different course versions to use different template styling.
+- Remove depricated calls and console.logs.
+- Gradebook update for the grading to include % complete.
+
 ## v1.0.4 (2015052800)
 - Updated the navigation side menu and previous next buttons.
 
