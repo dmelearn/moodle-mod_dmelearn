@@ -46,7 +46,6 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         $elmocourses = get_key_courses();
         $elmocoursearr = array();
 
-        // TODO: Add more comments.
         if ($elmocourses->result) {
             foreach($elmocourses->result as $elmocourse){
                 $elmocoursearr[$elmocourse["path"]] = $elmocourse["course_short_name"];
@@ -54,6 +53,12 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         }
 
         $mform = $this->_form;
+
+        // Adding the rest of newmodule settings, spreading all them into this fieldset
+        // ... or adding more fieldsets ('header' elements) if needed for better logic.
+        $mform->addElement('header', 'dmelearnsetting', get_string('dmelearnsetting', 'dmelearn'));
+
+        $select = $mform->addElement('select', 'coursepath', get_string('dmelearncoursepath', 'dmelearn'), $elmocoursearr);
 
         // Adding the "general" fieldset, where all the common settings are showed.
         $mform->addElement('header', 'general', get_string('general', 'form'));
@@ -71,13 +76,7 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         $mform->addHelpButton('name', 'dmelearnname', 'dmelearn');
 
         // Adding the standard "intro" and "introformat" fields.
-        $this->standard_intro_elements();
-
-        // Adding the rest of newmodule settings, spreading all them into this fieldset
-        // ... or adding more fieldsets ('header' elements) if needed for better logic.
-        $mform->addElement('header', 'dmelearnsetting', get_string('dmelearnsetting', 'dmelearn'));
-
-        $select = $mform->addElement('select', 'coursepath', get_string('dmelearncoursepath', 'dmelearn'), $elmocoursearr);
+        $this->add_intro_editor();
 
         $mform->addRule('coursepath', null, 'required', null, 'client');
 
