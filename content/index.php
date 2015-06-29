@@ -74,6 +74,7 @@ try {
     // Check if we are Unauthorized '401'.
     if ($e->getResponse()->getStatusCode() == '401') {
         include_once('include/noAccess.php');
+        exit();
     } else {
         // We are Authorized but another issue has occured.
         // Dump Guzzle exception message if debug is enabled in Moodle.
