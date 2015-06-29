@@ -194,9 +194,9 @@ function check_progress_page($elearnid, $course_complete, $percentage = 0) {
                     OFFSET 0";
             $grade_grades = $DB->get_record_sql($sql, $params);
 
-
             // Check if record exists in $grade_grades.
             if (!$grade_grades) {
+                // This is for moodle 2.7 or older.
                 // Record in grade_grades does not exist.
                 $grade_grades = new StdClass();
                 $grade_grades->itemid = $grade_item->id;
@@ -216,36 +216,33 @@ function check_progress_page($elearnid, $course_complete, $percentage = 0) {
                     $grade_grades->rawgrade = round(($percentage * $grade_grades->rawgrademax)/100, 5);
                 }
                 grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
-                die();
+            }
+
+            // Record in grade_grades already exists.
+            $grade_grades->timemodified = time();
+
+            if ($course_complete == 1 && $grade_grades->rawgrade != $grade_grades->rawgrademax ) {
+                // API says complete but gradebook does not reflect this yet.
+                // Set raw grade to 100% complete.
+                $grade_grades->rawgrade = $grade_grades->rawgrademax;
+                $grade_grades->overridden = time();
+                grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
+
+            } else if ($course_complete != 1 && $grade_grades->rawgrade == $grade_grades->rawgrademax) {
+                // API says NOT complete but gradebook does not reflect this yet.
+                // Set grade to % complete.
+                $grade_grades->rawgrade = round(($percentage * $grade_grades->rawgrademax)/100, 5);
+                $grade_grades->overridden = time();
+                grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
 
             } else {
-                // Record in grade_grades already exists.
-                $grade_grades->timemodified = time();
-
-                if ($course_complete == 1 && $grade_grades->rawgrade != $grade_grades->rawgrademax ) {
-                    // API says complete but gradebook does not reflect this yet.
-                    // Set raw grade to 100% complete.
-                    $grade_grades->rawgrade = $grade_grades->rawgrademax;
+                // Grade as percentage of rawgrademax.
+                $grade_of_rawgrademax = round(($percentage * $grade_grades->rawgrademax)/100, 5);
+                // Update if needed.
+                if ($grade_grades->rawgrade != $grade_of_rawgrademax){
+                    $grade_grades->rawgrade = $grade_of_rawgrademax;
                     $grade_grades->overridden = time();
                     grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
-
-                } else if ($course_complete != 1 && $grade_grades->rawgrade == $grade_grades->rawgrademax) {
-                    // API says NOT complete but gradebook does not reflect this yet.
-                    // Set grade to % complete.
-                    $grade_grades->rawgrade = round(($percentage * $grade_grades->rawgrademax)/100, 5);
-                    $grade_grades->overridden = time();
-                    grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
-
-                } else {
-                    // Grade as percentage of rawgrademax.
-                    $grade_of_rawgrademax = round(($percentage * $grade_grades->rawgrademax)/100, 5);
-                    // Update if needed.
-                    if ($grade_grades->rawgrade != $grade_of_rawgrademax){
-                        $grade_grades->rawgrade = $grade_of_rawgrademax;
-                        $grade_grades->overridden = time();
-                        grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
-
-                    }
                 }
             }
         }
