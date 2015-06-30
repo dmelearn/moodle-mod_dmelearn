@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.1.1 (2015063000)
+- Exit after '401' exception is caught.
+- Remove unneeded example text.
+- Move dmelearningsettings to top of mod_form.
+- Fix Moodle 2.7 not showing 1st course page with module and page in URL.
+- Update the grading so that it sets the correct grade on first load.
+
 ## v1.1.0 (2015062900)
 - Add twig template engine and setup to allow different course versions to use different template styling.
 - Remove depricated calls and console.logs.

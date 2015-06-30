@@ -15,6 +15,7 @@
 * Either install the plugin as a .zip file via Moodle Plugin installer page or ...
 * Create a `dmelearn` folder inside `mod/` in the root directory of you Moodle install.
 * Copy all plugin files and folders into `dmelearn`.
+* *Please make sure that the folder `mod/dmelearn/content/template_cache/` is writable by Moodle.*
 * After the plugin has been installed by a Moodle Adminstrator ...
 * Go to Site Administration -> Plugins -> Activity modules -> Digital Media e-Learning.
 * Enter all required configuration details for the mod_dmelearn plugin (Provided to DM partners only).
