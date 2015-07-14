@@ -26,14 +26,14 @@
  * @package    mod_dmelearn
  * @author     Chris Barton, AJ Dunn, CJ Faulkner
  * @copyright  2015 Chris Barton, Digital Media e-learning
- * @version    1.0.1
+ * @version    1.0.2
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
 // Include guzzle and the libs we need.
 require_once('elmo_web_service_hash.php');
 
-// BC to put the lms seeting back to ELMO content page.
+// BC to put the lms setting back to ELMO content page.
 require_once('./lmssettings.php');
 
 require_once('./vendor/autoload.php');
@@ -76,7 +76,7 @@ try {
         include_once('include/noAccess.php');
         exit();
     } else {
-        // We are Authorized but another issue has occured.
+        // We are Authorized but another issue has occurred.
         // Dump Guzzle exception message if debug is enabled in Moodle.
         if (isset($CFG->debug) && !$CFG->debug == 0) {
             echo "The following exceptions were encountered:\n";
@@ -152,14 +152,14 @@ try {
 
 // Setup the navigation using the supplied mod_dmelearn navigation class.
 $navigation = new Navigation(
-        array(
-    'show_summary' => $course_request['configuration']['include_assessment_summary'],
-    'navigation' => $course_request['navigation'],
-    'site_url' => $_SERVER['PHP_SELF'],
-    'course' => $course,
-    'module' => $module,
-    'page' => $page
-        )
+    array(
+        'show_summary' => $course_request['configuration']['include_assessment_summary'],
+        'navigation' => $course_request['navigation'],
+        'site_url' => $_SERVER['PHP_SELF'],
+        'course' => $course,
+        'module' => $module,
+        'page' => $page
+    )
 );
 
 // Handling previous and next button urls.
@@ -182,7 +182,6 @@ if (isset($nav_buttons['plus'])) {
     $next_url = false;
 }
 
-
 // BC: Check progress page.
 check_progress_page($elearnid, $course_request["course_complete"], $page_request['data']['cert_data']['percentage']);
 
@@ -201,9 +200,16 @@ $courseConstants = Array(
 
 // Below is a working template, it must be kept up-to-date.
 $loader = new Twig_Loader_Filesystem('template');
-$twig = new Twig_Environment($loader, array(
-    'cache' => 'template_cache',
-));
+
+// Check if template cache directory can be written to and use it as cache.
+if (is_writable(__DIR__.'/template_cache')) {
+    $twig = new Twig_Environment($loader, array(
+        'cache' => __DIR__.'/template_cache',
+    ));
+} else {
+    $twig = new Twig_Environment($loader, array(
+    ));
+}
 
 echo $twig->render('base.twig', array(
     'course_data' => $course_request,
