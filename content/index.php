@@ -199,7 +199,7 @@ $courseConstants = Array(
 );
 
 // Below is a working template, it must be kept up-to-date.
-$loader = new Twig_Loader_Filesystem('template');
+$loader = new Twig_Loader_Filesystem(__DIR__ . '/template');
 
 // Check if template cache directory can be written to and use it as cache.
 if (is_writable(__DIR__.'/template_cache')) {
