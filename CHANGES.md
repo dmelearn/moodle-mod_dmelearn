@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2.0 (2015072200)
+- Twig Caching disabled if template_cache directory is not writable.
+- Fix issue with missing dmelearn grades in gradebook.
+- Add repair for missing grades to the upgrade function for affected versions.
+
 ## v1.1.1 (2015063000)
 - Exit after '401' exception is caught.
 - Remove unneeded example text.
