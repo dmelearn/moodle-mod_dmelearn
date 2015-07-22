@@ -33,5 +33,28 @@ require_once($CFG->dirroot . '/mod/dmelearn/lib.php');
  * @return bool
  */
 function xmldb_dmelearn_upgrade($oldversion = 0) {
+    global $DB;
+
+    // Check if version between 1.0.2 and 1.1.1.
+    if ($oldversion >= 2015051200 && $oldversion < 2015072200) {
+        // Fix missing dmelearn grades in gradebook by forcing full update of grades for
+        // courses containing dmelearn activities.
+        global $CFG;
+        require_once($CFG->libdir.'/gradelib.php');
+        // Get all course ids that contain a dmelearn activity.
+        $sql = "SELECT DISTINCT course.id
+              FROM course
+              JOIN course_modules ON course.id = course_modules.course
+              JOIN modules ON course_modules.module = modules.id
+              WHERE modules.name = 'dmelearn'";
+        if ($courseids = $DB->get_records_sql($sql)) {
+            // Force update of all dmelearn activity grades.
+            foreach ($courseids as $courseid)
+            {
+                grade_grab_course_grades($courseid->id, 'dmelearn');
+            }
+        }
+    }
+
     return true;
 }
