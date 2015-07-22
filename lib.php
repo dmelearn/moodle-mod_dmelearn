@@ -355,34 +355,37 @@ function dmelearn_scale_used_anywhere($scaleid) {
  * Needed by {@link grade_update_mod_grades()}.
  *
  * @param stdClass $dmelearn instance object with extra cmidnumber and modname property
- * @param bool $reset reset grades in the gradebook
- * @return void
+ * @param mixed optional array/object of grade(s); 'reset' means reset grades in gradebook
+ * @return int 0 if ok, error code otherwise
  */
-function dmelearn_grade_item_update(stdClass $dmelearn, $reset = false) {
+function dmelearn_grade_item_update($dmelearn, $grades=null) {
     global $CFG;
     require_once($CFG->libdir.'/gradelib.php');
 
-    $item = array();
-    $item['itemname'] = clean_param($dmelearn->name, PARAM_NOTAGS);
-    $item['gradetype'] = GRADE_TYPE_VALUE;
-
-    if ($dmelearn->grade > 0) {
-        $item['gradetype'] = GRADE_TYPE_VALUE;
-        $item['grademax']  = $dmelearn->grade;
-        $item['grademin']  = 0;
-    } else if ($dmelearn->grade < 0) {
-        $item['gradetype'] = GRADE_TYPE_SCALE;
-        $item['scaleid']   = -$dmelearn->grade;
+    if (array_key_exists('cmidnumber', $dmelearn)) {
+        $params = array('itemname'=>$dmelearn->name, 'idnumber'=>$dmelearn->cmidnumber);
     } else {
-        $item['gradetype'] = GRADE_TYPE_NONE;
+        $params = array('itemname'=>$dmelearn->name);
     }
-
-    if ($reset) {
-        $item['reset'] = true;
+    if ($dmelearn->grade > 0) {
+        $params['gradetype']  = GRADE_TYPE_VALUE;
+        $params['grademax']   = $dmelearn->grade;
+        $params['grademin']   = 0;
+        $params['multfactor'] = 1.0;
+    } else if($dmelearn->grade < 0) {
+        $params['gradetype'] = GRADE_TYPE_SCALE;
+        $params['scaleid']   = -$dmelearn->grade;
+    } else {
+        $params['gradetype']  = GRADE_TYPE_NONE;
+        $params['multfactor'] = 1.0;
+    }
+    if ($grades  === 'reset') {
+        $params['reset'] = true;
+        $grades = NULL;
     }
 
     grade_update('mod/dmelearn', $dmelearn->course, 'mod', 'dmelearn',
-        $dmelearn->id, 0, null, $item);
+        $dmelearn->id, 0, $grades, $params);
 }
 
 /**
