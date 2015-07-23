@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.2.1 (2015072300)
+- Fix issue with upgrading when Moodle is using a database prefix.
+
 ## v1.2.0 (2015072200)
 - Twig Caching disabled if template_cache directory is not writable.
 - Fix issue with missing dmelearn grades in gradebook.
