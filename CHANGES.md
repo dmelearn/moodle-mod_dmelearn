@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.5 (2015080501)
+- Fix issue with null if none in dmelearn_update_grades() function being set as true by default.
+- $PAGE->activityrecord skipped in view.php as we don't have a record.
+
 ## v1.2.1 (2015072300)
 - Fix issue with upgrading when Moodle is using a database prefix.
 
