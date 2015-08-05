@@ -64,7 +64,8 @@ if ($CFG->version >= 2014051200) {
         'context' => $PAGE->context,
     ));
     $event->add_record_snapshot('course', $PAGE->course);
-    $event->add_record_snapshot($PAGE->cm->modname, $activityrecord);
+    // In the next line you can use $PAGE->activityrecord if you have set it, or skip this line if you don't have a record.
+    // $event->add_record_snapshot($PAGE->cm->modname, $activityrecord);
     $event->trigger();
 } else {
     // Use the old method of logging (Moodle is 2.6 or older).
@@ -72,3 +73,4 @@ if ($CFG->version >= 2014051200) {
 }
 
 header("location: {$CFG->wwwroot}/mod/dmelearn/content/?id={$elmo->id}");
+die();
