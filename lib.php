@@ -411,7 +411,7 @@ function dmelearn_grade_item_delete($dmelearn) {
  * @param int $userid update grade_grades of specific user only, 0 means all participants
  * @param boolean $nullifnone null if grade does not exist
  */
-function dmelearn_update_grades(stdClass $dmelearn = null, $userid = 0, $nullifnone = true) {
+function dmelearn_update_grades(stdClass $dmelearn = null, $userid = 0, $nullifnone = false) {
     global $CFG, $DB;
     require_once($CFG->libdir . '/gradelib.php');
 
