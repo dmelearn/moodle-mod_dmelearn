@@ -1,6 +1,8 @@
 {
     "require": {
-        "guzzle/guzzle": "3.9.3",
-        "twig/twig": "~1.0"
+        "guzzlehttp/guzzle": "5.3.0",
+        "twig/twig": "1.22.2"
+    },
+    "require-dev": {
     }
 }

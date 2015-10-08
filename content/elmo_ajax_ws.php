@@ -29,10 +29,10 @@ if (!$USER->id && $USER->id < 2) {
     die();
 }
 
-$firstname  = $USER->firstname;
-$lastname   = $USER->lastname;
-$email      = $USER->email;
-$payroll    = $USER->idnumber;
+$firstname = $USER->firstname;
+$lastname = $USER->lastname;
+$email = $USER->email;
+$payroll = $USER->idnumber;
 
 // This is a registration made to a Client, be sure to register each client.
 
@@ -49,14 +49,13 @@ require_once('./vendor/autoload.php');
 require_once('./include/constants.php');
 require_once('./include/functions.php');
 
-use Guzzle\Http\Client;
-use Guzzle\Http\Exception\MultiTransferException;
+use GuzzleHttp\Client;
 
-$client = new Client(API_URL);
+$client = new Client();
 
 // Get all the data we need to make a request.
 $path = filter_var($_GET['request'], FILTER_SANITIZE_STRING);
-$data = json_encode( array( 'data' => filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING)));
+$data = array('data' => filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
 
 // Workout what the request actually is for.
 // Regex sucks in PHP, strip the first slash if it exists.
@@ -69,12 +68,21 @@ $request_path = $path_explode[0];
 $response;
 // What type of request?
 switch ($request_path) {
+    // TODO: Add more matches here when needed.
     case 'validate_question':
         if (count($path_explode) > 1) {
             $id = $path_explode[1];
         }
-        $response = validate_question_request($client, ( API_URL . '/' . API_VALIDATE . '/' . $id ),
-            make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key), $data);
+        try{
+            $response = validate_question_request(
+                $client,
+                (API_URL . '/' . API_VALIDATE . '/' . $id),
+                make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key),
+                $data
+            );
+        } catch (GuzzleHttp\Exception\TransferException $e){
+            exit();
+        }
         // Feels bad man but you have json while you json.
         $response = $response->json();
         exit(json_encode($response['Response']));
@@ -86,5 +94,4 @@ switch ($request_path) {
             echo get_ajax_content($path);
         }
     break;
-    // TODO: add more matches here when needed.
 }

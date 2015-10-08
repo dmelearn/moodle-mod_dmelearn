@@ -67,8 +67,6 @@ $lastname   = $USER->lastname;
 $email      = $USER->email;
 $payroll    = $USER->idnumber;
 
-// Make a token - Use the Elmo_web_service_hash lib to do this.
-$token = Elmo_web_service_hash::generate($firstname, $lastname, $email, $secret_key);
 $lmscontenturl = "{$CFG->wwwroot}/mod/dmelearn/content/?id={$elearnid}";
 // Generate Moodle menu.
 $lmscourse = $DB->get_record('course', array('id' => $elmo->course));
