@@ -65,7 +65,7 @@ function get_key_courses() {
     try {
          $request = course_request(
              $client,
-             (API_URL . '/'. API_KEY_COURSES . $public_key),
+             (API_URL . API_KEY_COURSES . $public_key),
              make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
          );
          $page_request = $request->json();

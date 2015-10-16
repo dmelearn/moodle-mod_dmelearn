@@ -63,7 +63,7 @@ $user_id = $data['user_id'];
 try {
     $request = course_request(
         $client,
-        (API_URL . '/' . API_RESET . $course_path . '/' . $user_id),
+        (API_URL . API_RESET . $course_path . '/' . $user_id),
         make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
     );
     $page_request = $request->json();

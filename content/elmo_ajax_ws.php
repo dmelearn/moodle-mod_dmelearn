@@ -76,11 +76,11 @@ switch ($request_path) {
         try{
             $response = validate_question_request(
                 $client,
-                (API_URL . '/' . API_VALIDATE . '/' . $id),
+                (API_URL . API_VALIDATE . $id),
                 make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key),
                 $data
             );
-        } catch (GuzzleHttp\Exception\TransferException $e){
+        } catch (GuzzleHttp\Exception\TransferException $e) {
             exit();
         }
         // Feels bad man but you have json while you json.

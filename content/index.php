@@ -67,7 +67,7 @@ $page = (string) (isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SANIT
 try {
     $request = course_request(
         $client,
-        (API_URL . '/' . API_COURSES . $course),
+        (API_URL . API_COURSES . $course),
         make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
     );
     $course_request = $request->json();
@@ -119,7 +119,7 @@ try {
         // Make a new request.
         $request = course_request(
             $client,
-            (API_URL . '/' . API_COURSES . $course . '/' . API_MODULES . $module . '/' . API_PAGES . $page),
+            (API_URL . API_COURSES . $course . '/' . API_MODULES . $module . '/' . API_PAGES . $page),
             make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
         );
         $page_request = $request->json();
