@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.3.0 (2015XXXXXX)
+- Upgrade Guzzle to 5.3.
+- Upgrade Twig to v1.2.3.
+- Add Moodle PHPUnit testing for plugin.
+- On upgrade clear files in Twig Cache directory.
+
 ## v1.2.5 (2015080501)
 - Fix issue with null if none in dmelearn_update_grades() function being set as true by default.
 - $PAGE->activityrecord skipped in view.php as we don't have a record.
