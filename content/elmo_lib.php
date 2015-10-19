@@ -49,7 +49,7 @@ function get_key_courses() {
 
     global $CFG, $USER;
 
-    // SOME USER DATA needed to make a request.
+    // Some User data needed to make a request.
     $firstname  = $USER->firstname;
     $lastname   = $USER->lastname;
     $email      = $USER->email;
