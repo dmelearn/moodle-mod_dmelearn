@@ -2,6 +2,7 @@
 var gulp = require('gulp');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
+var del = require('del');
 
 // Directories.
 var targetCSSDir = 'css';
@@ -72,6 +73,34 @@ gulp.task('compress-template-js', function () {
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
         .pipe(gulp.dest(targetTemplateJSDir))
+});
+
+// Cleanup the Composer vendor folder to prepare for packaging up plugin.
+gulp.task('clean:vendor', function () {
+    return del([
+        // Remove any git files.
+        'vendor/**/.git',
+        'vendor/**/.gitignore',
+        // Remove testing files.
+        'vendor/**/.travis.yml',
+        'vendor/**/phpunit.xml',
+        'vendor/**/phpunit.xml.dist',
+        // Remove documentation and test files not needed.
+        'vendor/guzzlehttp/guzzle/docs',
+        'vendor/guzzlehttp/guzzle/tests',
+        'vendor/guzzlehttp/ringphp/docs',
+        'vendor/guzzlehttp/ringphp/tests',
+        'vendor/guzzlehttp/streams/tests',
+        'vendor/react/promise/tests',
+        'vendor/twig/twig/doc',
+        'vendor/twig/twig/test'
+    ]);
+});
+gulp.task('del:bower', function () {
+    return del([
+        // here we use a globbing pattern to match everything inside the `mobile` folder
+        'bower_components/'
+    ]);
 });
 
 // Default: (This task runs when you run 'gulp' on the command line.)
