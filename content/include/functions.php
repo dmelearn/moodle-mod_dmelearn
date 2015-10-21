@@ -170,3 +170,16 @@ function get_ajax_content($url) {
     }, $result);
     return $result;
 }
+
+/**
+ * Check if this version of the dmelearn plugin can display a course of a given supported version number.
+ *
+ * @param $version_num course version to check
+ * @return bool is version supported?
+ */
+function support_course_num($version_num) {
+    // Array containing the course version numbers supported by this dmelearn plugin version.
+    $supported = array(1, 2);
+
+    return (in_array($version_num, $supported)) ? true : false;
+}
