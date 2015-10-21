@@ -85,6 +85,8 @@ gulp.task('clean:vendor', function () {
         'vendor/**/.travis.yml',
         'vendor/**/phpunit.xml',
         'vendor/**/phpunit.xml.dist',
+        // Remove IDE files
+        'vendor/**/.editorconfig',
         // Remove documentation and test files not needed.
         'vendor/guzzlehttp/guzzle/docs',
         'vendor/guzzlehttp/guzzle/tests',
@@ -98,7 +100,7 @@ gulp.task('clean:vendor', function () {
 });
 gulp.task('del:bower', function () {
     return del([
-        // here we use a globbing pattern to match everything inside the `mobile` folder
+        // Remove bower_components folder.
         'bower_components/'
     ]);
 });
