@@ -1,6 +1,7 @@
 # Changelog
 
 ## v1.3.0 (2015XXXXXX)
+- Plugin now requires PHP 5.4.0 or above.
 - Upgrade Guzzle to 5.3 and Twig to v1.22.3.
 - Update course templates v1 and v2 to support newer DM e-Learning courses.
 - On upgrade the plugin now removes old cache files in Twig Cache directory.
