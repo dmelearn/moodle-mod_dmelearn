@@ -45,13 +45,12 @@ require_once('./include/functions.php');
 // A caching class.
 require_once('./include/cache.php');
 
-use Guzzle\Http\Client;
-use Guzzle\Http\Exception\MultiTransferException;
+use GuzzleHttp\Client;
 use mod_dmelearn\navigation\Navigation;
 use mod_dmelearn\cache\Cache;
 
 // Setup Guzzle to the web services end point.
-$client = new Client(API_URL);
+$client = new Client();
 
 /**
  * Using Query Strings we navigate between courses/modules/pages
@@ -63,27 +62,45 @@ $client = new Client(API_URL);
 $module = (string) (isset($_GET['module'])) ? filter_var($_GET['module'], FILTER_SANITIZE_STRING) : null;
 $page = (string) (isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SANITIZE_STRING) : null;
 
-// MAKE REQUESTs to course first to get all user information/scripts/etc.
+// Make Requests to course first to get all user information/scripts/etc.
 // We have course = courseName, make a request for information on the course.
 try {
     $request = course_request(
-            $client, API_URL . '/' . API_COURSES . $course, make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
+        $client,
+        (API_URL . API_COURSES . $course),
+        make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
     );
     $course_request = $request->json();
-} catch (Guzzle\Common\Exception\RuntimeException $e) {
-    // Check if we are Unauthorized '401'.
+
+} catch (GuzzleHttp\Exception\ClientException $e) {
+    // Check if we are unauthorised 'HTTP Error 401'.
     if ($e->getResponse()->getStatusCode() == '401') {
+        // This Moodle is not authorised to access this course.
         include_once('include/noAccess.php');
-        exit();
+        die();
     } else {
-        // We are Authorized but another issue has occurred.
+        // We are authorised but another issue has occurred.
         // Dump Guzzle exception message if debug is enabled in Moodle.
         if (isset($CFG->debug) && !$CFG->debug == 0) {
-            echo "The following exceptions were encountered:\n";
             echo $e->getMessage();
-            echo $request->getMessage();
         }
+        // Throw Moodle Exception.
+        throw new moodle_exception('course_client_exception', 'dmelearn');
     }
+} catch (GuzzleHttp\Exception\RequestException $e) {
+    if (isset($CFG->debug) && !$CFG->debug == 0) {
+        echo $e->getMessage();
+    }
+    // Throw Moodle Exception.
+    throw new moodle_exception('course_request_exception', 'dmelearn');
+}
+
+// Check if this plugin can support the course version.
+$course_version = isset($course_request["configuration"]["course_version"]) ? filter_var($course_request["configuration"]["course_version"], FILTER_SANITIZE_NUMBER_INT) : 1;
+if (!support_course_num($course_version))
+{
+    include_once('include/noAccess.php');
+    die();
 }
 
 if (isset($module) && !isset($page)) {
@@ -109,7 +126,9 @@ try {
     if (!$cached) {
         // Make a new request.
         $request = course_request(
-                $client, (API_URL . '/' . API_COURSES . $course . '/' . API_MODULES . $module . '/' . API_PAGES . $page), make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
+            $client,
+            (API_URL . API_COURSES . $course . '/' . API_MODULES . $module . '/' . API_PAGES . $page),
+            make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
         );
         $page_request = $request->json();
         // Attempt to cache the page.
@@ -119,7 +138,7 @@ try {
     } else {
         $page_request['content'] = $cached;
     }
-} catch (Guzzle\Common\Exception\RuntimeException $e) {
+} catch (GuzzleHttp\Exception\ClientException $e) {
     if ($e->getResponse()->getStatusCode() == '404') {
         // 404 - Page not found on the API providers site.
         // We need to get the FIRST module and page.
@@ -127,26 +146,25 @@ try {
         $page = key($course_request['navigation'][$module]['pages']);
 
         if (isset($page) && $page != "" && isset($module) && $module != "") {
+            // Take user to a working page.
             echo '<script>window.location.href="' . $lmscontenturl . '&module=' . $module . '&page=' . $page . '";</script>';
         } else {
-            echo('Oops something went wrong. Page not found.');
+            throw new moodle_exception('pagenotfound', 'dmelearn');
         }
-
         die();
     } else if ($e->getResponse()->getStatusCode() == '400') {
         // This will happen when no page is specified in the request URL.
         // lmssettings.php will redirect the users to the last saved page.
         if (isset($CFG->debug) && !$CFG->debug == 0) {
-            echo('Note: Moodle debugging is enabled.<br>');
+            echo 'Note: Moodle debugging is enabled.<br>';
         }
-        echo('Redirecting ...');
+        echo 'Redirecting ...';
     } else {
         // Dump Guzzle exception message if debug is enabled in moodle.
         if (isset($CFG->debug) && !$CFG->debug == 0) {
-            echo "The following exceptions were encountered:\n";
             echo $e->getMessage();
-            echo $request->getMessage();
         }
+        throw new moodle_exception('page_client_exception', 'dmelearn');
     }
 }
 
@@ -203,9 +221,13 @@ $loader = new Twig_Loader_Filesystem(__DIR__ . '/template');
 
 // Check if template cache directory can be written to and use it as cache.
 if (is_writable(__DIR__.'/template_cache')) {
-    $twig = new Twig_Environment($loader, array(
-        'cache' => __DIR__.'/template_cache',
-    ));
+    $twig = new Twig_Environment(
+        $loader,
+        array(
+            'cache' => new Twig_Cache_Filesystem(__DIR__ . '/template_cache',
+                Twig_Cache_Filesystem::FORCE_BYTECODE_INVALIDATION)
+        )
+    );
 } else {
     $twig = new Twig_Environment($loader, array(
     ));

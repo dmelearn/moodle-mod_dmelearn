@@ -20,7 +20,7 @@
  * @package       mod_dmelearn
  * @author        Kien Vu, AJ Dunn, CJ Faulkner
  * @copyright     2015 BrightCookie (http://www.brightcookie.com.au), Digital Media e-learning
- * @version       1.0.0
+ * @version       1.0.1
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -43,16 +43,26 @@ class mod_dmelearn_mod_form extends moodleform_mod {
 
         include_once("content/elmo_lib.php");
 
+        // Get array of available Courses.
         $elmocourses = get_key_courses();
         $elmocoursearr = array();
 
+        $mform = $this->_form;
+
         if ($elmocourses->result) {
+            // Default drop down message.
+            $elmocoursearr['0'] = get_string('mfselectcourse', 'dmelearn');
+            // List all the courses available.
             foreach($elmocourses->result as $elmocourse){
                 $elmocoursearr[$elmocourse["path"]] = $elmocourse["course_short_name"];
             }
+        } else {
+            // No Courses available.
+            $mform->addElement('html', get_string('mfnocourses', 'dmelearn'));
         }
 
-        $mform = $this->_form;
+        // Help text for new users.
+        $mform->addElement('html', get_string('mfinstructions', 'dmelearn'));
 
         // Adding the rest of newmodule settings, spreading all them into this fieldset
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
@@ -90,6 +100,22 @@ class mod_dmelearn_mod_form extends moodleform_mod {
 
         // Add standard buttons, common to all modules.
         $this->add_action_buttons();
+    }
+
+    /**
+     * Some basic validation.
+     *
+     * @param $data
+     * @param $files
+     * @return array
+     */
+    public function validation($data, $files) {
+        $errors = parent::validation($data, $files);
+        // Check that the default 'select a course' is not selected.
+        if (($data['coursepath'] == '0')) {
+            $errors['coursepath'] = get_string('mfnocourse', 'dmelearn');
+        }
+        return $errors;
     }
 
 }

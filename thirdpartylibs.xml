@@ -8,16 +8,37 @@
         <licenseversion></licenseversion>
     </library>
     <library>
-        <location>content/vendor/guzzle/guzzle/</location>
-        <name>guzzle</name>
-        <version>v3.9.3</version>
+        <location>content/vendor/guzzlehttp/guzzle/</location>
+        <name>Guzzle</name>
+        <version>5.3.0</version>
         <license>MIT</license>
         <licenseversion></licenseversion>
     </library>
     <library>
-        <location>content/vendor/symfony/event-dispatcher/</location>
-        <name>EventDispatcher</name>
-        <version>2.5.0</version>
+        <location>content/vendor/guzzlehttp/ringphp/</location>
+        <name>RingPHP</name>
+        <version>1.1.0</version>
+        <license>MIT</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>content/vendor/guzzlehttp/streams/</location>
+        <name>Guzzle Streams</name>
+        <version>3.0.0</version>
+        <license>MIT</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>content/vendor/twig/twig/</location>
+        <name>Twig</name>
+        <version>1.22.2</version>
+        <license>BSD</license>
+        <licenseversion></licenseversion>
+    </library>
+    <library>
+        <location>content/vendor/react/promise/</location>
+        <name>React/Promise</name>
+        <version>2.2.1</version>
         <license>MIT</license>
         <licenseversion></licenseversion>
     </library>

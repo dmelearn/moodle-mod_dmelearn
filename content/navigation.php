@@ -109,8 +109,8 @@ class Navigation {
                 }
                 $return_string .= "'>"
                     . "<a href='"
-                    . $lmscontenturl."&module="
-                    . $module_key."&page="
+                    . $lmscontenturl . "&module="
+                    . $module_key . "&page="
                     . $page_key
                     . "'>"
                     . $module_data['title']

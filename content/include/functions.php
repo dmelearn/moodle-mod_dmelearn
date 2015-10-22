@@ -61,27 +61,25 @@ function make_header($public_key, $app_name, $firstname, $lastname, $email, $pay
  * @param string $path API URI path (api/courses/courseName)
  * @param array $headers Request Headers -- see documentation for all required headers
  * @return object Returns the Guzzle response object ready for manipulation
+ * @throws moodle_exception
  */
-
 function course_request(&$client, $path, $headers) {
+    global $CFG;
 
     try {
-        return $client->get($path, $headers, array())->send();
-    } catch (MultiTransferException $e) {
-        echo "The following exceptions were encountered:\n";
-        foreach ($e as $exception) {
-            echo $exception->getMessage() . "\n";
+        return $client->get(
+            $path,
+            [
+                'headers' => $headers
+            ]
+        );
+    } catch (GuzzleHttp\Exception\ServerException $e) {
+        // 500 level errors
+        if (isset($CFG->debug) && !$CFG->debug == 0) {
+            echo $e->getMessage();
         }
-
-        echo "The following requests failed:\n";
-        foreach ($e->getFailedRequests() as $request) {
-            echo $request . "\n\n";
-        }
-
-        echo "The following requests succeeded:\n";
-        foreach ($e->getSuccessfulRequests() as $request) {
-            echo $request . "\n\n";
-        }
+        // Throw Moodle Exception.
+        throw new moodle_exception('course_request_internal_error', 'dmelearn');
     }
 }
 
@@ -93,31 +91,29 @@ function course_request(&$client, $path, $headers) {
  * @param $headers
  * @param null $post_data
  * @return mixed
+ * @throws moodle_exception
  */
 function validate_question_request(&$client, $path, $headers, $post_data = null) {
     try {
-        return $client->post($path, $headers, $post_data)->send();
-    } catch (MultiTransferException $e) {
-        echo "The following exceptions were encountered:\n";
-        foreach ($e as $exception) {
-            echo $exception->getMessage() . "\n";
-        }
-
-        echo "The following requests failed:\n";
-        foreach ($e->getFailedRequests() as $request) {
-            echo $request . "\n\n";
-        }
-
-        echo "The following requests succeeded:\n";
-        foreach ($e->getSuccessfulRequests() as $request) {
-            echo $request . "\n\n";
-        }
+        return $client->post(
+            $path,
+            [
+                'headers' => $headers,
+                'json' => $post_data
+            ]
+        );
+    } catch (GuzzleHttp\Exception\RequestException $e) {
+        // Networking error, Throw a Moodle Exception.
+        throw new moodle_exception('validatenotavailable', 'dmelearn');
     }
 }
 
 /**
  * Determines if a ELMO url actually exists based on file_exists and some PERL modules like
  * URI && LWP::Simple
+ *
+ * @param $file URL to check
+ * @return bool Does URL exist?
  */
 function elmo_url_exists($file) {
     // Clamp it from spitting errors on invalid URLS.
@@ -127,6 +123,10 @@ function elmo_url_exists($file) {
 
 /**
  * Make a url based on the ELMO api conventions
+ *
+ * @param $course Course
+ * @param $m Module
+ * @param $p Page
  */
 function make_api_url($course, $m, $p) {
     // BC: changed to add id parameter.
@@ -169,4 +169,17 @@ function get_ajax_content($url) {
         }
     }, $result);
     return $result;
+}
+
+/**
+ * Check if this version of the dmelearn plugin can display a course of a given supported version number.
+ *
+ * @param $version_num course version to check
+ * @return bool is version supported?
+ */
+function support_course_num($version_num) {
+    // Array containing the course version numbers supported by this dmelearn plugin version.
+    $supported = array(1, 2);
+
+    return (in_array($version_num, $supported)) ? true : false;
 }

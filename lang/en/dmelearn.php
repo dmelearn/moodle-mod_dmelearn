@@ -18,7 +18,7 @@
  * @package       mod_dmelearn
  * @author        Kien Vu, CJ Faulkner
  * @copyright     2015 BrightCookie (http://www.brightcookie.com.au), Digital Media e-Learning
- * @version       1.0.0
+ * @version       1.0.1
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
@@ -28,14 +28,15 @@ $string['modulenameplural'] = 'DM e-Learning modules';
 $string['modulename_help'] = 'This Digital Media e-Learning activity module enables e-Learning courses from the Digital Media e-Learning site to be loaded into Moodle.
 <br><br> To load a course from this site the activity module will need to be connected through the sites API using a key provided by it\'s administrators';
 $string['dmelearnsetting'] = 'Digital Media e-Learning settings';
-$string['dmelearnname'] = 'Digital Media e-Learning name';
-$string['dmelearnname_help'] = 'Digital Media e-Learning course title';
+$string['dmelearnname'] = 'DM e-Learning Moodle Activity Name';
+$string['dmelearnname_help'] = 'Please enter a name for the Digital Media e-Learning course, this will be the title for the Moodle Activity.';
 $string['elmo'] = 'ELMO';
 $string['dmelearn'] = 'DM e-Learning';
 $string['pluginadministration'] = 'DM e-Learning administration';
 $string['pluginname'] = 'Digital Media e-Learning';
-$string['dmelearncoursepath'] = 'Digital Media e-Learning course path';
-$string['dmelearncoursepath_help'] = 'Digital Media e-Learning course path';
+$string['dmelearncoursepath'] = 'Digital Media e-Learning Course';
+$string['dmelearncoursepath_help'] = 'Please select a course from the drop down menu.<br><br>
+<em>This list will display all courses that this Moodle Plugin has access to. If the course you require is not listed, please contact Digital Media.</em>';
 $string['dmelearnsetting_desc'] = 'Please fill in the following form with credentials provided to you by the administrators of your Digital Media e-Learning provider (ELMO API) that you wish to connect with.';
 $string['dmelearnsetting_URL'] = 'ELMO API URL';
 $string['dmelearnsetting_URL_help'] = 'ELMO Endpoint URL with ending "/"  eg. http://example.com.au/';
@@ -82,3 +83,9 @@ $string['showoverview'] = 'Show Digital Media e-Learning overview on my moodle';
 $string['startoredit'] = 'Start or edit my Digital Media e-Learning entry';
 $string['viewallentries'] = 'View {$a} Digital Media e-Learning entries';
 $string['viewentries'] = 'View entries';
+// For mod_form.php
+$string['mfnocourses'] = '<style>.mf-info{color:#e32f0b;font-weight:bold;}</style><div><span class="mf-info">Information:</span> The DM e-Learning server did not return any availiable courses. Please contact Digital Media for help.</div><br>';
+$string['mfinstructions'] = '<style>.mf-instruct{color:#2ca02c;font-weight:bold;}</style><div><span class="mf-instruct">Instructions:</span> The form will let you add a DM e-Learning course into an activity within your Moodle Course.
+<ol><li>Select a DM e-Learning Course from the dropdown below.</li><li>Provide a name for the Moodle Activity.</li><li>Save your selection.</li></ol></div>';
+$string['mfselectcourse'] = 'Please select a course ...';
+$string['mfnocourse'] = 'You must choose from one of the courses in the drop down.';

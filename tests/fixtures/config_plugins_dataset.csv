@@ -1,0 +1,5 @@
+plugin,name,value
+mod_dmelearn,elmourl,http://www.example.com/
+mod_dmelearn,elmoappname,ExampleAppName
+mod_dmelearn,elmopublickey,1234567890
+mod_dmelearn,elmosecretkey,0000000000

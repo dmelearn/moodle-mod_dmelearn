@@ -48,7 +48,7 @@ define('ELMO_WEB_BASE_COURSES', $ELMO_ENV . 'courses/');
 /**
  * BASE API URI
  */
-define('API_URL' , $ELMO_ENV . 'api');
+define('API_URL' , $ELMO_ENV . 'api/');
 /**
  * URI COURSE(S) 
  */

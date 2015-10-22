@@ -18,14 +18,15 @@
  * Display an error on page if course is not available
  *
  * @copyright  2015 Digital Media e-learning
- * @version    1.0.0
+ * @version    1.0.1
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
 
-echo $lmsmenu; // Show the LMS Top Menu Navigation.
-?>
-<br><br>
-<div style="font-size: 20px; margin:25px;">
-Error: This Digital Media e-Learning course is not currently available. Please contact your Moodle administrator.
+echo $lmsmenu; // Show the LMS Top Menu Navigation. ?>
+<div style="font-size: 20px;margin:25px;font-family: Arial, Helvetica, sans-serif;">
+<p><strong>Error: This Digital Media e-Learning course is not currently available. Please contact your Moodle administrator.</strong></p>
+<?php if (isset($course_version)): ?>
+<p>Course version <?php echo $course_version; ?> is unsupported</p>
+<?php endif; ?>
 </div>

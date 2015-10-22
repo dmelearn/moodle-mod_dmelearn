@@ -38,11 +38,9 @@ require_once('include/functions.php');
 require_once('include/cache.php');
 // Header data - example its hardwired so change it.
 
-use Guzzle\Http\Client;
-use Guzzle\Http\Exception\MultiTransferException;
+use GuzzleHttp\Client;
 use mod_dmelearn\navigation\Navigation;
 use mod_dmelearn\cache\Cache;
-
 
 /**
  * @return StdClass
@@ -51,7 +49,7 @@ function get_key_courses() {
 
     global $CFG, $USER;
 
-    // SOME USER DATA needed to make a request.
+    // Some User data needed to make a request.
     $firstname  = $USER->firstname;
     $lastname   = $USER->lastname;
     $email      = $USER->email;
@@ -61,21 +59,19 @@ function get_key_courses() {
     $secret_key = get_config('mod_dmelearn', 'elmosecretkey');
     $app_name = get_config('mod_dmelearn', 'elmoappname');
 
-    $token = Elmo_web_service_hash::generate($firstname, $lastname, $email, $secret_key);
-
     // Setup Guzzle to the web services end point.
-    $client = new Client(API_URL);
+    $client = new Client();
     $return = new StdClass();
     try {
          $request = course_request(
              $client,
-             ( API_URL . '/'. API_KEY_COURSES . $public_key ),
+             (API_URL . API_KEY_COURSES . $public_key),
              make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
          );
          $page_request = $request->json();
          $return->result = $page_request;
 
-    } catch (Guzzle\Common\Exception\RuntimeException $e) {
+    } catch (GuzzleHttp\Exception\RequestException $e) {
         $return->result = false;
         $return->message = $e->getMessage();
     }

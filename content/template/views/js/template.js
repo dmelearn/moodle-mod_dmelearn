@@ -1,8 +1,8 @@
 // retina.js
-Modernizr.load({
-    test: Modernizr.localstorage,
-    yep: '{{ constants.base_js }}retina.min.js'
-});
+//Modernizr.load({
+//    test: Modernizr.localstorage,
+//    yep: '{{ constants.base_js }}retina.min.js'
+//});
 //Rewire and Remap
 (function(window, document, undefined) {
     var r = window.routes; // Reference routes.

@@ -4,12 +4,16 @@
 - Usage of this plugin creates an account for each user on DM e-learning to track course completion and provide certificates, completion of each course is also recorded within Moodle.
 
 ## Setup
-### To add required third party components (Developers)
-- Requires [Composer](https://getcomposer.org/), [Bower](http://bower.io/), [Gulp](http://gulpjs.com/), [gulp-rename](https://www.npmjs.com/package/gulp-rename) and [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) to be setup and installed.
+### Add required third party components (Developers)
+- Requires [Composer](https://getcomposer.org/), [Bower](http://bower.io/), [Gulp](http://gulpjs.com/), [gulp-rename](https://www.npmjs.com/package/gulp-rename), [del](https://www.npmjs.com/package/del) and [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) to be setup and installed.
 - Open the `content` folder inside this plugin from the terminal/command line.
 - Run `composer install`.
 - Run `bower install`.
 - Run `gulp`.
+
+### Remove unused third party components files before deployment (Developers)
+- Open the `content` folder inside this plugin from the terminal/command line.
+- Run `gulp clean:vendor` and `gulp del:bower`.
 
 ### Installation / Usage
 * Either install the plugin as a .zip file via Moodle Plugin installer page or ...
@@ -22,7 +26,7 @@
 * `DM e-Learning` Activities will now be available to add to Moodle Courses.
 
 ## Requirements
-- PHP 5.3.3 or above with the [cURL extension](http://php.net/manual/en/book.curl.php).
+- PHP 5.4.0 or above with the [cURL extension](http://php.net/manual/en/book.curl.php).
 - Moodle 2.5, 2.6, 2.7, 2.8+
 - https://docs.moodle.org/25/en/Installing_Moodle#Requirements
 

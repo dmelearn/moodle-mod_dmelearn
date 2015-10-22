@@ -49,10 +49,9 @@ require_once('./vendor/autoload.php');
 require_once('./include/constants.php');
 require_once('./include/functions.php');
 
-use Guzzle\Http\Client;
-use Guzzle\Http\Exception\MultiTransferException;
+use GuzzleHttp\Client;
 
-$client = new Client(API_URL);
+$client = new Client();
 
 // Get all the data we need to make a request.
 $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -64,18 +63,17 @@ $user_id = $data['user_id'];
 try {
     $request = course_request(
         $client,
-        (API_URL . '/' . API_RESET . $course_path . '/' . $user_id),
+        (API_URL . API_RESET . $course_path . '/' . $user_id),
         make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
     );
     $page_request = $request->json();
     exit($page_request);
-    die();
 
-} catch (Guzzle\Common\Exception\RuntimeException $e) {
+} catch (GuzzleHttp\Exception\RequestException $e) {
     // Dump Guzzle exception message if debug is enabled in Moodle.
     if (isset($CFG->debug) && !$CFG->debug == 0) {
-        echo "The following exceptions were encountered:\n";
         echo $e->getMessage();
-        echo $request->getMessage();
     }
+    // Throw Moodle Exception.
+    throw new moodle_exception('resetexception', 'dmelearn');
 }

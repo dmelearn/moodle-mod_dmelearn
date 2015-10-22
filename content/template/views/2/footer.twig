@@ -5,10 +5,15 @@
         <p class="version-stamp">Brought to you by the WCHN Digital Media e-Learning Team - &copy; {{ "now" | date('Y') }} </p>
     </div>
 </div>
+{# IE 8 Support #}
+<!--[if lt IE 9]>
+<script src="js/html5shiv/html5shiv.min.js"></script>
+<script src="js/respond/respond.min.js"></script>
+<![endif]-->
 {# Jquery-UI #}
 <script src="{{ constants.base_js }}jquery-ui.min.js"></script>
 <script src="{{ constants.base_js }}jquery.ui.touch-punch.min.js"></script>
-{# Bootstrap 2.3 JS #}
-<script src="{{ constants.base_js }}scriptsV3/bootstrap.min.js"></script>
+{# Bootstrap 3 JS #}
+<script src="js/bootstrap.min.js"></script>
 {# Audio JS #}
 <script src="{{ constants.base_url }}plugins/audiojs/audiojs/audio.min.js"></script>
