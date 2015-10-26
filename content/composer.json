@@ -6,5 +6,6 @@
         "twig/twig": "1.22.3"
     },
     "require-dev": {
+  	  	"symfony/var-dumper": "^2.7"
     }
 }
