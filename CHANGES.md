@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.4.0 (2015XXXXXX)
+- Add feature to force reset if course previously completed a certain amount of months ago.
+
 ## v1.3.1 (2015102600)
 - Update font style/weights for template 2 courses.
 
