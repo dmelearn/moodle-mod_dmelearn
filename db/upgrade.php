@@ -35,6 +35,8 @@ require_once($CFG->dirroot . '/mod/dmelearn/lib.php');
 function xmldb_dmelearn_upgrade($oldversion = 0) {
     global $DB, $CFG;
 
+    $dbman = $DB->get_manager(); // Loads ddl manager and xmldb classes.
+
     // Check if old version was between v1.0.2 and v1.2.0.
     if ($oldversion >= 2015051200 && $oldversion < 2015072300) {
         // Fix missing dmelearn grades in gradebook by forcing full update of grades for
@@ -74,6 +76,24 @@ function xmldb_dmelearn_upgrade($oldversion = 0) {
                 }
             }
         }
+    }
+
+    // Clear the twig cache, if possible.
+    // Check if old version included twig cache directory (v1.1.0 or newer).
+    if ($oldversion < 2015102700) {
+
+        // Define field timeframemonths to be added to dmelearn.
+        $table = new xmldb_table('dmelearn');
+        // xmldb_field requires a name, type, precision, unsigned, notnull, sequence, default, previous
+        $field = new xmldb_field('timeframemonths', XMLDB_TYPE_INTEGER, '10', true, null, null, '0', 'timemodified');
+
+        // Add field course.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Upgraded to the version 2015102700 so the next time this block is skipped.
+        upgrade_mod_savepoint(true, 2015102700, 'dmelearn');
     }
 
     return true;
