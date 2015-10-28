@@ -60,6 +60,8 @@ if (!$elmo) {
 
 require_course_login($elmo->course);
 $course = $elmo->coursepath;
+// Number of months to accept already completed ELMO courses.
+$timeframemonths = $elmo->timeframemonths;
 
 // SOME USER DATA needed to make a request.
 $firstname  = $USER->firstname;

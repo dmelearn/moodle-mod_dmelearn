@@ -65,9 +65,17 @@ $page = (string) (isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SANIT
 // Make Requests to course first to get all user information/scripts/etc.
 // We have course = courseName, make a request for information on the course.
 try {
+
+    // Check if this Moodle Activity's DM course has to be reset after a certain amount of months.
+    $limitbymonths = '';
+    if($timeframemonths >= 1){
+        // Include the amount of months in the API URL.
+        $limitbymonths = '/' . $timeframemonths;
+    }
+
     $request = course_request(
         $client,
-        (API_URL . API_COURSES . $course),
+        (API_URL . API_COURSES . $course . $limitbymonths),
         make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
     );
     $course_request = $request->json();
@@ -233,7 +241,7 @@ if (is_writable(__DIR__.'/template_cache')) {
     ));
 }
 
-echo $twig->render('base.twig', array(
+$page = array(
     'course_data' => $course_request,
     'page_data' => $page_request,
     'constants' => $frontEndConstants,
@@ -252,4 +260,18 @@ echo $twig->render('base.twig', array(
     'next_url' => $next_url,
     'navigation' => $navigation->make(),
     'lmscontenturl' => $lmscontenturl
-));
+);
+
+// Check if API returned saying the course must be reset first.
+$tf_has_expired = isset($course_request["tf_has_expired"]) ? $course_request["tf_has_expired"] : false;
+
+if ($tf_has_expired) {
+    // Course that requires reset before it can be viewed.
+    $page['timeframemonths'] = $timeframemonths;
+    echo $twig->render('base_reset.twig', $page);
+    die();
+} else {
+    // Course that can be viewed.
+    echo $twig->render('base.twig', $page);
+    die();
+}
