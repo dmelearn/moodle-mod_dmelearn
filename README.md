@@ -5,11 +5,13 @@
 
 ## Setup
 ### Add required third party components (Developers)
-- Requires [Composer](https://getcomposer.org/), [Bower](http://bower.io/), [Gulp](http://gulpjs.com/), [gulp-rename](https://www.npmjs.com/package/gulp-rename), [del](https://www.npmjs.com/package/del) and [gulp-uglify](https://www.npmjs.com/package/gulp-uglify) to be setup and installed.
+- Requires [Composer](https://getcomposer.org/), [Bower](http://bower.io/), [Node.js](https://nodejs.org/).
+- Node packages can be installed using [NPM](https://www.npmjs.com/). This includes [Gulp](http://gulpjs.com/), [gulp-rename](https://www.npmjs.com/package/gulp-rename), [del](https://www.npmjs.com/package/del) and [gulp-uglify](https://www.npmjs.com/package/gulp-uglify).
 - Open the `content` folder inside this plugin from the terminal/command line.
-- Run `composer install`.
-- Run `bower install`.
-- Run `gulp`.
+- Run `npm install` to install node packages listed within `package.json`.
+- Run `composer install` to install composer packages listed within `composer.json`.
+- Run `bower install` to install bower packages listed within `bower.json`.
+- Run `gulp` to run the default task within `gulpfile.js` this places the front end assets into the expected locations.
 
 ### Remove unused third party components files before deployment (Developers)
 - Open the `content` folder inside this plugin from the terminal/command line.
