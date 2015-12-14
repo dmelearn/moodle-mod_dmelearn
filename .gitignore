@@ -1,4 +1,6 @@
 /content/bower_components
 /content/node_modules
-/content/vendor
+!/content/vendor
+/content/vendor/*
+!/content/vendor/.htaccess
 .idea/**
