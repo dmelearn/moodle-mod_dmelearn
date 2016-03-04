@@ -29,10 +29,10 @@
         <licenseversion></licenseversion>
     </library>
     <library>
-        <location>content/vendor/twig/twig/</location>
-        <name>Twig</name>
-        <version>1.22.2</version>
-        <license>BSD</license>
+        <location>content/vendor/league/plates/</location>
+        <name>league/plates</name>
+        <version>3.1.1</version>
+        <license>MIT</license>
         <licenseversion></licenseversion>
     </library>
     <library>

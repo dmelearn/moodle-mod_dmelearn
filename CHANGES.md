@@ -1,6 +1,9 @@
 # Changelog
 
-## v1.4.0 (2015XXXXXX)
+## v1.5.0 (2015XXXXXX)
+- Switch from Twig templating to Plates templating and allow for new courses.
+
+## v1.4.0beta (2015102700)
 - Add feature to force reset if course previously completed a certain amount of months ago.
 
 ## v1.3.1 (2015102600)
