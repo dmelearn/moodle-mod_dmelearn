@@ -75,7 +75,7 @@ define('API_KEY_COURSES', 'keys/');
 define('API_RESET', 'reset/');
 
 /**
- * Array of values to pass to the twig template.
+ * Array of values to pass to the plates template.
  */
 $frontEndConstants = array(
     'elmo_env' => $ELMO_ENV,

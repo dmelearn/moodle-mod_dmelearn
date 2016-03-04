@@ -93,9 +93,7 @@ gulp.task('clean:vendor', function () {
         'vendor/guzzlehttp/ringphp/docs',
         'vendor/guzzlehttp/ringphp/tests',
         'vendor/guzzlehttp/streams/tests',
-        'vendor/react/promise/tests',
-        'vendor/twig/twig/doc',
-        'vendor/twig/twig/test'
+        'vendor/react/promise/tests'
     ]);
 });
 gulp.task('del:bower', function () {
