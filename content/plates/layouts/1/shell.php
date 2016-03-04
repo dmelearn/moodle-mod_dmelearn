@@ -29,30 +29,31 @@
             </div>
         </div>
         <?php endif; ?>
-    </div>
-</div>
 
-<?php if (isset($navigation)): ?>
-<nav class="span3">
-    <?php
-    //Next and Back Buttons inside navigation
-    $this->insert('partials/prev_next');
-    //Navigation
-    echo $navigation;
-    ?>
-</nav>
-<?php endif; ?>
+        <?php if (isset($navigation)): ?>
+        <nav class="span3">
+            <?php
+            //Next and Back Buttons inside navigation
+            $this->insert('partials/prev_next');
+            //Navigation
+            echo $navigation;
+            ?>
+        </nav>
+        <?php endif; ?>
 
-<div id="maincontent" class="span9 course_body">
-    <?php if (isset($page_data['data']['assessment_summary'])): ?>
-        <?php $this->insert('partials/assessment_summary'); ?>
-    <?php elseif (isset($page_data['content'])): ?>
-        <?=$page_data['content']?>
-    <?php endif; ?>
-</div>
-<?php //Next and back buttons ?>
-<div class="span12">
-    <div class="span3 bottom-pn">
-        <?php $this->insert('partials/prev_next'); ?>
+        <div id="maincontent" class="span9 course_body">
+            <?php if (isset($page_data['data']['assessment_summary'])): ?>
+                <?php $this->insert('partials/assessment_summary'); ?>
+            <?php elseif (isset($page_data['content'])): ?>
+                <?=$page_data['content']?>
+            <?php endif; ?>
+        </div>
+        <?php //Next and back buttons ?>
+        <div class="span12">
+            <div class="span3 bottom-pn">
+                <?php $this->insert('partials/prev_next'); ?>
+            </div>
+        </div>
+
     </div>
 </div>
