@@ -21,12 +21,12 @@
  * It uses Guzzle, Composer and a few ELMO external classes.
  * The Elmo classes have no dependencies.
  *
- * Note: Guzzle 3 requires PHP 5.3.3+
+ * Note: Guzzle 5.3 requires PHP 5.4.0+
  *
  * @package    mod_dmelearn
  * @author     Chris Barton, AJ Dunn, CJ Faulkner
  * @copyright  2015 Chris Barton, Digital Media e-learning
- * @version    1.0.2
+ * @version    1.5.0
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
@@ -224,22 +224,8 @@ $courseConstants = Array(
     'course_img' => ELMO_WEB_COURSE_IMAGES
 );
 
-// Below is a working template, it must be kept up-to-date.
-$loader = new Twig_Loader_Filesystem(__DIR__ . '/template');
-
-// Check if template cache directory can be written to and use it as cache.
-if (is_writable(__DIR__.'/template_cache')) {
-    $twig = new Twig_Environment(
-        $loader,
-        array(
-            'cache' => new Twig_Cache_Filesystem(__DIR__ . '/template_cache',
-                Twig_Cache_Filesystem::FORCE_BYTECODE_INVALIDATION)
-        )
-    );
-} else {
-    $twig = new Twig_Environment($loader, array(
-    ));
-}
+// Create new Plates Instance Loaded From Composer
+$plates = new League\Plates\Engine(__DIR__ . '/plates');
 
 $page = array(
     'course_data' => $course_request,
@@ -268,10 +254,13 @@ $tf_has_expired = isset($course_request["tf_has_expired"]) ? $course_request["tf
 if ($tf_has_expired) {
     // Course that requires reset before it can be viewed.
     $page['timeframemonths'] = $timeframemonths;
-    echo $twig->render('base_reset.twig', $page);
+    // Output Template
+    $plates->addData($page);
+    echo $plates->render('base_reset');
     die();
 } else {
     // Course that can be viewed.
-    echo $twig->render('base.twig', $page);
+    $plates->addData($page);
+    echo $plates->render('base');
     die();
 }
