@@ -4,3 +4,4 @@
 /content/vendor/*
 !/content/vendor/.htaccess
 .idea/**
+.vscode
