@@ -58,28 +58,8 @@ function xmldb_dmelearn_upgrade($oldversion = 0) {
         }
     }
 
-    // Clear the twig cache, if possible.
-    // Check if old version included twig cache directory (v1.1.0 or newer).
-    if ($oldversion >= 2015062900) {
-        // Get the Twig Cache folder directory.
-        $twigcache = $CFG->dirroot . '/mod/dmelearn/content/template_cache';
-        // Simple check to prevent wrong directory being set as twig cache.
-        $containscache = strpos($twigcache, '/template_cache');
-
-        // If twig cache directory is writeable delete the files inside it.
-        if (is_writable($twigcache) && ($containscache !== false)) {
-            // Clear each Twig Cache File.
-            foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($twigcache),
-                         RecursiveIteratorIterator::LEAVES_ONLY) as $cachefile) {
-                if ($cachefile->isFile()) {
-                    @unlink($cachefile->getPathname());
-                }
-            }
-        }
-    }
-
-    // Clear the twig cache, if possible.
-    // Check if old version included twig cache directory (v1.1.0 or newer).
+    // Add timeframemonths field to database to store how long ago a previously completed report
+    // will be accepted as a result with an activity.
     if ($oldversion < 2015102700) {
 
         // Define field timeframemonths to be added to dmelearn.
