@@ -13,9 +13,9 @@
 <?php //Course CSS ?>
 <link rel="stylesheet" type="text/css" href="<?=$constants['base_css']?>course_boilerplate.css">
 <?php
-foreach ($course_data['course_css'] as $css) {
-    echo '<link rel="stylesheet" type="text/css" href="' . $css . '">';
-}
+    foreach ($course_data['course_css'] as $css) {
+        echo '<link rel="stylesheet" type="text/css" href="' . $css . '">';
+    }
 ?>
 
 <?php //jQuery ?>

@@ -218,7 +218,7 @@ define('ELMO_WEB_COURSE_JAVASCRIPT', ELMO_WEB_BASE_COURSES . $course . '/js/');
 define('ELMO_WEB_COURSE_RESOURCES', ELMO_WEB_BASE_COURSES . $course . '/resources/');
 define('ELMO_WEB_COURSE_IMAGES', ELMO_WEB_COURSE_RESOURCES . 'images/');
 
-$courseConstants = Array(
+$courseConstants = array(
     'course_js' => ELMO_WEB_COURSE_JAVASCRIPT,
     'course_resources' => ELMO_WEB_COURSE_RESOURCES,
     'course_img' => ELMO_WEB_COURSE_IMAGES
