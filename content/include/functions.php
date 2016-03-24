@@ -124,9 +124,9 @@ function elmo_url_exists($file) {
 /**
  * Make a url based on the ELMO api conventions
  *
- * @param $course Course
- * @param $m Module
- * @param $p Page
+ * @param string $course Course
+ * @param string $m Module
+ * @param string $p Page
  */
 function make_api_url($course, $m, $p) {
     // BC: changed to add id parameter.
@@ -137,9 +137,9 @@ function make_api_url($course, $m, $p) {
 /**
  * Determines what scripts to load
  *
- * @param $module
- * @param $page
- * @param $data
+ * @param string $module
+ * @param string $page
+ * @param array $data
  */
 function elmo_parse_config_page_scripts($module, $page, $data) {
     if (($module == $data['module'] ) && ( $page == $data['page'] )) {
@@ -174,12 +174,12 @@ function get_ajax_content($url) {
 /**
  * Check if this version of the dmelearn plugin can display a course of a given supported version number.
  *
- * @param $version_num course version to check
+ * @param int|string $version_num course version to check
  * @return bool is version supported?
  */
 function support_course_num($version_num) {
     // Array containing the course version numbers supported by this dmelearn plugin version.
-    $supported = array(1, 2);
+    $supported = array(1, 2, 3, 4);
 
     return (in_array($version_num, $supported)) ? true : false;
 }
