@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <?php //Google Fonts ?>
-<link href='http://fonts.googleapis.com/css?family=Bitter|Roboto+Slab' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Bitter|Roboto+Slab" rel="stylesheet" type="text/css">
 <?php //CSS ?>
 <link rel="stylesheet" type="text/css" href="<?=$constants['base_css']?>main.css">
 <?php //jQuery UI Bootstrap Theme ?>
