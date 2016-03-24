@@ -1,4 +1,4 @@
-<?php //Course shell version 1 ?>
+<?php //Course shell version 2 ?>
 <div class="course_head">
     <div class="course_head_inner container">
         <h1><?=$course_data['name']?></h1>
