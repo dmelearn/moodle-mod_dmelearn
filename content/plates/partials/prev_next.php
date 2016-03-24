@@ -21,3 +21,18 @@ $version = $course_data['configuration']['course_version'];
     <?php endif; ?>
 </div>
 <?php endif ?>
+
+<?php
+// JS for linking to pages in course version 4
+if ($version == 4): ?>
+<script>
+    function goToNextPage()
+    {
+        <?php if ($next_url): ?>window.location = '<?=$lmscontenturl?>&module=<?=$next_url['module']?>&page=<?=$next_url['page']?>';<?php endif; ?>
+    }
+    function goToPrevPage()
+    {
+        <?php if ($previous_url): ?>window.location = '<?=$lmscontenturl?>&module=<?=$previous_url['module']?>&page=<?=$previous_url['page']?>';<?php endif; ?>
+    }
+</script>
+<?php endif; ?>
