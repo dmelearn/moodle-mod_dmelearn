@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <?php //Google Fonts ?>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700|Material+Icons' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Material+Icons" rel="stylesheet" type="text/css">
 <?php //CSS ?>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="<?=$constants['base_css']?>main_v2.css">
