@@ -19,19 +19,33 @@ $(function() {
         beforeSend: function(jqXHR, settings) {
             //Current url.
             var before_url = settings.url;
-            //Split the string at /client_api because we need the string that follows this text
-            var matches = before_url.split("/client_api");
-            //If there is only one string left over then that "/client_api" string didn't exist
-            if ($(matches).length === 1) {
-                matches = null;
+            //check if we are doing a form_interactive
+            if (before_url.indexOf("/form_interactive/loadData/") > -1) {
+                // For load data form interactive
+                var matches = before_url.split("form_interactive/loadData/");
+                settings.url = path + "form_interactive_load/" + matches[1] + '/' + '<?=$coursepath?>';
             }
-            //If there was a result.
-            if (matches !== null) {
-                //Remap
-                settings.url = path + matches[1];
-            } else if (before_url.indexOf("<?=$constants['elmo_env']?>") === 0) { // BC script
-                //Remap
-                settings.url = path + before_url;
+            else if (before_url.indexOf("/form_interactive/checkData/") > -1) {
+                // For setting data form interactive
+                var matches = before_url.split("form_interactive/checkData/");
+                settings.url = path + "form_interactive_set/" + matches[1] + '/' + '<?=$coursepath?>';
+            }
+            else {
+                //For Validate Question etc.
+                //Split the string at /client_api because we need the string that follows this text
+                var matches = before_url.split("/client_api");
+                //If there is only one string left over then that "/client_api" string didn't exist
+                if ($(matches).length === 1) {
+                    matches = null;
+                }
+                //If there was a result.
+                if (matches !== null) {
+                    //Remap
+                    settings.url = path + matches[1];
+                } else if (before_url.indexOf("<?=$constants['elmo_env']?>") === 0) { // BC script
+                    //Remap
+                    settings.url = path + before_url;
+                }
             }
         }
     });
@@ -52,7 +66,10 @@ $(function() {
             var request = $.ajax({
                 type: 'POST',
                 url: 'elmo_ajax_ws_reset.php',
-                data: {course_path: "<?=$coursepath?>", user_id: "<?=$page_data['data']['cert_data']['user_id']?>"},
+                data: {
+                    course_path: "<?=$coursepath?>",
+                    user_id: "<?=$page_data['data']['cert_data']['user_id']?>"
+                },
                 success: function(data, status) {
                     //If data returned is true refresh the current page
                     if (data == 1) {
