@@ -23,12 +23,16 @@ $(function() {
             if (before_url.indexOf("/form_interactive/loadData/") > -1) {
                 // For load data form interactive
                 var matches = before_url.split("form_interactive/loadData/");
-                settings.url = path + "form_interactive_load/" + matches[1] + '/' + '<?=$coursepath?>';
+                var interactive = matches[1].split("?")[0];
+
+                settings.url = path + "form_interactive_load/" + interactive + '/' + '<?=$coursepath?>';
             }
             else if (before_url.indexOf("/form_interactive/checkData/") > -1) {
                 // For setting data form interactive
                 var matches = before_url.split("form_interactive/checkData/");
-                settings.url = path + "form_interactive_set/" + matches[1] + '/' + '<?=$coursepath?>';
+                var interactive = matches[1].split("?")[0];
+
+                settings.url = path + "form_interactive_set/" + interactive + '/' + '<?=$coursepath?>';
             }
             else {
                 //For Validate Question etc.
