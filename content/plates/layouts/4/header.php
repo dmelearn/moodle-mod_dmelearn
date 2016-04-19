@@ -17,6 +17,11 @@ foreach ($course_data['course_css'] as $css) {
     echo '<link rel="stylesheet" type="text/css" href="' . $css . '">';
 }
 ?>
+<?php //IE 8 Support ?>
+<!--[if lt IE 9]>
+<script src="js/html5shiv/html5shiv.min.js"></script>
+<script src="js/respond/respond.min.js"></script>
+<![endif]-->
 <?php //jQuery ?>
 <script src="<?=$constants['base_js']?>jquery.min.js"></script><?php //Jquery from dm server ?>
 <script src="<?=$constants['base_js']?>modernizr.custom.min.js"></script><?php //Modernizr from dm server ?>
