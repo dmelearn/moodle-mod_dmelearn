@@ -184,7 +184,8 @@ $navigation = new Navigation(
         'site_url' => $_SERVER['PHP_SELF'],
         'course' => $course,
         'module' => $module,
-        'page' => $page
+        'page' => $page,
+        'course_version' => $course_version
     )
 );
 
