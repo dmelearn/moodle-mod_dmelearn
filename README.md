@@ -28,7 +28,7 @@
 * `DM e-Learning` Activities will now be available to add to Moodle Courses.
 
 ## Requirements
-- PHP 5.4.0 or above with the [cURL extension](http://php.net/manual/en/book.curl.php).
+- PHP 5.4.0 or above with short echo tag support and the [cURL extension](http://php.net/manual/en/book.curl.php).
 - Moodle 2.5, 2.6, 2.7, 2.8+
 - https://docs.moodle.org/25/en/Installing_Moodle#Requirements
 

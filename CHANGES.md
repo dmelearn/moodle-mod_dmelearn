@@ -1,7 +1,13 @@
 # Changelog
 
-## v1.5.0 (2015XXXXXX)
-- Switch from Twig templating to Plates templating and allow for new courses.
+## v1.5.0 (201604XXXX)
+- Switch from Twig templating to Plates templating to allow for new courses. (No longer requires write permissions)
+- Activities that require loading and saving to Interactive Activity Storage storage now work via API.
+- Add support for older courses and new courses of type/version 4.
+- Add NPM package.json file content folder.
+- Add extra .htaccess files for Apache servers.
+- Updated composer packages.
+- General bug fixes.
 
 ## v1.4.0beta (2015102700)
 - Add feature to force reset if course previously completed a certain amount of months ago.
