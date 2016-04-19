@@ -15,5 +15,3 @@
 <script src="<?=$constants['base_js']?>jquery.ui.touch-punch.min.js"></script>
 <?php //Bootstrap 3 JS  ?>
 <script src="js/bootstrap.min.js"></script>
-<?php //Audio JS  ?>
-<script src="<?=$constants['base_url']?>plugins/audiojs/audiojs/audio.min.js"></script>
