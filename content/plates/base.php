@@ -11,7 +11,7 @@ if (!isset($version) || $version === null) {
 // Header
 $this->insert('layouts/' . (int)$version . '/header');
 ?>
-<title>Digital Media eLearning Course</title>
+<title><?php if (isset($course_data['name'])) { echo $course_data['name'];} ?>: Digital Media eLearning Course</title>
 </head>
 <body style="padding-top:0px; background-color: #f9f9f9;" id="course-controller">
 <?php
