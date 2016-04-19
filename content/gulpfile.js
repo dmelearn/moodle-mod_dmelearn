@@ -96,10 +96,17 @@ gulp.task('clean:vendor', function () {
         'vendor/react/promise/tests'
     ]);
 });
+// Remove bower_components folder.
 gulp.task('del:bower', function () {
     return del([
-        // Remove bower_components folder.
         'bower_components/'
+    ]);
+});
+
+// Remove node_modules folder.
+gulp.task('del:nm', function () {
+    return del([
+        'node_modules/'
     ]);
 });
 
