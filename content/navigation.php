@@ -31,6 +31,14 @@ namespace mod_dmelearn\navigation;
  */
 class Navigation {
 
+    protected $show_summary;
+    protected $navigation;
+    protected $site_url;
+    protected $course;
+    protected $module;
+    protected $page;
+    protected $course_version;
+
     /**
      * Constructor to set config variables.
      *
@@ -46,14 +54,6 @@ class Navigation {
         $this->page             = $config['page'];
         $this->course_version   = $config['course_version'];
     }
-
-    protected $show_summary;
-    protected $navigation;
-    protected $site_url;
-    protected $course;
-    protected $module;
-    protected $page;
-    protected $course_version;
 
     /**
      *  Make the navigation for a DMELEARN course based on the course version
