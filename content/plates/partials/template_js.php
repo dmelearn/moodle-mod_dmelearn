@@ -54,7 +54,7 @@ $(function() {
         }
     });
     //Init plugins
-    if (typeof $.fn.elmo_multipleChoice !== null || 'undefined') {
+    if (typeof $.fn.elmo_multipleChoice !== 'undefined') {
         $('.question').elmo_multipleChoice({
             imagePath: window.routes.img,
             courseImages: window.routes.course.images
