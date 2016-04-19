@@ -10,6 +10,7 @@
 - Open the `content` folder inside this plugin from the terminal/command line.
 - Run `npm install` to install node packages listed within `package.json`.
 - Run `composer install` to install composer packages listed within `composer.json`.
+- If preparing for deployment run `composer install --no-dev -o` instead.
 - Run `bower install` to install bower packages listed within `bower.json`.
 - Run `gulp` to run the default task within `gulpfile.js` this places the front end assets into the expected locations.
 
