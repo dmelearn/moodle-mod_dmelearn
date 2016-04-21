@@ -1,3 +1,4 @@
+<?php //Version 4 Shell ?>
 <?php $this->insert('partials/prev_next'); //Add JS to go to prev/next page ?>
 
 <div class="content-container">
