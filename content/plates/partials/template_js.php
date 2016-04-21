@@ -5,7 +5,7 @@ $coursepath = $page_data['data']['cert_data']['course_path'];
 ?>
 <script>
 (function(window, document, undefined) {
-var r = window.routes; // Reference routes
+var r = window.routes; //Reference routes
     r.base = '<?=$constants['base_url']?>';
     r.course.path = r.base + 'courses/<?=$coursepath?>/';
     r.course.img = r.base + 'images/';
@@ -13,22 +13,25 @@ var r = window.routes; // Reference routes
     r.course.images = r.course.resources + 'images/';
 })(window);
 $(function() {
+    //Fix for IE8 and IE9 to allow form interactive ajax
+    $.support.cors = true;
+    //Path to redirect ajax requests to
     var path = 'elmo_ajax_ws.php?request=';
     $.ajaxSetup({
         global: true,
         beforeSend: function(jqXHR, settings) {
             //Current url.
             var before_url = settings.url;
-            //check if we are doing a form_interactive
+            //Check if we are doing a form_interactive
             if (before_url.indexOf("/form_interactive/loadData/") > -1) {
-                // For load data form interactive
+                //For load data form interactive
                 var matches = before_url.split("form_interactive/loadData/");
                 var interactive = matches[1].split("?")[0];
 
                 settings.url = path + "form_interactive_load/" + interactive + '/' + '<?=$coursepath?>';
             }
             else if (before_url.indexOf("/form_interactive/checkData/") > -1) {
-                // For setting data form interactive
+                //For setting data form interactive
                 var matches = before_url.split("form_interactive/checkData/");
                 var interactive = matches[1].split("?")[0];
 
@@ -46,8 +49,8 @@ $(function() {
                 if (matches !== null) {
                     //Remap
                     settings.url = path + matches[1];
-                } else if (before_url.indexOf("<?=$constants['elmo_env']?>") === 0) { // BC script
-                    //Remap
+                } else if (before_url.indexOf("<?=$constants['elmo_env']?>") === 0) {
+                    //BC script. Remap
                     settings.url = path + before_url;
                 }
             }
