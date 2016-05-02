@@ -73,9 +73,17 @@ define('API_KEY_COURSES', 'keys/');
  * Reset
  */
 define('API_RESET', 'reset/');
+/**
+ * Loading FORM INTERACTIVE ACTIVITY STORAGE
+ */
+define('API_LOAD_ACTIVITY_STORAGE', 'api_form_interactive_load/');
+/**
+ * Saving to FORM INTERACTIVE ACTIVITY STORAGE
+ */
+define('API_SET_ACTIVITY_STORAGE', 'api_form_interactive_set/');
 
 /**
- * Array of values to pass to the twig template.
+ * Array of values to pass to the plates template.
  */
 $frontEndConstants = array(
     'elmo_env' => $ELMO_ENV,

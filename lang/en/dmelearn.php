@@ -84,8 +84,13 @@ $string['startoredit'] = 'Start or edit my Digital Media e-Learning entry';
 $string['viewallentries'] = 'View {$a} Digital Media e-Learning entries';
 $string['viewentries'] = 'View entries';
 // For mod_form.php
-$string['mfnocourses'] = '<style>.mf-info{color:#e32f0b;font-weight:bold;}</style><div><span class="mf-info">Information:</span> The DM e-Learning server did not return any availiable courses. Please contact Digital Media for help.</div><br>';
+$string['mfnocourses'] = '<style>.mf-info{color:#e32f0b;font-weight:bold;}</style><div><span class="mf-info">Information:</span> The DM e-Learning server did not return any available courses. Please contact Digital Media for help.</div><br>';
 $string['mfinstructions'] = '<style>.mf-instruct{color:#2ca02c;font-weight:bold;}</style><div><span class="mf-instruct">Instructions:</span> The form will let you add a DM e-Learning course into an activity within your Moodle Course.
-<ol><li>Select a DM e-Learning Course from the dropdown below.</li><li>Provide a name for the Moodle Activity.</li><li>Save your selection.</li></ol></div>';
+<ol><li>Select a DM e-Learning Course from the dropdown below.</li><li>OPTIONAL: Enter the number of months that you will allow access to a course after it has been 100% completed on DM e-Learning. If expired, users will need to reset the course and Moodle Grade before gaining access. (DEFAULT: 0 = No course expiry limits).</li>
+<li>Provide a name for the Moodle Activity.</li><li>Save your selection.</li></ol></div>';
 $string['mfselectcourse'] = 'Please select a course ...';
 $string['mfnocourse'] = 'You must choose from one of the courses in the drop down.';
+$string['mftfwrong'] = 'You must enter either 0 or a number of months that a completed course will be accessible before needing to be reset.';
+$string['dmelearntimeframemonths'] = 'Force Reset After Months<br>(0 = No course expiry limits)';
+$string['dmelearntimeframemonths_help'] = 'This options exists to prevent users that have completed a DM e-Learning course more than a certain amount of months ago (possibly via another website or Moodle) from syncing their completion percentage with this activities Moodle Grade.
+<br><br>If a users completion date is greater than the amount of months set here, they will be required to reset their course and complete the course assessments from the beginning.<br><br>If you do not need this feature set this field to 0.';

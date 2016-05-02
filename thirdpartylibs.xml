@@ -29,16 +29,16 @@
         <licenseversion></licenseversion>
     </library>
     <library>
-        <location>content/vendor/twig/twig/</location>
-        <name>Twig</name>
-        <version>1.22.2</version>
-        <license>BSD</license>
+        <location>content/vendor/league/plates/</location>
+        <name>league/plates</name>
+        <version>3.1.1</version>
+        <license>MIT</license>
         <licenseversion></licenseversion>
     </library>
     <library>
         <location>content/vendor/react/promise/</location>
         <name>React/Promise</name>
-        <version>2.2.1</version>
+        <version>2.4.0</version>
         <license>MIT</license>
         <licenseversion></licenseversion>
     </library>

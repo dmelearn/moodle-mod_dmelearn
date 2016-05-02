@@ -19,9 +19,9 @@
  * 
  * @uses Guzzle Make sure you have Guzzle loaded first
  * @see Also make sure that Elmo_web_service_hash class is loaded too
- * @author        Chris Barton
+ * @author        Chris Barton, AJ Dunn
  * @copyright     2015 Digital Media e-learning
- * @version       1.0.0
+ * @version       1.5.0
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
@@ -86,11 +86,11 @@ function course_request(&$client, $path, $headers) {
 /**
  * Validate questions request
  *
- * @param $client
- * @param $path
- * @param $headers
- * @param null $post_data
- * @return mixed
+ * @param object $client Pass the Guzzle Client reference
+ * @param string $path API URI path (api/courses/courseName)
+ * @param array $headers Request Headers -- see documentation for all required headers
+ * @param null $post_data json data to post to page
+ * @return object Returns the Guzzle response object ready for manipulation
  * @throws moodle_exception
  */
 function validate_question_request(&$client, $path, $headers, $post_data = null) {
@@ -109,10 +109,58 @@ function validate_question_request(&$client, $path, $headers, $post_data = null)
 }
 
 /**
+ * Load Interactive Activity Storage request
+ *
+ * @param object $client Pass the Guzzle Client reference
+ * @param string $path API URI path
+ * @param array $headers Request Headers -- see documentation for all required headers
+ * @return object Returns the Guzzle response object ready for manipulation
+ * @throws moodle_exception
+ */
+function load_activity_storage_request(&$client, $path, $headers) {
+    try {
+        return $client->get(
+            $path,
+            [
+                'headers' => $headers
+            ]
+        );
+    } catch (GuzzleHttp\Exception\RequestException $e) {
+        // Networking error, Throw a Moodle Exception.
+        throw new moodle_exception('load_activity_storage_internal_error', 'dmelearn');
+    }
+}
+
+/**
+ * Set Interactive Activity Storage request
+ *
+ * @param object $client Pass the Guzzle Client reference
+ * @param string $path API URI path
+ * @param array $headers Request Headers -- see documentation for all required headers
+ * @param null $post_data json data to post to page
+ * @return object Returns the Guzzle response object ready for manipulation
+ * @throws moodle_exception
+ */
+function set_activity_storage_request(&$client, $path, $headers, $post_data = null) {
+    try {
+        return $client->post(
+            $path,
+            [
+                'headers' => $headers,
+                'json' => $post_data
+            ]
+        );
+    } catch (GuzzleHttp\Exception\RequestException $e) {
+        // Networking error, Throw a Moodle Exception.
+        throw new moodle_exception('set_activity_storage_internal_error', 'dmelearn');
+    }
+}
+
+/**
  * Determines if a ELMO url actually exists based on file_exists and some PERL modules like
  * URI && LWP::Simple
  *
- * @param $file URL to check
+ * @param string $file URL to check
  * @return bool Does URL exist?
  */
 function elmo_url_exists($file) {
@@ -124,9 +172,9 @@ function elmo_url_exists($file) {
 /**
  * Make a url based on the ELMO api conventions
  *
- * @param $course Course
- * @param $m Module
- * @param $p Page
+ * @param string $course Course
+ * @param string $m Module
+ * @param string $p Page
  */
 function make_api_url($course, $m, $p) {
     // BC: changed to add id parameter.
@@ -137,9 +185,9 @@ function make_api_url($course, $m, $p) {
 /**
  * Determines what scripts to load
  *
- * @param $module
- * @param $page
- * @param $data
+ * @param string $module
+ * @param string $page
+ * @param array $data
  */
 function elmo_parse_config_page_scripts($module, $page, $data) {
     if (($module == $data['module'] ) && ( $page == $data['page'] )) {
@@ -174,12 +222,12 @@ function get_ajax_content($url) {
 /**
  * Check if this version of the dmelearn plugin can display a course of a given supported version number.
  *
- * @param $version_num course version to check
+ * @param int|string $version_num course version to check
  * @return bool is version supported?
  */
 function support_course_num($version_num) {
     // Array containing the course version numbers supported by this dmelearn plugin version.
-    $supported = array(1, 2);
+    $supported = array(1, 2, 3, 4);
 
     return (in_array($version_num, $supported)) ? true : false;
 }

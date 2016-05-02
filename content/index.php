@@ -21,12 +21,12 @@
  * It uses Guzzle, Composer and a few ELMO external classes.
  * The Elmo classes have no dependencies.
  *
- * Note: Guzzle 3 requires PHP 5.3.3+
+ * Note: Guzzle 5.3 requires PHP 5.4.0+
  *
  * @package    mod_dmelearn
  * @author     Chris Barton, AJ Dunn, CJ Faulkner
  * @copyright  2015 Chris Barton, Digital Media e-learning
- * @version    1.0.2
+ * @version    1.5.0
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
@@ -65,9 +65,17 @@ $page = (string) (isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SANIT
 // Make Requests to course first to get all user information/scripts/etc.
 // We have course = courseName, make a request for information on the course.
 try {
+
+    // Check if this Moodle Activity's DM course has to be reset after a certain amount of months.
+    $limitbymonths = '';
+    if($timeframemonths >= 1){
+        // Include the amount of months in the API URL.
+        $limitbymonths = '/' . $timeframemonths;
+    }
+
     $request = course_request(
         $client,
-        (API_URL . API_COURSES . $course),
+        (API_URL . API_COURSES . $course . $limitbymonths),
         make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
     );
     $course_request = $request->json();
@@ -176,7 +184,8 @@ $navigation = new Navigation(
         'site_url' => $_SERVER['PHP_SELF'],
         'course' => $course,
         'module' => $module,
-        'page' => $page
+        'page' => $page,
+        'course_version' => $course_version
     )
 );
 
@@ -210,30 +219,16 @@ define('ELMO_WEB_COURSE_JAVASCRIPT', ELMO_WEB_BASE_COURSES . $course . '/js/');
 define('ELMO_WEB_COURSE_RESOURCES', ELMO_WEB_BASE_COURSES . $course . '/resources/');
 define('ELMO_WEB_COURSE_IMAGES', ELMO_WEB_COURSE_RESOURCES . 'images/');
 
-$courseConstants = Array(
+$courseConstants = array(
     'course_js' => ELMO_WEB_COURSE_JAVASCRIPT,
     'course_resources' => ELMO_WEB_COURSE_RESOURCES,
     'course_img' => ELMO_WEB_COURSE_IMAGES
 );
 
-// Below is a working template, it must be kept up-to-date.
-$loader = new Twig_Loader_Filesystem(__DIR__ . '/template');
+// Create new Plates Instance Loaded From Composer
+$plates = new League\Plates\Engine(__DIR__ . '/plates');
 
-// Check if template cache directory can be written to and use it as cache.
-if (is_writable(__DIR__.'/template_cache')) {
-    $twig = new Twig_Environment(
-        $loader,
-        array(
-            'cache' => new Twig_Cache_Filesystem(__DIR__ . '/template_cache',
-                Twig_Cache_Filesystem::FORCE_BYTECODE_INVALIDATION)
-        )
-    );
-} else {
-    $twig = new Twig_Environment($loader, array(
-    ));
-}
-
-echo $twig->render('base.twig', array(
+$page = array(
     'course_data' => $course_request,
     'page_data' => $page_request,
     'constants' => $frontEndConstants,
@@ -252,4 +247,21 @@ echo $twig->render('base.twig', array(
     'next_url' => $next_url,
     'navigation' => $navigation->make(),
     'lmscontenturl' => $lmscontenturl
-));
+);
+
+// Check if API returned saying the course must be reset first.
+$tf_has_expired = isset($course_request["tf_has_expired"]) ? $course_request["tf_has_expired"] : false;
+
+if ($tf_has_expired) {
+    // Course that requires reset before it can be viewed.
+    $page['timeframemonths'] = $timeframemonths;
+    // Output Template
+    $plates->addData($page);
+    echo $plates->render('base_reset');
+    die();
+} else {
+    // Course that can be viewed.
+    $plates->addData($page);
+    echo $plates->render('base');
+    die();
+}

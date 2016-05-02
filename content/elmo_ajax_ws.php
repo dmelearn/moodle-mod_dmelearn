@@ -86,6 +86,46 @@ switch ($request_path) {
         // Feels bad man but you have json while you json.
         $response = $response->json();
         exit(json_encode($response['Response']));
+
+    case 'form_interactive_load':
+        // Load an existing activity storage record.
+        if (count($path_explode) > 1) {
+            $activity_name = $path_explode[1];
+            $course_path = $path_explode[2];
+        }
+        try{
+            $response = load_activity_storage_request(
+                $client,
+                (API_URL . API_LOAD_ACTIVITY_STORAGE . $activity_name . '/' . $course_path),
+                make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
+            );
+        } catch (GuzzleHttp\Exception\TransferException $e) {
+            exit();
+        }
+        // Feels bad man but you have json while you json.
+        $response = $response->json();
+        exit(json_encode($response['Response']));
+
+    case 'form_interactive_set':
+        // Saving an activity storage record.
+        if (count($path_explode) > 1) {
+            $activity_name = $path_explode[1];
+            $course_path = $path_explode[2];
+        }
+        try{
+            $response = set_activity_storage_request(
+                $client,
+                (API_URL . API_SET_ACTIVITY_STORAGE . $activity_name . '/' . $course_path),
+                make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key),
+                $data
+            );
+        } catch (GuzzleHttp\Exception\TransferException $e) {
+            exit();
+        }
+        // Feels bad man but you have json while you json.
+        $response = $response->json();
+        exit(json_encode($response['Response']));
+
     default:
         $domain_info = parse_url($ELMO_ENV);
         $domain = $domain_info["host"];

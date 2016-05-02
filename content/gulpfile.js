@@ -93,15 +93,20 @@ gulp.task('clean:vendor', function () {
         'vendor/guzzlehttp/ringphp/docs',
         'vendor/guzzlehttp/ringphp/tests',
         'vendor/guzzlehttp/streams/tests',
-        'vendor/react/promise/tests',
-        'vendor/twig/twig/doc',
-        'vendor/twig/twig/test'
+        'vendor/react/promise/tests'
     ]);
 });
+// Remove bower_components folder.
 gulp.task('del:bower', function () {
     return del([
-        // Remove bower_components folder.
         'bower_components/'
+    ]);
+});
+
+// Remove node_modules folder.
+gulp.task('del:nm', function () {
+    return del([
+        'node_modules/'
     ]);
 });
 
