@@ -1,4 +1,5 @@
 # moodle-mod_dmelearn
+[![Code Climate](https://codeclimate.com/github/dmelearn/moodle-mod_dmelearn/badges/gpa.svg)](https://codeclimate.com/github/dmelearn/moodle-mod_dmelearn)
 - Plugin to access/use Digital Media e-Learning course content as a Moodle Activity rather than users accessing the "DM e-learning" website directly.
 - This plugin is only useful for Moodle Managers that have been granted API access to "Digital Media e-Learning" courses with valid application settings.
 - Usage of this plugin creates an account for each user on DM e-learning to track course completion and provide certificates, completion of each course is also recorded within Moodle.
