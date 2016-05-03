@@ -17,13 +17,12 @@
 
 ### Remove unused third party components files before deployment (Developers)
 - Open the `content` folder inside this plugin from the terminal/command line.
-- Run `gulp clean:vendor` and `gulp del:bower`.
+- Run `gulp clean:vendor`, `gulp del:bower` and `del:nm`.
 
 ### Installation / Usage
 * Either install the plugin as a .zip file via Moodle Plugin installer page or ...
 * Create a `dmelearn` folder inside `mod/` in the root directory of you Moodle install.
 * Copy all plugin files and folders into `dmelearn`.
-* *Please make sure that the folder `mod/dmelearn/content/template_cache/` is writable by Moodle.*
 * After the plugin has been installed by a Moodle Administrator ...
 * Go to Site Administration -> Plugins -> Activity modules -> Digital Media e-Learning.
 * Enter all required configuration details for the mod_dmelearn plugin (Provided to DM partners only).
@@ -31,7 +30,7 @@
 
 ## Requirements
 - PHP 5.4.0 or above with short echo tag support and the [cURL extension](http://php.net/manual/en/book.curl.php).
-- Moodle 2.5, 2.6, 2.7, 2.8+
+- Moodle 2.5, 2.6, 2.7, 2.8, 2.9, 3.0+
 - https://docs.moodle.org/25/en/Installing_Moodle#Requirements
 
 ## Authors
