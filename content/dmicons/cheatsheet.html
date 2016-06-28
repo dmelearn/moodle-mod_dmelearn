@@ -1,0 +1,2100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DMicons v1.0.0 Cheatsheet</title>
+  <style>
+    * {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    body {
+      background: #fff;
+      color: #444;
+      font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    a, a:visited {
+      color: #888;
+      text-decoration: underline;
+    }
+    a:hover, a:focus { color: #000; }
+
+    header {
+      border-bottom: 2px solid #ddd;
+      margin-bottom: 20px;
+      overflow: hidden;
+      padding: 20px 0;
+    }
+
+    header h1 {
+      color: #888;
+      float: left;
+      font-size: 36px;
+      font-weight: 300;
+    }
+
+    header a {
+      float: right;
+      font-size: 14px;
+    }
+
+    .container {
+      margin: 0 auto;
+      max-width: 1200px;
+      min-width: 960px;
+      padding: 0 20px;
+      width: 95%;
+    }
+
+    .icon-row {
+      border-bottom: 1px dotted #ccc;
+      padding: 10px 0 20px;
+      margin-bottom: 20px;
+    }
+    .ion {
+      -webkit-touch-callout: text;
+      -webkit-user-select: text;
+      -khtml-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+    }
+
+    .preview-icon { vertical-align: bottom; }
+
+    .preview-scale {
+      color: #888;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .step {
+      display: inline-block;
+      line-height: 1;
+      position: relative;
+      width: 10%;
+    }
+
+    .step i {
+      -webkit-transition: opacity .3s;
+      -moz-transition: opacity .3s;
+      -ms-transition: opacity .3s;
+      -o-transition: opacity .3s;
+      transition: opacity .3s;
+    }
+
+    .step:hover i { opacity: .3; }
+
+    .size-12 { font-size: 12px; }
+    .size-14 { font-size: 14px; }
+    .size-16 { font-size: 16px; }
+    .size-18 { font-size: 18px; }
+    .size-21 { font-size: 21px; }
+    .size-24 { font-size: 24px; }
+    .size-32 { font-size: 32px; }
+    .size-48 { font-size: 48px; }
+    .size-64 { font-size: 64px; }
+    .size-96 { font-size: 96px; }
+
+    .usage { margin-top: 10px; }
+    .usage input {
+      font-family: monospace;
+      margin-right: 3px;
+      padding: 2px 5px;
+      text-align: center;
+      -webkit-touch-callout: text;
+      -webkit-user-select: text;
+      -khtml-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
+    }
+
+    .usage label {
+      font-size: 12px;
+      text-align: right;
+      padding: 0 3px 0 60px;
+    }
+    .usage label:first-child { padding-left: 0; }
+    .usage .name { width: 180px; }
+    .usage .html { width: 80px; }
+    .usage .css { width: 80px; }
+
+    .mode-row {
+      border-bottom: 1px dotted #ccc;
+      padding: 0 0 10px;
+      margin-bottom: 10px;
+    }
+
+    .mode-col {
+      display: inline-block;
+      width: 25%;
+    }
+
+    .mode-row .icon {
+      font-size: 32px;
+    }
+
+    .align-center {
+      text-align: center;
+    }
+
+    .comparison-row {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+
+    .comparison-col {
+      flex: 1;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .comparison-icon {
+      height: 136px;
+    }
+
+    .comparison-col img {
+      width: 100%;
+      max-width: 128px;
+    }
+
+    .comparison-col .icon {
+      font-size: 128px;
+      line-height: 0;
+      color: black;
+    }
+
+    footer {
+      color: #888;
+      font-size: 12px;
+      padding: 20px 0;
+    }
+  </style>
+  <link href="css/dmicons.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>DMicons v3.0.0 Cheatsheet, 50 icons:</h1>
+    </header>
+    <div class="content">
+      <div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-back"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-back"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-back"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-back"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-back"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-back"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-back"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-back"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-back"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-back"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-back" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf100;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf100;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f100" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-down"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-down"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-down"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-down"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-down"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-down"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-down"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-down"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-down"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-down"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-down" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf101;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf101;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f101" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-dropdown"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-dropdown"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-dropdown"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-dropdown"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-dropdown"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-dropdown"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-dropdown"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-dropdown"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-dropdown"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-dropdown"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-dropdown" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf103;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf103;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f103" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-dropdown-circle"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-dropdown-circle"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-dropdown-circle"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-dropdown-circle"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-dropdown-circle"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-dropdown-circle"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-dropdown-circle"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-dropdown-circle"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-dropdown-circle"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-dropdown-circle"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-dropdown-circle" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf102;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf102;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f102" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-dropleft"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-dropleft"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-dropleft"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-dropleft"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-dropleft"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-dropleft"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-dropleft"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-dropleft"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-dropleft"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-dropleft"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-dropleft" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf105;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf105;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f105" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-dropleft-circle"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-dropleft-circle"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-dropleft-circle"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-dropleft-circle"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-dropleft-circle"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-dropleft-circle"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-dropleft-circle"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-dropleft-circle"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-dropleft-circle"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-dropleft-circle"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-dropleft-circle" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf104;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf104;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f104" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-dropright"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-dropright"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-dropright"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-dropright"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-dropright"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-dropright"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-dropright"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-dropright"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-dropright"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-dropright"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-dropright" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf107;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf107;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f107" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-dropright-circle"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-dropright-circle"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-dropright-circle"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-dropright-circle"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-dropright-circle"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-dropright-circle"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-dropright-circle"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-dropright-circle"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-dropright-circle"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-dropright-circle"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-dropright-circle" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf106;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf106;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f106" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-dropup"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-dropup"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-dropup"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-dropup"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-dropup"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-dropup"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-dropup"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-dropup"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-dropup"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-dropup"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-dropup" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf109;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf109;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f109" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-dropup-circle"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-dropup-circle"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-dropup-circle"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-dropup-circle"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-dropup-circle"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-dropup-circle"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-dropup-circle"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-dropup-circle"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-dropup-circle"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-dropup-circle"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-dropup-circle" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf108;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf108;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f108" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-forward"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-forward"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-forward"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-forward"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-forward"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-forward"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-forward"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-forward"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-forward"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-forward"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-forward" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf10a;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf10a;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f10a" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-round-back"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-round-back"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-round-back"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-round-back"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-round-back"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-round-back"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-round-back"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-round-back"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-round-back"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-round-back"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-round-back" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf10b;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf10b;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f10b" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-round-down"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-round-down"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-round-down"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-round-down"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-round-down"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-round-down"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-round-down"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-round-down"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-round-down"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-round-down"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-round-down" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf10c;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf10c;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f10c" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-round-forward"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-round-forward"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-round-forward"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-round-forward"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-round-forward"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-round-forward"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-round-forward"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-round-forward"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-round-forward"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-round-forward"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-round-forward" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf10d;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf10d;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f10d" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-round-up"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-round-up"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-round-up"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-round-up"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-round-up"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-round-up"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-round-up"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-round-up"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-round-up"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-round-up"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-round-up" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf10e;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf10e;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f10e" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-arrow-up"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-arrow-up"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-arrow-up"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-arrow-up"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-arrow-up"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-arrow-up"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-arrow-up"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-arrow-up"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-arrow-up"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-arrow-up"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-arrow-up" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf10f;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf10f;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f10f" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-assess"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-assess"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-assess"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-assess"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-assess"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-assess"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-assess"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-assess"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-assess"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-assess"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-assess" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf12e;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf12e;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f12e" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-bookmark"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-bookmark"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-bookmark"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-bookmark"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-bookmark"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-bookmark"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-bookmark"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-bookmark"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-bookmark"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-bookmark"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-bookmark" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf110;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf110;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f110" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-circ"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-circ"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-circ"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-circ"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-circ"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-circ"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-circ"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-circ"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-circ"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-circ"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-circ" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf130;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf130;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f130" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-circ-line"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-circ-line"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-circ-line"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-circ-line"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-circ-line"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-circ-line"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-circ-line"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-circ-line"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-circ-line"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-circ-line"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-circ-line" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf12f;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf12f;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f12f" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-close"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-close"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-close"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-close"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-close"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-close"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-close"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-close"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-close"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-close"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-close" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf111;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf111;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f111" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-cog"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-cog"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-cog"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-cog"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-cog"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-cog"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-cog"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-cog"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-cog"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-cog"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-cog" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf112;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf112;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f112" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-doc-text"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-doc-text"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-doc-text"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-doc-text"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-doc-text"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-doc-text"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-doc-text"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-doc-text"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-doc-text"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-doc-text"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-doc-text" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf12c;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf12c;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f12c" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-email"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-email"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-email"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-email"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-email"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-email"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-email"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-email"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-email"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-email"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-email" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf12d;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf12d;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f12d" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-grid"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-grid"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-grid"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-grid"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-grid"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-grid"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-grid"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-grid"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-grid"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-grid"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-grid" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf113;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf113;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f113" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-help"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-help"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-help"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-help"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-help"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-help"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-help"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-help"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-help"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-help"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-help" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf114;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf114;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f114" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-info"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-info"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-info"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-info"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-info"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-info"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-info"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-info"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-info"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-info"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-info" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf115;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf115;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f115" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-instruc"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-instruc"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-instruc"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-instruc"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-instruc"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-instruc"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-instruc"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-instruc"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-instruc"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-instruc"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-instruc" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf131;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf131;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f131" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-list"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-list"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-list"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-list"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-list"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-list"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-list"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-list"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-list"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-list"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-list" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf116;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf116;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f116" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-lock"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-lock"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-lock"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-lock"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-lock"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-lock"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-lock"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-lock"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-lock"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-lock"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-lock" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf117;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf117;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f117" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-logout"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-logout"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-logout"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-logout"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-logout"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-logout"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-logout"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-logout"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-logout"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-logout"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-logout" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf118;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf118;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f118" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-ribbon"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-ribbon"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-ribbon"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-ribbon"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-ribbon"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-ribbon"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-ribbon"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-ribbon"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-ribbon"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-ribbon"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-ribbon" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf119;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf119;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f119" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-rows"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-rows"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-rows"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-rows"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-rows"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-rows"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-rows"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-rows"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-rows"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-rows"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-rows" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf11a;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf11a;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f11a" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-school"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-school"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-school"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-school"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-school"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-school"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-school"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-school"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-school"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-school"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-school" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf11b;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf11b;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f11b" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-search"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-search"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-search"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-search"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-search"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-search"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-search"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-search"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-search"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-search"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-search" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf11c;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf11c;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f11c" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-settings"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-settings"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-settings"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-settings"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-settings"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-settings"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-settings"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-settings"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-settings"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-settings"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-settings" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf11d;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf11d;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f11d" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-skip-backward"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-skip-backward"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-skip-backward"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-skip-backward"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-skip-backward"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-skip-backward"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-skip-backward"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-skip-backward"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-skip-backward"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-skip-backward"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-skip-backward" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf11e;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf11e;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f11e" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-skip-forward"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-skip-forward"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-skip-forward"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-skip-forward"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-skip-forward"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-skip-forward"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-skip-forward"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-skip-forward"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-skip-forward"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-skip-forward"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-skip-forward" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf11f;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf11f;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f11f" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-star"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-star"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-star"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-star"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-star"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-star"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-star"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-star"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-star"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-star"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-star" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf121;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf121;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f121" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-star-half"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-star-half"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-star-half"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-star-half"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-star-half"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-star-half"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-star-half"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-star-half"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-star-half"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-star-half"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-star-half" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf120;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf120;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f120" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-tags"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-tags"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-tags"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-tags"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-tags"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-tags"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-tags"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-tags"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-tags"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-tags"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-tags" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf122;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf122;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f122" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-tick"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-tick"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-tick"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-tick"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-tick"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-tick"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-tick"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-tick"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-tick"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-tick"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-tick" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf12b;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf12b;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f12b" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-time"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-time"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-time"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-time"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-time"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-time"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-time"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-time"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-time"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-time"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-time" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf123;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf123;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f123" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-trash"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-trash"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-trash"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-trash"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-trash"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-trash"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-trash"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-trash"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-trash"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-trash"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-trash" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf124;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf124;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f124" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-trophy"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-trophy"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-trophy"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-trophy"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-trophy"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-trophy"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-trophy"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-trophy"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-trophy"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-trophy"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-trophy" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf125;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf125;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f125" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-unlock"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-unlock"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-unlock"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-unlock"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-unlock"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-unlock"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-unlock"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-unlock"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-unlock"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-unlock"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-unlock" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf126;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf126;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f126" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-user"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-user"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-user"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-user"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-user"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-user"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-user"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-user"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-user"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-user"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-user" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf127;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf127;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f127" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-volume-off"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-volume-off"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-volume-off"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-volume-off"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-volume-off"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-volume-off"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-volume-off"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-volume-off"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-volume-off"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-volume-off"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-volume-off" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf128;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf128;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f128" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-volume-up"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-volume-up"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-volume-up"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-volume-up"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-volume-up"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-volume-up"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-volume-up"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-volume-up"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-volume-up"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-volume-up"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-volume-up" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf129;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf129;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f129" />
+  </div>
+</div>
+<div class="icon-row">
+  <div class="preview-icon"><span class="step size-12">
+      <i class="icon dm-warning"></i>
+    </span><span class="step size-14">
+      <i class="icon dm-warning"></i>
+    </span><span class="step size-16">
+      <i class="icon dm-warning"></i>
+    </span><span class="step size-18">
+      <i class="icon dm-warning"></i>
+    </span><span class="step size-21">
+      <i class="icon dm-warning"></i>
+    </span><span class="step size-24">
+      <i class="icon dm-warning"></i>
+    </span><span class="step size-32">
+      <i class="icon dm-warning"></i>
+    </span><span class="step size-48">
+      <i class="icon dm-warning"></i>
+    </span><span class="step size-64">
+      <i class="icon dm-warning"></i>
+    </span><span class="step size-96">
+      <i class="icon dm-warning"></i>
+    </span>
+  </div>
+  <div class="preview-scale"><span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">32</span><span class="step">48</span><span class="step">64</span><span class="step">96</span></div>
+  <div class="usage">
+    <label>Classname:</label>
+    <input class="name" type="text" readonly="readonly" onClick="this.select();" value="dm-warning" />
+
+    <label>Selectable:</label>
+    <span class="ion">&#xf12a;</span>
+
+    <label>Escaped HTML:</label>
+    <input class="html" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf12a;" />
+
+    <label>CSS Content:</label>
+    <input class="css" type="text" readonly="readonly" onClick="this.select();" value="\f12a" />
+  </div>
+</div>
+    </div>
+    <footer>
+      Made with love by the <a href="http://ionicframework.com/">Ionic Framework</a>
+    </footer>
+  </div>
+</body>
+</html>
