@@ -63,7 +63,7 @@ class Navigation {
     public function make()
     {
         // Load correct navigation menu
-        if ( isset($this->course_version) && $this->course_version == 4) {
+        if (isset($this->course_version) && $this->course_version == 4) {
             return $this->makeCourseFour();
         } else {
             return $this->makeStandardNavigation();
