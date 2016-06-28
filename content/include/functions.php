@@ -227,7 +227,7 @@ function get_ajax_content($url) {
  */
 function support_course_num($version_num) {
     // Array containing the course version numbers supported by this dmelearn plugin version.
-    $supported = array(1, 2, 3, 4);
+    $supported = array(1, 2, 2.1, 3, 4);
 
     return (in_array($version_num, $supported)) ? true : false;
 }

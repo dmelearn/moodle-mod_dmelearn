@@ -104,7 +104,8 @@ try {
 }
 
 // Check if this plugin can support the course version.
-$course_version = isset($course_request["configuration"]["course_version"]) ? filter_var($course_request["configuration"]["course_version"], FILTER_SANITIZE_NUMBER_INT) : 1;
+$course_version = isset($course_request["configuration"]["course_version"]) ? $course_request["configuration"]["course_version"] : 1;
+
 if (!support_course_num($course_version))
 {
     include_once('include/noAccess.php');
