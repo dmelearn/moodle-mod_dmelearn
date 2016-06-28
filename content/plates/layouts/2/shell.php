@@ -45,7 +45,7 @@
         </nav>
         <?php endif;?>
 
-        <? //page content ?>
+        <?php //page content ?>
         <div id="maincontent" class="col-md-9 course_body">
             <?php if (isset($page_data['data']['assessment_summary'])): ?>
                 <?php $this->insert('partials/assessment_summary'); ?>
