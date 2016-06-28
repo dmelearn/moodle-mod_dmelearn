@@ -8,7 +8,7 @@
     <div class="row course_content">
         <?php //If the user has completed the course the reset and certificate buttons will appear ?>
         <?php if ($page_data['data']['cert_data']['has_certificate']): ?>
-            <div class="alert alert-info clearfix row-fliud reset_and_cert_buttons">
+            <div class="alert alert-info clearfix reset_and_cert_buttons">
                 <p class="pull-left"><strong>Well Done!</strong>  You have completed the assessment for this course.</p>
                 <a class="btn pull-right btn-success" href="<?=$constants['base_url']?>api/cert/download/<?=$page_data['data']['cert_data']['course_path']?>/<?=$page_data['data']['cert_data']['user_id']?>/<?=$page_data['data']['cert_data']['assessment_id']?>">Download Certificate (PDF)</a>
                 <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target=".reset_modal">Reset Course</button>
