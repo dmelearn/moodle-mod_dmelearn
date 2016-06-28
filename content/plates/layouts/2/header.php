@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="<?=$constants['base_css']?>main_v2.css">
 <?php //jQuery UI Bootstrap Theme ?>
 <link rel="stylesheet" href="<?=$constants['base_css']?>jquery-ui-for-bootstrap.css">
-<?php //Font Awesome 4.2.0  NOT USED YET ?>
+<?php //Font Awesome 4.3.0 ?>
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 <?php //Course CSS ?>
 <?php
