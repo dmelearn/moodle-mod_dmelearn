@@ -11,8 +11,7 @@
                             <div class="assessment-summary__progress__text">
                                 <h4>
                                     <?php echo $page_data['data']['assessment_summary']['progress']['completed_questions']; ?>
-                                    out
-                                    of <?php echo $page_data['data']['assessment_summary']['progress']['total_questions']; ?>
+                                    out of <?php echo $page_data['data']['assessment_summary']['progress']['total_questions']; ?>
                                     questions complete
                                     (<?php echo $page_data['data']['assessment_summary']['progress']['percentage']; ?>
                                     %)</h4>
@@ -58,12 +57,11 @@
                                                                 questions.
                                                             </div>
                                                             <div class="assessment-summary__questions__box clearfix">
-                                                                <div
-                                                                    class="assessment-summary__questions__cross pull-right">
+                                                                <div class="assessment-summary__questions__cross pull-right">
                                                                     <?php $cmp = explode("/", $block['loc']) ?>
-                                                                    <a href="?id=<?=$mod_id?>&course=<?=$cmp[0]?>&module=<?=$cmp[1]?>&page=<?=$cmp[2]?>">Go
-                                                                        to page <i
-                                                                            class="icon dm-arrow-forward"></i></a>
+                                                                    <a href="?id=<?= $mod_id ?>&course=<?= $cmp[0] ?>&module=<?= $cmp[1] ?>&page=<?= $cmp[2] ?>">Go
+                                                                        to page <i class="icon dm-arrow-forward"></i>
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -77,16 +75,15 @@
 
                                                             <div class="assessment-summary__questions__box clearfix">
                                                                 <?php if ($question['completed']): ?>
-                                                                    <div
-                                                                        class="assessment-summary__questions__tick pull-right">
+                                                                    <div class="assessment-summary__questions__tick pull-right">
                                                                         <p><i class="icon dm-check"></i> Correct</p>
                                                                     </div>
                                                                 <?php else: ?>
                                                                     <?php $cmp = explode("/", $question['loc']); ?>
                                                                     <div class="assessment-summary__questions__cross pull-right">
-                                                                        <a href="?id=<?= $mod_id ?>&course=<?= $cmp[0] ?>&module=<?= $cmp[1] ?>&page=<?= $cmp[2]?>#<?= $question['short_name'] ?>">
-                                                                            Go to question <i
-                                                                                class="icon dm-arrow-forward"></i>
+                                                                        <a href="?id=<?= $mod_id ?>&course=<?= $cmp[0] ?>&module=<?= $cmp[1] ?>&page=<?= $cmp[2] ?>#<?= $question['short_name'] ?>">
+                                                                            Go to question
+                                                                            <i class="icon dm-arrow-forward"></i>
                                                                         </a>
                                                                     </div>
                                                                 <?php endif; ?>
@@ -103,7 +100,6 @@
                     </div>
                 </div>
             </div>
-
         <?php endif; ?>
         <?php
         if ($page_data['data']['cert_data']['has_certificate']): ?>
@@ -115,10 +111,8 @@
                                     class="icon dm-ribbon"></i></a>
                         </div>
                         <div class="assessment-summary__download__text text-center">
-
-
-
-                            <a class="btn dm-btn" href="<?= $constants['base_url'] ?>api/cert/download/<?= $page_data['data']['cert_data']['course_path'] ?>/<?= $page_data['data']['cert_data']['user_id'] ?>/<?= $page_data['data']['cert_data']['assessment_id'] ?>"
+                            <a class="btn dm-btn"
+                               href="<?= $constants['base_url'] ?>api/cert/download/<?= $page_data['data']['cert_data']['course_path'] ?>/<?= $page_data['data']['cert_data']['user_id'] ?>/<?= $page_data['data']['cert_data']['assessment_id'] ?>"
                                target="_blank">
                                 <div>Download your certificate</div>
                             </a>
@@ -128,12 +122,10 @@
             </div>
         <?php endif; ?>
 
-
         <?php if (isset($certificate) && $course_evaluation): ?>
             <div class="assessment-summary__evaluation text-center">
                 <?php echo($course_evaluation); ?>
             </div>
         <?php endif; ?>
-
     </div>
 </section>
