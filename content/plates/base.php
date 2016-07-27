@@ -13,7 +13,7 @@ $this->insert('layouts/' . $version . '/header');
 ?>
 <title><?php if (isset($course_data['name'])) { echo $course_data['name'];} ?>: Digital Media eLearning Course</title>
 </head>
-<body style="padding-top:0px; background-color: #f9f9f9;" id="course-controller">
+<body id="course-controller" class="course" style="padding-top:0px; background-color: #f9f9f9;">
 <?php
 // Top Menu for getting back to Moodle
 $this->insert('partials/lmsmenu');
