@@ -1,18 +1,18 @@
-<div class="prev-next row">
+<div class="prev-next clearfix">
     <?php if ($previous_url): ?>
-    <a class="col-md-6 col-sm-6 prev-next__btn prev-next__btn--prev"
+    <a class="col-md-6 col-sm-6 col-xs-6 prev-next__btn prev-next__btn--prev"
        href="<?=$lmscontenturl?>&module=<?=$previous_url['module']?>&page=<?=$previous_url['page']?>">
         <div class="prev-next__btn__inner">
-            <i class="icon dm-arrow-back"></i>PREV
+            <i class="icon dm-arrow-back"></i><span>PREV</span><span class="hoverText">Previous Page</span>
         </div>
     </a>
     <?php endif; ?>
 
     <?php if ($next_url): ?>
-    <a class="col-md-6 col-sm-6 prev-next__btn prev-next__btn--next pull-right"
+    <a class="col-md-6 col-sm-6 col-xs-6 prev-next__btn prev-next__btn--next pull-right"
        href="<?=$lmscontenturl?>&module=<?=$next_url['module']?>&page=<?=$next_url['page']?>">
         <div class="prev-next__btn__inner">
-            NEXT<i class="icon dm-arrow-forward"></i>
+            <span>NEXT</span><i class="icon dm-arrow-forward"></i><span class="hoverText">Next Page</span>
         </div>
     </a>
     <?php endif; ?>
