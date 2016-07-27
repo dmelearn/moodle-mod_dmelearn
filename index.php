@@ -83,7 +83,6 @@ $table->align[] = 'left';
 $currentsection = '';
 $i = 0;
 foreach ($elmos as $elmo) {
-
     $context = get_context_instance(CONTEXT_MODULE, $elmo->coursemodule);
 
     // Section.

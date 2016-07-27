@@ -81,6 +81,5 @@ class restore_dmelearn_activity_structure_step extends restore_activity_structur
         $this->add_related_files('mod_dmelearn', 'intro', null);
         $this->add_related_files('mod_dmelearn_entries', 'trackdata', null);
         $this->add_related_files('mod_dmelearn_entries', 'grade', null);
-
     }
 }

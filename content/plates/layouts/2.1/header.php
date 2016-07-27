@@ -43,7 +43,6 @@ if (isset($course_data['configuration']['dependancy_scripts'])) {
 if (isset($course_data['configuration']['base_scripts'])) {
     foreach ($course_data['configuration']['base_scripts'] as $bScript) {
         echo '<script src="' . $constants['base_js'] . $bScript['path'] . '/' . $bScript['script'] . '.min.js"></script>';
-
     }
 }
 //Page Scripts

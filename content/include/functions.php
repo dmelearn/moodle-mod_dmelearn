@@ -210,7 +210,7 @@ function get_ajax_content($url) {
     $path_explode = explode('/', $url);
     $result = preg_replace_callback('/src="([^"]+)"/i', function ($matches) {
         global $path_explode;
-        if (strpos($matches[0],"http://")!==0) {
+        if (strpos($matches[0], "http://") !== 0) {
             return str_replace('src="', 'src="http://' . $path_explode[2].'/', $matches[0]);
         } else {
             return ("21".$matches[0]);

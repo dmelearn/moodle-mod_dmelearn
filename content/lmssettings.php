@@ -110,7 +110,7 @@ $lmsmenu = '
  * Checks the progress of the page given from the client, if different than the
  * Moodle db progress then it will update the Moodle db with the correct progress.
  *
- * @param $elearnid = the id number in the url
+ * @param $elearnid the id number in the url
  * @param boolean $course_complete is the course completed
  * @param $percentage - percentage of course progress
  */
@@ -118,13 +118,16 @@ function check_progress_page($elearnid, $course_complete, $percentage = 0) {
     global $DB, $USER, $COURSE, $lmscontenturl;
 
     // Get the latest elmo user data from dmelearn_entries.
-    $edata = $DB->get_record_sql("SELECT *
-                                  FROM {dmelearn_entries}
-                                  WHERE dmelearn = ?
-                                  AND userid = ?
-                                  ORDER BY id DESC
-                                  LIMIT 1
-                                  OFFSET 0", array($elearnid, $USER->id));
+    $edata = $DB->get_record_sql(
+        "SELECT *
+          FROM {dmelearn_entries}
+          WHERE dmelearn = ?
+          AND userid = ?
+          ORDER BY id DESC
+          LIMIT 1
+          OFFSET 0",
+        array($elearnid, $USER->id)
+    );
 
     // The first time an activity is started there will not be a record found.
     if (!$edata) {
@@ -153,11 +156,14 @@ function check_progress_page($elearnid, $course_complete, $percentage = 0) {
         $trackdata->module = "";
     }
 
-    if (!isset($_REQUEST["page"]) && isset($trackdata->page) && $trackdata->page != "" && isset($trackdata->module) && $trackdata->module != "") {
+    if (!isset($_REQUEST["page"]) && isset($trackdata->page) && $trackdata->page != ""
+        && isset($trackdata->module) && $trackdata->module != "") {
         // No requested page or module in URL but $trackdata (last visited page) contains a module and page.
-        echo '<script>window.location.href="' . $lmscontenturl . '&module=' . $trackdata->module . '&page=' . $trackdata->page . '";</script>';
+        echo '<script>window.location.href="' . $lmscontenturl . '&module=' . $trackdata->module
+            .'&page=' . $trackdata->page . '";</script>';
         die();
-    } else if (isset($_REQUEST["module"]) && $_REQUEST["module"] != "" && isset($_REQUEST["page"]) && $_REQUEST["page"] != "") {
+    } elseif (isset($_REQUEST["module"]) && $_REQUEST["module"] != "" && isset($_REQUEST["page"])
+        && $_REQUEST["page"] != "") {
         // Set trackdata to be equal to the requested page and module.
         $trackdata->page = filter_var($_REQUEST['page'], FILTER_SANITIZE_STRING);
         $trackdata->module = filter_var($_REQUEST['module'], FILTER_SANITIZE_STRING);
@@ -177,13 +183,13 @@ function check_progress_page($elearnid, $course_complete, $percentage = 0) {
 
 /**
  * Updates Moodles grades with the current course grades
- * 
- * @global type $COURSE
- * @global type $USER
- * @global type $DB
- * @param type $elearnid
- * @param type $course_complete
- * @param type $percentage
+ *
+ * @global $COURSE
+ * @global $USER
+ * @global $DB
+ * @param $elearnid
+ * @param $course_complete
+ * @param $percentage
  */
 function update_the_gradebook($elearnid, $course_complete, $percentage) {
     global $COURSE, $USER, $DB;
@@ -191,13 +197,13 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
     // Handle the Gradebook.
     $params = array($elearnid, $COURSE->id);
     $sql = "SELECT id, scaleid, grademin, grademax
-                FROM {grade_items}
-                WHERE itemtype = 'mod'
-                AND itemmodule = 'dmelearn'
-                AND iteminstance = ?
-                AND courseid = ?
-                LIMIT 1
-                OFFSET 0";
+            FROM {grade_items}
+            WHERE itemtype = 'mod'
+            AND itemmodule = 'dmelearn'
+            AND iteminstance = ?
+            AND courseid = ?
+            LIMIT 1
+            OFFSET 0";
     // Just get useful data out of grade_items.
     $grade_item = $DB->get_record_sql($sql, $params);
 
@@ -206,11 +212,11 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
         // Record in grade_item exists.
         $params = array($grade_item->id, $USER->id);
         $sql = "SELECT *
-                    FROM {grade_grades}
-                    WHERE itemid = ?
-                    AND userid = ?
-                    LIMIT 1
-                    OFFSET 0";
+                FROM {grade_grades}
+                WHERE itemid = ?
+                AND userid = ?
+                LIMIT 1
+                OFFSET 0";
         $grade_grades = $DB->get_record_sql($sql, $params);
 
         // Check if record exists in $grade_grades.
@@ -244,7 +250,7 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
             $grade_grades->rawgrade = $grade_grades->rawgrademax;
             $grade_grades->overridden = time();
             grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
-        } else if ($course_complete != 1 && $grade_grades->rawgrade == $grade_grades->rawgrademax) {
+        } elseif ($course_complete != 1 && $grade_grades->rawgrade == $grade_grades->rawgrademax) {
             // API says NOT complete but gradebook does not reflect this yet.
             // Set grade to % complete.
             $grade_grades->rawgrade = round(($percentage / 100) * $grade_grades->rawgrademax, 5);
@@ -258,7 +264,7 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
                 $grade_grades->rawgrade = $grade_of_rawgrademax;
                 $grade_grades->overridden = time();
                 grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
-            } else if ($grade_of_rawgrademax == 0) {
+            } elseif ($grade_of_rawgrademax == 0) {
                 $grade_grades->rawgrade = $grade_of_rawgrademax;
                 $grade_grades->overridden = time();
                 grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);

@@ -59,8 +59,7 @@
                                                             <div class="assessment-summary__questions__box clearfix">
                                                                 <div class="assessment-summary__questions__cross pull-right">
                                                                     <?php $cmp = explode("/", $block['loc']) ?>
-                                                                    <a href="?id=<?= $mod_id ?>&course=<?= $cmp[0] ?>&module=<?= $cmp[1] ?>&page=<?= $cmp[2] ?>">Go
-                                                                        to page <i class="icon dm-arrow-forward"></i>
+                                                                    <a href="?id=<?= $mod_id ?>&course=<?= $cmp[0] ?>&module=<?= $cmp[1] ?>&page=<?= $cmp[2] ?>">Go to page <i class="icon dm-arrow-forward"></i>
                                                                     </a>
                                                                 </div>
                                                             </div>
@@ -81,8 +80,7 @@
                                                                 <?php else: ?>
                                                                     <?php $cmp = explode("/", $question['loc']); ?>
                                                                     <div class="assessment-summary__questions__cross pull-right">
-                                                                        <a href="?id=<?= $mod_id ?>&course=<?= $cmp[0] ?>&module=<?= $cmp[1] ?>&page=<?= $cmp[2] ?>#<?= $question['short_name'] ?>">
-                                                                            Go to question
+                                                                        <a href="?id=<?= $mod_id ?>&course=<?= $cmp[0] ?>&module=<?= $cmp[1] ?>&page=<?= $cmp[2] ?>#<?= $question['short_name'] ?>">Go to question
                                                                             <i class="icon dm-arrow-forward"></i>
                                                                         </a>
                                                                     </div>

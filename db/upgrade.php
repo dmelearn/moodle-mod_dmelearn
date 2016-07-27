@@ -51,8 +51,7 @@ function xmldb_dmelearn_upgrade($oldversion = 0) {
               WHERE modules.name = 'dmelearn'";
         if ($courseids = $DB->get_records_sql($sql)) {
             // Force update of all dmelearn activity grades.
-            foreach ($courseids as $courseid)
-            {
+            foreach ($courseids as $courseid) {
                 grade_grab_course_grades($courseid->id, 'dmelearn');
             }
         }

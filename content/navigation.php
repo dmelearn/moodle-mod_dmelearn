@@ -29,8 +29,8 @@ namespace mod_dmelearn\navigation;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
-class Navigation {
-
+class Navigation
+{
     protected $show_summary;
     protected $navigation;
     protected $site_url;
@@ -84,7 +84,7 @@ class Navigation {
         // This was a dynamic thing in ELMO where elements were added to the navigation ad-hoc.
         // Some really old courses relied on this and its become a legacy support requirement.
 
-        if (strtolower($this->show_summary) == 'true' ) {
+        if (strtolower($this->show_summary) == 'true') {
             $this->navigation['assessment_summary'] = array(
                 'title' => 'Assessment summary',
                 'pages' => array('assessment' => 'Assessment Summary'));
@@ -171,7 +171,7 @@ class Navigation {
         // BC: changed to use Moodle ULR in navigation.
         global $lmscontenturl;
 
-        if (strtolower($this->show_summary) == 'true' ) {
+        if (strtolower($this->show_summary) == 'true') {
             $this->navigation['assessment_summary'] = array(
                 'title' => 'Assessment summary',
                 'pages' => array('assessment' => 'Assessment Summary'));
@@ -191,10 +191,8 @@ class Navigation {
 
         // Need to work out where and how to get the current navigation highlighted.
         foreach ($navigation as $module_key => $module_data) {
-
             // Handle Modules with only one page
             if (count($module_data['pages']) == 1) {
-
                 // The page name.
                 $page_key = key($module_data['pages']);
 
@@ -221,7 +219,6 @@ class Navigation {
                 // Get ALL the pages within the module
                 // Add each page to navigation menu
                 foreach ($module_data['pages'] as $page_key => $page_title) {
-
                     // Open the list item
                     $return_string .= "<li class='page";
 
@@ -250,6 +247,8 @@ class Navigation {
     }
 
     /**
+     * New Navigation Style for 2.1 courses
+     *
      * @return string Returns a HTML string with the navigation layout ready to be injected into a view
      */
     public function makeNewNav()
@@ -261,7 +260,7 @@ class Navigation {
         // This was a dynamic thing in ELMO where elements were added to the navigation ad-hoc.
         // Some really old courses relied on this and its become a legacy support requirement.
 
-        if (strtolower($this->show_summary) == 'true' ) {
+        if (strtolower($this->show_summary) == 'true') {
             $this->navigation['assessment_summary'] = array(
                 'title' => 'Assessment summary',
                 'pages' => array('assessment' => 'Assessment Summary'));
@@ -274,8 +273,7 @@ class Navigation {
         $page       = $this->page; // Current page
 
         // Build the HTML for the navigation menu
-        $return_string = '
-        <ul class="modules nav nav-list">';
+        $return_string = '<ul class="modules nav nav-list">';
 
         // We need to get current - page && module.
         //$keys = array_keys($navigation); //NOT USED YET
@@ -338,5 +336,4 @@ class Navigation {
         $return_string .= "</ul>";
         return $return_string;
     }
-
 }
