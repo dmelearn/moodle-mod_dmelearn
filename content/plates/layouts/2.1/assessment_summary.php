@@ -106,16 +106,19 @@
 
         <?php endif; ?>
         <?php
-        if (isset($certificate) && $certificate): ?>
+        if ($page_data['data']['cert_data']['has_certificate']): ?>
             <div class="assessment-summary__container assessment-summary__download">
                 <div class="assessment-summary__download__content">
                     <div class="row-fluid">
                         <div class="assessment-summary__certificate text-center">
-                            <a href="<?php echo base_url() . "certificate/get/{$path}" ?>"><i
+                            <a href="<?= $constants['base_url'] ?>api/cert/download/<?= $page_data['data']['cert_data']['course_path'] ?>/<?= $page_data['data']['cert_data']['user_id'] ?>/<?= $page_data['data']['cert_data']['assessment_id'] ?>"><i
                                     class="icon dm-ribbon"></i></a>
                         </div>
                         <div class="assessment-summary__download__text text-center">
-                            <a class="btn dm-btn" href="<?php echo base_url() . "certificate/get/{$path}" ?>"
+
+
+
+                            <a class="btn dm-btn" href="<?= $constants['base_url'] ?>api/cert/download/<?= $page_data['data']['cert_data']['course_path'] ?>/<?= $page_data['data']['cert_data']['user_id'] ?>/<?= $page_data['data']['cert_data']['assessment_id'] ?>"
                                target="_blank">
                                 <div>Download your certificate</div>
                             </a>
