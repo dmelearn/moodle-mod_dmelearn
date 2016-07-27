@@ -131,7 +131,7 @@
     <div class="course__content__wrapper clearfix">
         <div id="maincontent" class="course-body clearfix">
             <?php if (isset($page_data['data']['assessment_summary'])): ?>
-                <?php $this->insert('partials/assessment_summary'); ?>
+                <?php $this->insert('layouts/2.1/assessment_summary'); ?>
             <?php elseif (isset($page_data['content'])): ?>
                 <?= $page_data['content'] ?>
             <?php endif; ?>
