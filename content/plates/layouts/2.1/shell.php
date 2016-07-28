@@ -139,3 +139,7 @@
         </div>
     </div>
 </div>
+
+<?php if (isset($course_data['glossary']['glossary_items']) && $course_data['glossary']): ?>
+    <?php $this->insert('layouts/2.1/glossary'); ?>
+<?php endif; ?>

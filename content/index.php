@@ -23,12 +23,11 @@
  *
  * Note: Guzzle 5.3 requires PHP 5.4.0+
  *
- * @package    mod_dmelearn
- * @author     Chris Barton, AJ Dunn, CJ Faulkner
- * @copyright  2015 Chris Barton, Digital Media e-learning
- * @version    1.5.0
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- *
+ * @package   mod_dmelearn
+ * @author    Chris Barton, AJ Dunn, CJ Faulkner
+ * @copyright 2015 Chris Barton, Digital Media e-learning
+ * @version   1.5.0
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 // Include guzzle and the libs we need.
 require_once('elmo_web_service_hash.php');
@@ -59,8 +58,8 @@ $client = new Client();
  *
  * @note : Remember to secure this
  */
-$module = (string) (isset($_GET['module'])) ? filter_var($_GET['module'], FILTER_SANITIZE_STRING) : null;
-$page = (string) (isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SANITIZE_STRING) : null;
+$module = (string)(isset($_GET['module'])) ? filter_var($_GET['module'], FILTER_SANITIZE_STRING) : null;
+$page = (string)(isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SANITIZE_STRING) : null;
 
 // Make Requests to course first to get all user information/scripts/etc.
 // We have course = courseName, make a request for information on the course.
