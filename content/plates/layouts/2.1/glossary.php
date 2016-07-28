@@ -5,22 +5,22 @@ $itemID = 1;
 $glossary = $course_data['glossary']['glossary_items'];
 
 /**
- * Sort the json object into alphabetical order
+ * Sort the json object into alphabetical order by title
  *
- * @param array $a first item
- * @param array $b second item
- * @return int
+ * @param array $first first item to sort
+ * @param array $second second item to sort
+ * @return int sorting order
  */
-function sort_objects_by_total($a, $b)
+function sortObjectsByTitle($first, $second)
 {
-    if ($a->title == $b->title) {
+    if ($first['title'] == $second['title']) {
         return 0;
     }
-    return ($a->title < $b->title) ? -1 : 1;
+    return ($first['title'] < $second['title']) ? -1 : 1;
 }
 
 // Start the sorting of the objects
-usort($glossary, 'sort_objects_by_total');
+usort($glossary, 'sortObjectsByTitle');
 ?>
 <div class="dm-gloss">
     <div class="dm-gloss__inner row">
