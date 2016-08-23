@@ -11,13 +11,14 @@
 <link rel="stylesheet" href="<?=$constants['base_css']?>jquery-ui-for-bootstrap.css">
 <?php //Font Awesome 4.3.0 ?>
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<?php //DM-icons ?>
+<link rel="stylesheet" href="dmicons/css/dmicons.min.css">
 <?php //Course CSS ?>
 <?php
 foreach ($course_data['course_css'] as $css) {
     echo '<link rel="stylesheet" type="text/css" href="' . $css . '">';
 }
 ?>
-
 <?php //jQuery ?>
 <script src="<?=$constants['base_js']?>jquery.min.js"></script>
 <?php //Utility Scripts ?>

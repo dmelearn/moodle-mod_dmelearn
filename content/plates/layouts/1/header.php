@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css" href="<?=$constants['base_css']?>jquery-ui-for-bootstrap.css">
 <?php //Font Awesome 3.2.1 ?>
 <link rel="stylesheet" type="text/css" href="css/font-awesome-3.min.css">
+<?php //DM-icons ?>
+<link rel="stylesheet" href="dmicons/css/dmicons.min.css">
 <?php //Course CSS ?>
 <link rel="stylesheet" type="text/css" href="<?=$constants['base_css']?>course_boilerplate.css">
 <?php
