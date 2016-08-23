@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.6.0 (2016050200)
+- Add DM-icons webfont v3.0.3 to all course templates.
+- Add course template type/version 2.1
+- Update Bootstrap to v3.3.7
+- Update Guzzle to v5.3.1
+
 ## v1.5.0 (2016050200)
 - Switch from Twig templating to Plates templating to allow for new courses. (No longer requires write permissions)
 - Activities that require loading and saving to Interactive Activity Storage storage now work via API.
