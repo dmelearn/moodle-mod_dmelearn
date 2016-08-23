@@ -16,7 +16,7 @@
 
 /**
  * Basic Methods for requesting data in ELMO Web Services
- * 
+ *
  * @uses Guzzle Make sure you have Guzzle loaded first
  * @see Also make sure that Elmo_web_service_hash class is loaded too
  * @author        Chris Barton, AJ Dunn

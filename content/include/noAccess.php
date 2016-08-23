@@ -26,7 +26,7 @@
 echo $lmsmenu; // Show the LMS Top Menu Navigation. ?>
 <div style="font-size: 20px;margin:25px;font-family: Arial, Helvetica, sans-serif;">
 <p><strong>Error: This Digital Media e-Learning course is not currently available. Please contact your Moodle Administrator.</strong></p>
-<?php if (isset($course_version)): ?>
+<?php if (isset($course_version)) : ?>
 <p>Course type <?php echo $course_version; ?> is unsupported in this version of the Digital Media e-Learning Plugin.</p>
 <?php endif; ?>
 </div>

@@ -28,7 +28,6 @@ namespace mod_dmelearn\cache;
  */
 class Cache
 {
-
     protected static $cache_dir = "cache/";
 
     /**
