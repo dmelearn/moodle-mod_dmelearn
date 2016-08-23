@@ -1,6 +1,6 @@
 # Changelog
 
-## v1.6.0 (2016050200)
+## v1.6.0 (20160872300)
 - Add DM-icons webfont v3.0.3 to all course templates.
 - Add course template type/version 2.1
 - Update Bootstrap to v3.3.7
