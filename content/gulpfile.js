@@ -110,6 +110,16 @@ gulp.task('del:nm', function () {
     ]);
 });
 
+// Cleanup any left over git files
+gulp.task('clean:git', function () {
+    return del([
+        // Remove any git files.
+        '**/.git',
+        '**/.gitignore',
+        '**/.gitkeep'
+    ]);
+});
+
 // Default: (This task runs when you run 'gulp' on the command line).
 gulp.task('default', ['fontawesome-fonts', 'fontawesome-3-fonts',
     'fontawesome-css', 'fontawesome-3-css', 'bootstrap3-css', 'bootstrap3-js',
