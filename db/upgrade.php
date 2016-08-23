@@ -60,7 +60,6 @@ function xmldb_dmelearn_upgrade($oldversion = 0) {
     // Add timeframemonths field to database to store how long ago a previously completed report
     // will be accepted as a result with an activity.
     if ($oldversion < 2015102700) {
-
         // Define field timeframemonths to be added to dmelearn.
         $table = new xmldb_table('dmelearn');
         // xmldb_field requires a name, type, precision, unsigned, notnull, sequence, default, previous

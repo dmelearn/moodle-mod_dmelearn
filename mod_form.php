@@ -37,7 +37,6 @@ class mod_dmelearn_mod_form extends moodleform_mod {
      * Defines forms elements
      */
     function definition() {
-
         global $CFG;
         global $USER;
 
@@ -127,5 +126,4 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         }
         return $errors;
     }
-
 }
