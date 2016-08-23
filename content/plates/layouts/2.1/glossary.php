@@ -27,7 +27,7 @@ usort($glossary, 'sortObjectsByTitle');
         <div class="dm-gloss__heading"><h3>Glossary</h3><i class="icon dm-close pull-right"></i></div>
         <div class="dm-gloss__item-list col-md-4 col-sm-5 col-xs-6">
             <div class="dm-gloss__item-list__inner">
-                <?php foreach ($glossary as $item): ?>
+                <?php foreach ($glossary as $item) : ?>
                     <?php $itemID++; ?>
                     <div class="dm-gloss__item" id="gloss<?php echo $itemID; ?>">
                         <p class="dm-gloss__title"><?php echo($item['title']); ?></p>
@@ -41,14 +41,14 @@ usort($glossary, 'sortObjectsByTitle');
             <div class="dm-gloss__body-item glossInstruc">
                 <h4><i class="icon dm-arrow-round-back"></i> Select from this list to find out the definition.</h4>
             </div>
-            <?php foreach ($glossary as $item): ?>
+            <?php foreach ($glossary as $item) : ?>
                 <?php $itemID++; ?>
                 <div class="dm-gloss__body-item gloss<?php echo $itemID; ?>">
                     <h3 class="dm-gloss__body__title"><?php echo($item['title']); ?></h3>
                     <?php echo($item['html']); ?>
-                    <?php if (isset($item['img']) && $item['img'] != "" && count($item['img']) > 0): ?>
-                        <?php foreach ($item['img'] as $img): ?>
-                            <?php if (isset($img['filename']) && $img['filename'] != ""): ?>
+                    <?php if (isset($item['img']) && $item['img'] != "" && count($item['img']) > 0) : ?>
+                        <?php foreach ($item['img'] as $img) : ?>
+                            <?php if (isset($img['filename']) && $img['filename'] != "") : ?>
                                 <div class="dm-gloss__img-box">
                                     <img class="dm-gloss__img"
                                          src="<?php echo ELMO_WEB_COURSE_IMAGES . '/glossary/' . $img['filename']; ?>"

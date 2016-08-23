@@ -7,7 +7,7 @@
 <div class="container content-container">
     <div class="row course_content">
         <?php //If the user has completed the course the reset and certificate buttons will appear ?>
-        <?php if ($page_data['data']['cert_data']['has_certificate']): ?>
+        <?php if ($page_data['data']['cert_data']['has_certificate']) : ?>
             <div class="alert alert-info clearfix reset_and_cert_buttons">
                 <p class="pull-left"><strong>Well Done!</strong>  You have completed the assessment for this course.</p>
                 <a class="btn pull-right btn-success" href="<?=$constants['base_url']?>api/cert/download/<?=$page_data['data']['cert_data']['course_path']?>/<?=$page_data['data']['cert_data']['user_id']?>/<?=$page_data['data']['cert_data']['assessment_id']?>">Download Certificate (PDF)</a>
@@ -34,7 +34,7 @@
             </div>
         <?php endif;?>
 
-        <?php if ($navigation): ?>
+        <?php if ($navigation) : ?>
         <nav class="col-md-3">
             <?php
             //Next and Back Buttons inside navigation
@@ -47,9 +47,9 @@
 
         <?php //page content ?>
         <div id="maincontent" class="col-md-9 course_body">
-            <?php if (isset($page_data['data']['assessment_summary'])): ?>
+            <?php if (isset($page_data['data']['assessment_summary'])) : ?>
                 <?php $this->insert('partials/assessment_summary'); ?>
-            <?php elseif (isset($page_data['content'])): ?>
+            <?php elseif (isset($page_data['content'])) : ?>
                 <?=$page_data['content']?>
             <?php endif; ?>
         </div>

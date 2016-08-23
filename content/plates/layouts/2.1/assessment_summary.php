@@ -27,21 +27,21 @@
                 </div>
             </div>
         </div>
-        <?php if ($page_data['data']['assessment_summary']['progress']['percentage'] < 100): ?>
+        <?php if ($page_data['data']['assessment_summary']['progress']['percentage'] < 100) : ?>
             <div class="assessment-summary__container">
                 <div class="assessment-summary__container__inner">
                     <div class="assessment-summary__content">
                         <div class="assessment-summary__progress">
                             <div class="">
-                                <?php foreach ($page_data['data']['assessment_summary']['block_data'] as $block): ?>
+                                <?php foreach ($page_data['data']['assessment_summary']['block_data'] as $block) : ?>
                                     <div class="assessment-summary__block">
-                                        <?php if ($block['complete']): ?>
+                                        <?php if ($block['complete']) : ?>
                                             <div class="assessment-summary__block__title clearfix">
                                                 <div class="pull-left"><?php echo $block['title']; ?></div>
                                                 <div class="pull-right"><i class="icon dm-check"></i> Complete
                                                 </div>
                                             </div>
-                                        <?php else: ?>
+                                        <?php else : ?>
                                             <div class="assessment-summary__block__title clearfix">
                                                 <div class="pull-left"><?php echo $block['title']; ?></div>
                                                 <div class="pull-right"><?php echo $block['number_completed'] ?>
@@ -49,8 +49,8 @@
                                                 </div>
                                             </div>
                                             <div class="assessment-summary__block__content">
-                                                <?php if ($block['randomised'] == true): ?>
-                                                    <?php if (isset($block['loc']) && !empty($block['loc'])): ?>
+                                                <?php if ($block['randomised'] == true) : ?>
+                                                    <?php if (isset($block['loc']) && !empty($block['loc'])) : ?>
                                                         <div class="assessment-summary__questions">
                                                             <div class="assessment-summary__questions__title">
                                                                 <?php echo $block['mark']; ?> randomly selected
@@ -65,19 +65,19 @@
                                                             </div>
                                                         </div>
                                                     <?php endif; ?>
-                                                <?php else: ?>
-                                                    <?php foreach ($block['questions'] as $question): ?>
+                                                <?php else : ?>
+                                                    <?php foreach ($block['questions'] as $question) : ?>
                                                         <div class="assessment-summary__questions">
                                                             <div class="assessment-summary__questions__title">
                                                                 <?php echo $question['name']; ?>
                                                             </div>
 
                                                             <div class="assessment-summary__questions__box clearfix">
-                                                                <?php if ($question['completed']): ?>
+                                                                <?php if ($question['completed']) : ?>
                                                                     <div class="assessment-summary__questions__tick pull-right">
                                                                         <p><i class="icon dm-check"></i> Correct</p>
                                                                     </div>
-                                                                <?php else: ?>
+                                                                <?php else : ?>
                                                                     <?php $cmp = explode("/", $question['loc']); ?>
                                                                     <div class="assessment-summary__questions__cross pull-right">
                                                                         <a href="?id=<?= $mod_id ?>&course=<?= $cmp[0] ?>&module=<?= $cmp[1] ?>&page=<?= $cmp[2] ?>#<?= $question['short_name'] ?>">Go to question
@@ -100,7 +100,7 @@
             </div>
         <?php endif; ?>
         <?php
-        if ($page_data['data']['cert_data']['has_certificate']): ?>
+        if ($page_data['data']['cert_data']['has_certificate']) : ?>
             <div class="assessment-summary__container assessment-summary__download">
                 <div class="assessment-summary__download__content">
                     <div class="row-fluid">
@@ -120,7 +120,7 @@
             </div>
         <?php endif; ?>
 
-        <?php if (isset($certificate) && $course_evaluation): ?>
+        <?php if (isset($certificate) && $course_evaluation) : ?>
             <div class="assessment-summary__evaluation text-center">
                 <?php echo($course_evaluation); ?>
             </div>

@@ -5,9 +5,9 @@ $version = $course_data['configuration']['course_version'];
 <div class="lmsmenu">
     <?php // Use Font Awesome 3 on version 1 courses and FA4 on all others ?>
     <div class="lmsmenuleft">
-        <?php if($version == null || $version == 1): ?>
+        <?php if ($version == null || $version == 1) : ?>
         <i class="icon-home"></i> <a href="<?=$wwwroot?>"> Home</a> <i class="icon-double-angle-right"></i> <i class="icon-tasks"></i><a href="<?=$wwwroot?>/course/view.php?id=<?=$course_id?>"> <?=$fullname?></a>
-        <?php else: ?>
+        <?php else : ?>
         <i class="fa fa-home"></i> <a href="<?=$wwwroot?>"> Home</a> <i class="fa fa-angle-double-right"></i> <i class="fa fa-tasks"></i><a href="<?=$wwwroot?>/course/view.php?id=<?=$course_id?>"> <?=$fullname?></a>
         <?php endif; ?>
     </div>

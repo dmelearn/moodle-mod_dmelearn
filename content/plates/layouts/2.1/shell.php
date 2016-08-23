@@ -10,7 +10,7 @@
 </div>
 
 <div class="course__content clearfix">
-    <?php if ($navigation): ?>
+    <?php if ($navigation) : ?>
         <script>
             hideMenu();
             // Do side menu check
@@ -94,7 +94,7 @@
     <?php //page content ?>
     <div class="course__content__wrapper clearfix">
         <?php //If the user has completed the course the reset and certificate buttons will appear ?>
-        <?php if ($page_data['data']['cert_data']['has_certificate']): ?>
+        <?php if ($page_data['data']['cert_data']['has_certificate']) : ?>
             <div class="alert alert-info clearfix row-fluid reset_and_cert_buttons">
                 <p class="pull-left"><strong>Well Done!</strong> You have completed the assessment for this course.</p>
                 <a class="btn pull-right btn-success"
@@ -123,9 +123,9 @@
             </div>
         <?php endif; ?>
         <div id="maincontent" class="course-body clearfix">
-            <?php if (isset($page_data['data']['assessment_summary'])): ?>
+            <?php if (isset($page_data['data']['assessment_summary'])) : ?>
                 <?php $this->insert('layouts/2.1/assessment_summary'); ?>
-            <?php elseif (isset($page_data['content'])): ?>
+            <?php elseif (isset($page_data['content'])) : ?>
                 <?= $page_data['content'] ?>
             <?php endif; ?>
             <?php //Next and back buttons at bottom of screen ?>
@@ -140,6 +140,6 @@
     </div>
 </div>
 
-<?php if (isset($course_data['glossary']['glossary_items']) && $course_data['glossary']): ?>
+<?php if (isset($course_data['glossary']['glossary_items']) && $course_data['glossary']) : ?>
     <?php $this->insert('layouts/2.1/glossary'); ?>
 <?php endif; ?>

@@ -13,9 +13,9 @@
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 <?php //Course CSS ?>
 <?php
-    foreach ($course_data['course_css'] as $css) {
-        echo '<link rel="stylesheet" type="text/css" href="' . $css . '">';
-    }
+foreach ($course_data['course_css'] as $css) {
+    echo '<link rel="stylesheet" type="text/css" href="' . $css . '">';
+}
 ?>
 
 <?php //jQuery ?>
