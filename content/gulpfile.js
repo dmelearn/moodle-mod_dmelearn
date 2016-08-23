@@ -36,10 +36,10 @@ gulp.task('bootstrap3-css', function () {
 
 gulp.task('fontawesome-3-css', function () {
     return gulp.src('bower_components/fontawesome-3/css/*.min.css')
-            .pipe(rename(function (path) {
-                path.basename = path.basename.replace('.min', '-3.min');
-            }))
-            .pipe(gulp.dest(targetCSSDir));
+        .pipe(rename(function (path) {
+        path.basename = path.basename.replace('.min', '-3.min');
+        }))
+        .pipe(gulp.dest(targetCSSDir));
 });
 
 gulp.task('bootstrap3-js', function () {
@@ -85,7 +85,7 @@ gulp.task('clean:vendor', function () {
         'vendor/**/.travis.yml',
         'vendor/**/phpunit.xml',
         'vendor/**/phpunit.xml.dist',
-        // Remove IDE files
+        // Remove IDE files.
         'vendor/**/.editorconfig',
         // Remove documentation and test files not needed.
         'vendor/guzzlehttp/guzzle/docs',
@@ -110,7 +110,7 @@ gulp.task('del:nm', function () {
     ]);
 });
 
-// Default: (This task runs when you run 'gulp' on the command line.)
+// Default: (This task runs when you run 'gulp' on the command line).
 gulp.task('default', ['fontawesome-fonts', 'fontawesome-3-fonts',
     'fontawesome-css', 'fontawesome-3-css', 'bootstrap3-css', 'bootstrap3-js',
     'respond-js', 'html5shiv-js', 'compress-js'
