@@ -186,7 +186,7 @@ class Navigation
         // Build the HTML for the navigation menu
         $return_string = "<div class='dropnav'><div class='dropdown dropnav__menu'>"
             . "<button id='dLabel' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"
-            . "<i class='fa fa-bars'></i></button>"
+            . "<i class='fa fa-bars'></i> MENU</button>"
             . "<ul class='dropdown-menu dropnav__items' aria-labelledby='dLabel'>";
 
         // Need to work out where and how to get the current navigation highlighted.
