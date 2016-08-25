@@ -104,6 +104,10 @@ $(function() {
   $('.accordion').on('show hide', function(n) {
     $(n.target).siblings('.accordion-heading').find('.accordion-toggle i').toggleClass('icon-chevron-up icon-chevron-down');
   });
+  $('.panel-group').on('show.bs.collapse hide.bs.collapse', function(n) {
+    $(n.target).siblings('.panel-heading').find('i').toggleClass('fa-angle-up fa-angle-down');
+    $(n.target).siblings('.panel-heading').find('i').toggleClass('dm-arrow-down dm-arrow-up');
+  });
   //Changes the colours of other accordion items when one is clicked (but not closed).
   var active_colour = null;
   var select_accordion = $('.course_body').find('.accordion-group');
@@ -121,5 +125,23 @@ $(function() {
     // Removes popovers when clicking anywhere on the page.
     // Close a popover on click of popover close button as well.
     $('.popover-owner').popover('destroy');
+  });
+
+  // Handle carousel count (out of).
+  var carousel = $('.carousel');
+  carousel.each(function() {
+    var currentCarousel = $(this);
+    var countBox = currentCarousel.find('.carousel-count');
+    if (countBox.length > 0) {
+      var totalDiv = countBox.find('.carousel-total');
+      var totalCount = currentCarousel.find('.item').length;
+      totalDiv.html(totalCount);
+      currentCarousel.on('slide.bs.carousel', function(e) {
+        var carouselData = $(this).data('bs.carousel');
+        var currentCount = carouselData.getItemIndex($(e.relatedTarget)) + 1;
+        var currentDiv = countBox.find('.carousel-current');
+        currentDiv.html(currentCount);
+      });
+    }
   });
 });
