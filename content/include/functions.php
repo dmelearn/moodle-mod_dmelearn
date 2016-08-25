@@ -16,7 +16,7 @@
 
 /**
  * Basic Methods for requesting data in ELMO Web Services
- * 
+ *
  * @uses Guzzle Make sure you have Guzzle loaded first
  * @see Also make sure that Elmo_web_service_hash class is loaded too
  * @author        Chris Barton, AJ Dunn
@@ -210,7 +210,7 @@ function get_ajax_content($url) {
     $path_explode = explode('/', $url);
     $result = preg_replace_callback('/src="([^"]+)"/i', function ($matches) {
         global $path_explode;
-        if (strpos($matches[0],"http://")!==0) {
+        if (strpos($matches[0], "http://") !== 0) {
             return str_replace('src="', 'src="http://' . $path_explode[2].'/', $matches[0]);
         } else {
             return ("21".$matches[0]);
@@ -227,7 +227,7 @@ function get_ajax_content($url) {
  */
 function support_course_num($version_num) {
     // Array containing the course version numbers supported by this dmelearn plugin version.
-    $supported = array(1, 2, 3, 4);
+    $supported = array(1, 2, 2.1, 3, 4);
 
     return (in_array($version_num, $supported)) ? true : false;
 }

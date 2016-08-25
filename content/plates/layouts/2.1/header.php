@@ -2,27 +2,29 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<?php //Google Fonts ?>
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Material+Icons" rel="stylesheet" type="text/css">
-<?php //CSS ?>
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="<?=$constants['base_css']?>main_v2.css">
-<?php //jQuery UI Bootstrap Theme ?>
-<link rel="stylesheet" href="<?=$constants['base_css']?>jquery-ui-for-bootstrap.css">
-<?php //Font Awesome 4.3.0 ?>
+<meta name="description" content="Digital Media e-Learning Course">
+<meta name="author" content="Digital Media">
+<?php //CSS Google Fonts ?>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Varela|Material+Icons" rel="stylesheet" type="text/css">
+<?php //CSS jQuery UI Bootstrap Theme ?>
+<link rel="stylesheet" href="<?= $constants['base_css'] ?>jquery-ui-for-bootstrap.css">
+<?php //CSS Font Awesome 4.3.0 ?>
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-<?php //DM-icons ?>
+<?php //CSS ?>
 <link rel="stylesheet" href="dmicons/css/dmicons.min.css">
-<?php //Course CSS ?>
 <?php
+//Course CSS
 foreach ($course_data['course_css'] as $css) {
-    echo '<link rel="stylesheet" type="text/css" href="' . $css . '">';
+    echo '<link 
+    rel="stylesheet" type="text/css" href="' . $css . '">';
 }
 ?>
 <?php //jQuery ?>
 <script src="<?=$constants['base_js']?>jquery.min.js"></script>
+
 <?php //Utility Scripts ?>
 <script src="<?=$constants['base_js']?>modernizr.custom.min.js"></script>
+
 <?php //Routes ?>
 <script src="<?=$constants['base_js']?>util/routes.min.js"></script>
 <script src="<?=$constants['base_js']?>util/util.min.js"></script>
@@ -41,7 +43,6 @@ if (isset($course_data['configuration']['dependancy_scripts'])) {
 if (isset($course_data['configuration']['base_scripts'])) {
     foreach ($course_data['configuration']['base_scripts'] as $bScript) {
         echo '<script src="' . $constants['base_js'] . $bScript['path'] . '/' . $bScript['script'] . '.min.js"></script>';
-
     }
 }
 //Page Scripts

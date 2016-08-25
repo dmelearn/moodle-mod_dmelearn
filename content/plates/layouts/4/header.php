@@ -11,6 +11,8 @@
 <link rel="stylesheet" type="text/css" href="<?=$constants['base_css']?>main_v2.css"><?php //Main styling from dm server ?>
 <link rel="stylesheet" href="<?=$constants['base_css']?>jquery-ui-for-bootstrap.css"><?php //Jquery UI theme from dm server ?>
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"><?php //Font Awesome 4.2.0 ?>
+<?php //DM-icons ?>
+<link rel="stylesheet" href="dmicons/css/dmicons.min.css">
 <?php
 //Load Course CSS
 foreach ($course_data['course_css'] as $css) {

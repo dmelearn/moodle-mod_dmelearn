@@ -243,8 +243,12 @@ function dmelearn_print_recent_activity($course, $viewfullnames, $timestart) {
         $content = true;
         echo $OUTPUT->heading(get_string('newdmelearnentries', 'dmelearn') . ':', 3);
         foreach ($dmelearns as $dmelearn) {
-            print_recent_activity_note($dmelearn->time, $dmelearn, $dmelearn->name,
-                $CFG->wwwroot . '/mod/dmelearn/' . $dmelearn->url);
+            print_recent_activity_note(
+                $dmelearn->time,
+                $dmelearn,
+                $dmelearn->name,
+                $CFG->wwwroot . '/mod/dmelearn/' . $dmelearn->url
+            );
         }
     }
 
@@ -358,7 +362,7 @@ function dmelearn_scale_used_anywhere($scaleid) {
  * @param mixed optional array/object of grade(s); 'reset' means reset grades in gradebook
  * @return int 0 if ok, error code otherwise
  */
-function dmelearn_grade_item_update($dmelearn, $grades=null) {
+function dmelearn_grade_item_update($dmelearn, $grades = null) {
     global $CFG;
     require_once($CFG->libdir.'/gradelib.php');
 
@@ -372,7 +376,7 @@ function dmelearn_grade_item_update($dmelearn, $grades=null) {
         $params['grademax']   = $dmelearn->grade;
         $params['grademin']   = 0;
         $params['multfactor'] = 1.0;
-    } else if($dmelearn->grade < 0) {
+    } elseif ($dmelearn->grade < 0) {
         $params['gradetype'] = GRADE_TYPE_SCALE;
         $params['scaleid']   = -$dmelearn->grade;
     } else {
@@ -381,7 +385,7 @@ function dmelearn_grade_item_update($dmelearn, $grades=null) {
     }
     if ($grades  === 'reset') {
         $params['reset'] = true;
-        $grades = NULL;
+        $grades = null;
     }
 
     grade_update('mod/dmelearn', $dmelearn->course, 'mod', 'dmelearn',
@@ -398,8 +402,16 @@ function dmelearn_grade_item_delete($dmelearn) {
     global $CFG;
     require_once($CFG->libdir.'/gradelib.php');
 
-    return grade_update('mod/dmelearn', $dmelearn->course, 'mod', 'dmelearn',
-        $dmelearn->id, 0, null, array('deleted' => 1));
+    return grade_update(
+        'mod/dmelearn',
+        $dmelearn->course,
+        'mod',
+        'dmelearn',
+        $dmelearn->id,
+        0,
+        null,
+        array('deleted' => 1)
+    );
 }
 
 /**
@@ -418,7 +430,7 @@ function dmelearn_update_grades(stdClass $dmelearn = null, $userid = 0, $nullifn
     if ($dmelearn != null) {
         if ($grades = dmelearn_get_user_grades($dmelearn, $userid)) {
             dmelearn_grade_item_update($dmelearn, $grades);
-        } else if ($userid && $nullifnone) {
+        } elseif ($userid && $nullifnone) {
             $grade = new stdClass();
             $grade->userid   = $userid;
             $grade->rawgrade = null;
@@ -543,18 +555,24 @@ function dmelearn_get_participants($elearnid) {
     global $DB;
 
     // Get students.
-    $students = $DB->get_records_sql("SELECT DISTINCT u.id
-                                      FROM {user} u,
-                                      {dmelearn_entries} dme
-                                      WHERE dme.dmelearn = ?
-                                      AND u.id = dme.userid", array($elearnid));
+    $students = $DB->get_records_sql(
+        "SELECT DISTINCT u.id
+        FROM {user} u,
+        {dmelearn_entries} dme
+        WHERE dme.dmelearn = ?
+        AND u.id = dme.userid",
+        array($elearnid)
+    );
 
     // Get teachers.
-    $teachers = $DB->get_records_sql("SELECT DISTINCT u.id
-                                      FROM {user} u,
-                                      {dmelearn_entries} dme
-                                      WHERE dme.dmelearn = ?
-                                      AND u.id = dme.teacher", array($elearnid));
+    $teachers = $DB->get_records_sql(
+        "SELECT DISTINCT u.id
+        FROM {user} u,
+        {dmelearn_entries} dme
+        WHERE dme.dmelearn = ?
+        AND u.id = dme.teacher",
+        array($elearnid)
+    );
 
     // Add teachers to students.
     if ($teachers) {
@@ -605,9 +623,11 @@ function dmelearn_reset_userdata($data) {
 
         $DB->delete_records_select('dmelearn_entries', 'dmelearn IN ($sql)', $params);
 
-        $status[] = array('component' => get_string('modulenameplural', 'dmelearn'),
+        $status[] = array(
+            'component' => get_string('modulenameplural', 'dmelearn'),
             'item' => get_string('removeentries', 'dmelearn'),
-            'error' => false);
+            'error' => false
+        );
     }
     return $status;
 }
@@ -637,7 +657,7 @@ function dmelearn_print_overview($courses, &$htmlarray) {
 
     foreach ($dmelearns as $dmelearn) {
         $courses[$dmelearn->course]->format = $DB->get_field('course', 'format', array('id' => $dmelearn->course));
-        if ($courses[$dmelearn->course]->format == 'weeks' AND $dmelearn->days) {
+        if ($courses[$dmelearn->course]->format == 'weeks' && $dmelearn->days) {
             $coursestartdate = $courses[$dmelearn->course]->startdate;
             $dmelearn->timestart = $coursestartdate + (($dmelearn->section - 1) * 608400);
 
@@ -678,7 +698,8 @@ function dmelearn_get_user_grades($dmelearn, $userid = 0) {
         return false;
     } else {
         // $dmelearn supplied.
-        if ($userid) { // User ID supplied.
+        if ($userid) {
+            // User ID supplied.
             $params = array($dmelearn->id, $userid);
             $sql = "SELECT userid,
                 modified AS datesubmitted,
@@ -687,7 +708,8 @@ function dmelearn_get_user_grades($dmelearn, $userid = 0) {
                 WHERE dmelearn = ?
                 AND userid = ?";
             $grades = $DB->get_records_sql($sql, $params);
-        } else { // User ID Not supplied.
+        } else {
+            // User ID Not supplied.
             $params = array($dmelearn->id);
             $sql = "SELECT userid,
                 modified AS datesubmitted,
@@ -750,7 +772,6 @@ function dmelearn_get_users_done($dmelearn, $currentgroup) {
 
     // Remove unenrolled participants.
     foreach ($dmelearns as $key => $user) {
-
         $context = context_module::instance($coursemodule->id);
 
         $canadd = has_capability('mod/dmelearn:addentries', $context, $user);
@@ -791,8 +812,8 @@ function dmelearn_count_entries($dmelearn, $groupid = 0) {
                 AND g.groupid = ?";
         $dmelearns = $DB->get_records_sql($sql, $params);
 
-    } else { // Count all the entries from the whole course.
-
+    } else {
+        // Count all the entries from the whole course.
         $params = array($dmelearn->id);
         $sql = "SELECT DISTINCT u.id
                 FROM {dmelearn_entries} dme
@@ -806,9 +827,8 @@ function dmelearn_count_entries($dmelearn, $groupid = 0) {
         return 0;
     }
 
-    // Remove unenrolled participants.
+    // Remove un-enrolled participants.
     foreach ($dmelearns as $key => $user) {
-
         $canadd = has_capability('mod/dmelearn:addentries', $context, $user);
         $entriesmanager = has_capability('mod/dmelearn:manageentries', $context, $user);
 
@@ -846,10 +866,13 @@ function dmelearn_log_info($log) {
  */
 function dmelearn_get_coursemodule($elearnid) {
     global $DB;
-    return $DB->get_record_sql("SELECT cm.id
-                                FROM {course_modules} cm
-                                JOIN {modules} m
-                                ON m.id = cm.module
-                                WHERE cm.instance = ?
-                                AND m.name = 'dmelearn'", array($elearnid));
+    return $DB->get_record_sql(
+        "SELECT cm.id
+        FROM {course_modules} cm
+        JOIN {modules} m
+        ON m.id = cm.module
+        WHERE cm.instance = ?
+        AND m.name = 'dmelearn'",
+        array($elearnid)
+    );
 }

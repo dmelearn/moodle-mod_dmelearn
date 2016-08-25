@@ -31,7 +31,7 @@ defined('MOODLE_INTERNAL') || die;
 global $CFG;
 
 if ($ADMIN->fulltree) {
-
+    // Add Settings
     $settings->add(new admin_setting_heading(
         'mod_dmelearn/dmelearnsettinginfo',
         '',
@@ -44,8 +44,8 @@ if ($ADMIN->fulltree) {
         get_string('dmelearnsetting_URL_help', 'dmelearn'),
         null,
         PARAM_TEXT,
-        68)
-    );
+        68
+    ));
 
     $settings->add(new admin_setting_configtext(
         'mod_dmelearn/elmoappname',
@@ -53,7 +53,8 @@ if ($ADMIN->fulltree) {
         get_string('dmelearnsetting_appname_help', 'dmelearn'),
         null,
         PARAM_TEXT,
-        68));
+        68
+    ));
 
     $settings->add(new admin_setting_configtext(
         'mod_dmelearn/elmopublickey',
@@ -61,7 +62,8 @@ if ($ADMIN->fulltree) {
         get_string('dmelearnsetting_public_key_help', 'dmelearn'),
         null,
         PARAM_TEXT,
-        68));
+        68
+    ));
 
     $settings->add(new admin_setting_configtext(
         'mod_dmelearn/elmosecretkey',
@@ -69,5 +71,6 @@ if ($ADMIN->fulltree) {
         get_string('dmelearnsetting_secret_key_help', 'dmelearn'),
         null,
         PARAM_TEXT,
-        137));
+        137
+    ));
 }

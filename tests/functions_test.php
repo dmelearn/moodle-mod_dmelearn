@@ -204,5 +204,4 @@ class mod_dmelearn_functions_testcase extends advanced_testcase {
 
         return $data;
     }
-
 }

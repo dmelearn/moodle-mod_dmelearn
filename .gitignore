@@ -5,3 +5,6 @@
 !/content/vendor/.htaccess
 .idea/**
 .vscode
+/content/js/bootstrap.min.js
+/content/js/html5shiv
+/content/js/respond

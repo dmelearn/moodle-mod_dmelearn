@@ -26,7 +26,6 @@
  */
 abstract class Elmo_web_service_hash
 {
-
     /**
      *
      * Generates a hash token for use in the web service
@@ -36,9 +35,10 @@ abstract class Elmo_web_service_hash
      * @param $last_name
      * @param $email
      * @param $secret_key
-     * @return string       The generated hash token
+     * @return string The generated hash token
      */
-    static public function generate($first_name, $last_name, $email, $secret_key) {
+    public static function generate($first_name, $last_name, $email, $secret_key)
+    {
         return hash_hmac('sha256', $first_name . $last_name . $email, $secret_key);
     }
 }

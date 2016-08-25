@@ -37,7 +37,6 @@ class mod_dmelearn_mod_form extends moodleform_mod {
      * Defines forms elements
      */
     function definition() {
-
         global $CFG;
         global $USER;
 
@@ -53,7 +52,7 @@ class mod_dmelearn_mod_form extends moodleform_mod {
             // Default drop down message.
             $elmocoursearr['0'] = get_string('mfselectcourse', 'dmelearn');
             // List all the courses available.
-            foreach($elmocourses->result as $elmocourse){
+            foreach ($elmocourses->result as $elmocourse) {
                 $elmocoursearr[$elmocourse["path"]] = $elmocourse["course_short_name"];
             }
         } else {
@@ -127,5 +126,4 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         }
         return $errors;
     }
-
 }

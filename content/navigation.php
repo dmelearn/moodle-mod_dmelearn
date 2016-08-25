@@ -29,8 +29,8 @@ namespace mod_dmelearn\navigation;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
-class Navigation {
-
+class Navigation
+{
     protected $show_summary;
     protected $navigation;
     protected $site_url;
@@ -63,8 +63,10 @@ class Navigation {
     public function make()
     {
         // Load correct navigation menu
-        if ( isset($this->course_version) && $this->course_version == 4) {
+        if (isset($this->course_version) && $this->course_version == 4) {
             return $this->makeCourseFour();
+        } elseif (isset($this->course_version) && $this->course_version == 2.1) {
+            return $this->makeNewNav();
         } else {
             return $this->makeStandardNavigation();
         }
@@ -82,7 +84,7 @@ class Navigation {
         // This was a dynamic thing in ELMO where elements were added to the navigation ad-hoc.
         // Some really old courses relied on this and its become a legacy support requirement.
 
-        if (strtolower($this->show_summary) == 'true' ) {
+        if (strtolower($this->show_summary) == 'true') {
             $this->navigation['assessment_summary'] = array(
                 'title' => 'Assessment summary',
                 'pages' => array('assessment' => 'Assessment Summary'));
@@ -169,7 +171,7 @@ class Navigation {
         // BC: changed to use Moodle ULR in navigation.
         global $lmscontenturl;
 
-        if (strtolower($this->show_summary) == 'true' ) {
+        if (strtolower($this->show_summary) == 'true') {
             $this->navigation['assessment_summary'] = array(
                 'title' => 'Assessment summary',
                 'pages' => array('assessment' => 'Assessment Summary'));
@@ -184,15 +186,13 @@ class Navigation {
         // Build the HTML for the navigation menu
         $return_string = "<div class='dropnav'><div class='dropdown dropnav__menu'>"
             . "<button id='dLabel' type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>"
-            . "<i class='fa fa-bars'></i></button>"
+            . "<i class='fa fa-bars'></i> MENU</button>"
             . "<ul class='dropdown-menu dropnav__items' aria-labelledby='dLabel'>";
 
         // Need to work out where and how to get the current navigation highlighted.
         foreach ($navigation as $module_key => $module_data) {
-
             // Handle Modules with only one page
             if (count($module_data['pages']) == 1) {
-
                 // The page name.
                 $page_key = key($module_data['pages']);
 
@@ -219,7 +219,6 @@ class Navigation {
                 // Get ALL the pages within the module
                 // Add each page to navigation menu
                 foreach ($module_data['pages'] as $page_key => $page_title) {
-
                     // Open the list item
                     $return_string .= "<li class='page";
 
@@ -247,4 +246,94 @@ class Navigation {
         return $return_string;
     }
 
+    /**
+     * New Navigation Style for 2.1 courses
+     *
+     * @return string Returns a HTML string with the navigation layout ready to be injected into a view
+     */
+    public function makeNewNav()
+    {
+        // BC: changed to use Moodle ULR in navigation.
+        global $lmscontenturl;
+
+        // If 'show_summary' is 'true' then append it to the navigation.
+        // This was a dynamic thing in ELMO where elements were added to the navigation ad-hoc.
+        // Some really old courses relied on this and its become a legacy support requirement.
+
+        if (strtolower($this->show_summary) == 'true') {
+            $this->navigation['assessment_summary'] = array(
+                'title' => 'Assessment summary',
+                'pages' => array('assessment' => 'Assessment Summary'));
+        }
+
+        $navigation = $this->navigation; // A decoded navigation.json array
+        $site_url   = $this->site_url; // A string of the url of the Site
+        $course     = $this->course; // Current Course
+        $module     = $this->module; // Current module
+        $page       = $this->page; // Current page
+
+        // Build the HTML for the navigation menu
+        $return_string = '<ul class="modules nav nav-list">';
+
+        // We need to get current - page && module.
+        //$keys = array_keys($navigation); //NOT USED YET
+
+        // Need to work out where and how to get the current navigation highlighted.
+        foreach ($navigation as $module_key => $module_data) {
+            // If there is only one page in the module then it links straight to the page.
+            if (count($module_data['pages']) == 1) {
+                // The page name.
+                $page_key = key($module_data['pages']);
+                $return_string .= "<li class='module";
+                // The module is active.
+                if ($module_key == $module) {
+                    $return_string .= " active";
+                }
+                $return_string .= "'>"
+                    . "<a href='" . $lmscontenturl
+                    . "&module=" . $module_key
+                    . "&page=" . $page_key
+                    . "'>"
+                    . $module_data['title'] . "</a></li>";
+            } else {
+                $page_key = key($module_data['pages']);
+                // More than 1 page in the module.
+                $return_string .= "<li class='module ";
+                if ($module_key === $module) {
+                    $return_string .= "active";
+                }
+                $return_string .= "'>"
+                    . "<a href='" . $lmscontenturl
+                    . "&module=" . $module_key
+                    . "&page=" . $page_key
+                    . "'>"
+                    . $module_data['title'] . "</a>";
+
+                // The module is active.
+                if ($module_key === $module) {
+                    // Inner dropdown.
+                    $return_string .= "<ul class='pages in'>";
+
+                    foreach ($module_data['pages'] as $page_key => $page_title) {
+                        $return_string .= "<li class='page";
+
+                        if (($module_key === $module) && ($page_key === $page)) {
+                            $return_string .= " active";
+                        }
+                        $return_string .= "'>"
+                            . "<a href='" . $lmscontenturl
+                            . "&module=" . $module_key
+                            . "&page=" . $page_key
+                            . "'>"
+                            . $page_title . "</a>";
+
+                        $return_string .= "</li>";
+                    }
+                    $return_string .= "</ul></li>";
+                }
+            }
+        }
+        $return_string .= "</ul>";
+        return $return_string;
+    }
 }

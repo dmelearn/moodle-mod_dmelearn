@@ -23,12 +23,11 @@
  *
  * Note: Guzzle 5.3 requires PHP 5.4.0+
  *
- * @package    mod_dmelearn
- * @author     Chris Barton, AJ Dunn, CJ Faulkner
- * @copyright  2015 Chris Barton, Digital Media e-learning
- * @version    1.5.0
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- *
+ * @package   mod_dmelearn
+ * @author    Chris Barton, AJ Dunn, CJ Faulkner
+ * @copyright 2015 Chris Barton, Digital Media e-learning
+ * @version   1.5.0
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 // Include guzzle and the libs we need.
 require_once('elmo_web_service_hash.php');
@@ -59,16 +58,15 @@ $client = new Client();
  *
  * @note : Remember to secure this
  */
-$module = (string) (isset($_GET['module'])) ? filter_var($_GET['module'], FILTER_SANITIZE_STRING) : null;
-$page = (string) (isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SANITIZE_STRING) : null;
+$module = (string)(isset($_GET['module'])) ? filter_var($_GET['module'], FILTER_SANITIZE_STRING) : null;
+$page = (string)(isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SANITIZE_STRING) : null;
 
 // Make Requests to course first to get all user information/scripts/etc.
 // We have course = courseName, make a request for information on the course.
 try {
-
     // Check if this Moodle Activity's DM course has to be reset after a certain amount of months.
     $limitbymonths = '';
-    if($timeframemonths >= 1){
+    if ($timeframemonths >= 1) {
         // Include the amount of months in the API URL.
         $limitbymonths = '/' . $timeframemonths;
     }
@@ -104,16 +102,16 @@ try {
 }
 
 // Check if this plugin can support the course version.
-$course_version = isset($course_request["configuration"]["course_version"]) ? filter_var($course_request["configuration"]["course_version"], FILTER_SANITIZE_NUMBER_INT) : 1;
-if (!support_course_num($course_version))
-{
+$course_version = isset($course_request["configuration"]["course_version"]) ? $course_request["configuration"]["course_version"] : 1;
+
+if (!support_course_num($course_version)) {
     include_once('include/noAccess.php');
     die();
 }
 
 if (isset($module) && !isset($page)) {
     // We have a module but need to get the FIRST page.
-} else if (!isset($module) && !isset($page)) {
+} elseif (!isset($module) && !isset($page)) {
     // We need to get module and page to make a page_request.
     if ($course_request['user']['last_visited']) {
         // We want to request the following page.
@@ -160,7 +158,7 @@ try {
             throw new moodle_exception('pagenotfound', 'dmelearn');
         }
         die();
-    } else if ($e->getResponse()->getStatusCode() == '400') {
+    } elseif ($e->getResponse()->getStatusCode() == '400') {
         // This will happen when no page is specified in the request URL.
         // lmssettings.php will redirect the users to the last saved page.
         if (isset($CFG->debug) && !$CFG->debug == 0) {

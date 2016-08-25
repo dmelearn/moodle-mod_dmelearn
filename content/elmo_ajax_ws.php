@@ -60,7 +60,7 @@ $data = array('data' => filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
 // Workout what the request actually is for.
 // Regex sucks in PHP, strip the first slash if it exists.
 if (substr($path, 0, 1) == '/') {
-    $path = substr ($path, 1, strlen ($path));
+    $path = substr($path, 1, strlen($path));
 }
 $path_explode = explode('/', $path);
 $request_path = $path_explode[0];
@@ -73,7 +73,7 @@ switch ($request_path) {
         if (count($path_explode) > 1) {
             $id = $path_explode[1];
         }
-        try{
+        try {
             $response = validate_question_request(
                 $client,
                 (API_URL . API_VALIDATE . $id),
@@ -93,7 +93,7 @@ switch ($request_path) {
             $activity_name = $path_explode[1];
             $course_path = $path_explode[2];
         }
-        try{
+        try {
             $response = load_activity_storage_request(
                 $client,
                 (API_URL . API_LOAD_ACTIVITY_STORAGE . $activity_name . '/' . $course_path),
@@ -112,7 +112,7 @@ switch ($request_path) {
             $activity_name = $path_explode[1];
             $course_path = $path_explode[2];
         }
-        try{
+        try {
             $response = set_activity_storage_request(
                 $client,
                 (API_URL . API_SET_ACTIVITY_STORAGE . $activity_name . '/' . $course_path),
@@ -133,5 +133,5 @@ switch ($request_path) {
         if ($path_explode[2] == $domain) {
             echo get_ajax_content($path);
         }
-    break;
+        break;
 }

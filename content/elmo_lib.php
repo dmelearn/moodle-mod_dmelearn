@@ -26,7 +26,7 @@
 require_once(dirname(dirname(dirname(dirname(__FILE__)))) . "/config.php");
 require_once('elmo_web_service_hash.php');
 
-// Brightcookie to put the lms setting back to ELMO content page.
+// BrightCookie to put the lms setting back to ELMO content page.
 $ELMO_ENV = get_config('mod_dmelearn', 'elmourl');
 
 // Include guzzle and the libs we need.
@@ -45,8 +45,8 @@ use mod_dmelearn\cache\Cache;
 /**
  * @return StdClass
  */
-function get_key_courses() {
-
+function get_key_courses()
+{
     global $CFG, $USER;
 
     // Some User data needed to make a request.

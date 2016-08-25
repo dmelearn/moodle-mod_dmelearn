@@ -30,6 +30,10 @@
  */
 define('ELMO_WEB_BASE_URL', $ELMO_ENV . '');
 /**
+ * Location of BASE ASSETS
+ */
+define('ELMO_WEB_BASE_ASSETS', $ELMO_ENV . 'assets/');
+/**
  * Location of BASE CSS
  */
 define('ELMO_WEB_BASE_CSS', $ELMO_ENV . 'css/');
@@ -48,9 +52,9 @@ define('ELMO_WEB_BASE_COURSES', $ELMO_ENV . 'courses/');
 /**
  * BASE API URI
  */
-define('API_URL' , $ELMO_ENV . 'api/');
+define('API_URL', $ELMO_ENV . 'api/');
 /**
- * URI COURSE(S) 
+ * URI COURSE(S)
  */
 define('API_COURSES', 'courses/');
 /**
@@ -88,6 +92,7 @@ define('API_SET_ACTIVITY_STORAGE', 'api_form_interactive_set/');
 $frontEndConstants = array(
     'elmo_env' => $ELMO_ENV,
     'base_url' => ELMO_WEB_BASE_URL,
+    'base_assets' => ELMO_WEB_BASE_ASSETS,
     'base_css' => ELMO_WEB_BASE_CSS,
     'base_js' => ELMO_WEB_BASE_JAVASCRIPT,
     'base_img' => ELMO_WEB_BASE_IMAGES,
