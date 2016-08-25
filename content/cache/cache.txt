@@ -1,0 +1,1 @@
+This file exists to ensure the directory is not empty (Prevent issues with Moodle 3.1).
