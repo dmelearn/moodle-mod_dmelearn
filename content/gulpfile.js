@@ -115,8 +115,7 @@ gulp.task('clean:git', function () {
     return del([
         // Remove any git files.
         '**/.git',
-        '**/.gitignore',
-        '**/.gitkeep'
+        '**/.gitignore'
     ]);
 });
 
