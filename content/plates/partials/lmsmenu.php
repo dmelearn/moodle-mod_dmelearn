@@ -1,6 +1,10 @@
 <?php
 //LMS Menu
-$version = $course_data['configuration']['course_version'];
+$version = isset($course_data['configuration']['course_version']) ? $course_data['configuration']['course_version'] : null;
+// If course version has not been set it should be a version 1
+if ($version === null) {
+    $version = 1;
+}
 ?>
 <div class="lmsmenu">
     <?php // Use Font Awesome 3 on version 1 courses and FA4 on all others ?>
