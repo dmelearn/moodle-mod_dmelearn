@@ -20,14 +20,14 @@
  * @package       mod_dmelearn
  * @author        CJ Faulkner, AJ Dunn
  * @copyright     Digital Media e-Learning
- * @version       1.6.0
+ * @version       1.6.1
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_dmelearn';
-$plugin->version = 2016082501;
+$plugin->version = 2016083000;
 $plugin->release = 'v1.6.1';
 $plugin->requires = 2013111800; // Requires Moodle 2.6 or newer.
 $plugin->maturity = MATURITY_STABLE;
