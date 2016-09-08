@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.6.1 (2016083000)
+- A few updates to make dmelearn even better. Happy Learning!
+
 ## v1.6.0 (2016082300)
 - Now requires Moodle 2.6 or higher
 - Add DM-icons webfont v3.0.3 to all course templates.
