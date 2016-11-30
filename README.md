@@ -17,7 +17,7 @@
 
 ### Remove unused third party components files before deployment (Developers)
 - Open the `content` folder inside this plugin from the terminal/command line.
-- Run `gulp clean:vendor`, `gulp del:bower` and `del:nm`.
+- Run `gulp clean:vendor`, `gulp clean:git`, `gulp del:bower` and `del:nm`.
 
 ### Installation / Usage
 * Either install the plugin as a .zip file via Moodle Plugin installer page or ...
