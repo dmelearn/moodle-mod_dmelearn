@@ -29,13 +29,10 @@
                 var openWindow = localStorage.getItem('dmSidebarOpen');
                 // If the local storage is set to close then keep it closed
                 if (openWindow == 'false') {
-                    console.log('here we are');
-                    console.log($(".course__content"));
                     $(".course__content").addClass("closed-menu");
                     $('#nav-box ul').removeClass('open');
                 } else {
                     if (viewportWidth < 990) {
-                        console.log('yep');
                         $(".course__content").addClass("closed-menu");
                         $('#nav-box ul').removeClass('open');
                         localStorage.setItem('dmSidebarOpen', false);
