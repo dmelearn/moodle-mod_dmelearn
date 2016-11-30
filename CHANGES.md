@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.6.2 (2016113000)
+- A few fixes to improve 2.1 styled courses.
+- Update DM-icons webfont to v3.0.5.
+- Update Composer packages.
+
 ## v1.6.1 (2016083000)
 - A few updates to make dmelearn even better. Happy Learning!
 
