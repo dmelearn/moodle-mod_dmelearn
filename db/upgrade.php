@@ -74,5 +74,21 @@ function xmldb_dmelearn_upgrade($oldversion = 0) {
         upgrade_mod_savepoint(true, 2015102700, 'dmelearn');
     }
 
+    // Add preventearlierthanyear field to database to store the earliest year that a course completion will be accepted.
+    if ($oldversion < 2016121200) {
+        // Define field preventearlierthanyear to be added to dmelearn.
+        $table = new xmldb_table('dmelearn');
+        // xmldb_field requires a name, type, precision, unsigned, notnull, sequence, default, previous
+        $field = new xmldb_field('preventearlierthanyear', XMLDB_TYPE_INTEGER, '10', true, null, null, null, 'timeframemonths');
+
+        // Add field course.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Upgraded to the version 2016121200 so the next time this block is skipped.
+        upgrade_mod_savepoint(true, 2016121200, 'dmelearn');
+    }
+
     return true;
 }

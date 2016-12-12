@@ -60,6 +60,19 @@ class mod_dmelearn_mod_form extends moodleform_mod {
             $mform->addElement('html', get_string('mfnocourses', 'dmelearn'));
         }
 
+        // Years
+        $preventEarlierThanYear = array(
+            '0' => '',
+            '2013' => '2013',
+            '2014' => '2014',
+            '2015' => '2015',
+            '2016' => '2016',
+            '2017' => '2017',
+            '2018' => '2018',
+            '2019' => '2019',
+            '2020' => '2020'
+        );
+
         // Help text for new users.
         $mform->addElement('html', get_string('mfinstructions', 'dmelearn'));
 
@@ -73,6 +86,10 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         $mform->addElement('text', 'timeframemonths', get_string('dmelearntimeframemonths', 'dmelearn'));
         $mform->setDefault('timeframemonths', '0');
         $mform->addHelpButton('timeframemonths', 'dmelearntimeframemonths', 'dmelearn');
+
+        // Add field for limiting already completed courses by a specific month/year.
+        $select2 = $mform->addElement('select', 'preventearlierthanyear', get_string('dmelearnpreventearlierthanyear', 'dmelearn'), $preventEarlierThanYear);
+        $mform->addHelpButton('preventearlierthanyear', 'dmelearnpreventearlierthanyear', 'dmelearn');
 
         // Adding the "general" fieldset, where all the common settings are showed.
         $mform->addElement('header', 'general', get_string('general', 'form'));

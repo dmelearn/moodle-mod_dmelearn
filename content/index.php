@@ -65,10 +65,15 @@ $page = (string)(isset($_GET['page'])) ? filter_var($_GET['page'], FILTER_SANITI
 // We have course = courseName, make a request for information on the course.
 try {
     // Check if this Moodle Activity's DM course has to be reset after a certain amount of months.
-    $limitbymonths = '';
-    if ($timeframemonths >= 1) {
+    $limitbymonths = '/';
+
+    if ($preventearlierthanyear > 2000) {
+        // A value of 0 or null means this is not used
+        // Include the minimum year completion date in the API URL.
+        $limitbymonths .= '0/' . $preventearlierthanyear;
+    } else if ($timeframemonths >= 1) {
         // Include the amount of months in the API URL.
-        $limitbymonths = '/' . $timeframemonths;
+        $limitbymonths .= $timeframemonths;
     }
 
     $request = course_request(

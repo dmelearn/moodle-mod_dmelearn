@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.7.0 (2016121200)
+- Add feature to limit syncing completion for users of activity by year.
+
 ## v1.6.2 (2016113000)
 - A few fixes to improve 2.1 styled courses.
 - Update DM-icons webfont to v3.0.5.

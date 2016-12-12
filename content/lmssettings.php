@@ -63,6 +63,9 @@ $course = $elmo->coursepath;
 // Number of months to accept already completed ELMO courses.
 $timeframemonths = $elmo->timeframemonths;
 
+// Earliest Year to accept previously completed course data from ELMO;
+$preventearlierthanyear = $elmo->preventearlierthanyear;
+
 // SOME USER DATA needed to make a request.
 $firstname  = $USER->firstname;
 $lastname   = $USER->lastname;

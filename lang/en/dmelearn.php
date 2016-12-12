@@ -18,7 +18,7 @@
  * @package       mod_dmelearn
  * @author        Kien Vu, CJ Faulkner
  * @copyright     2015 BrightCookie (http://www.brightcookie.com.au), Digital Media e-Learning
- * @version       1.0.1
+ * @since         1.0.0
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
@@ -91,6 +91,8 @@ $string['mfinstructions'] = '<style>.mf-instruct{color:#2ca02c;font-weight:bold;
 $string['mfselectcourse'] = 'Please select a course ...';
 $string['mfnocourse'] = 'You must choose from one of the courses in the drop down.';
 $string['mftfwrong'] = 'You must enter either 0 or a number of months that a completed course will be accessible before needing to be reset.';
-$string['dmelearntimeframemonths'] = 'Force Reset After Months<br>(0 = No course expiry limits)';
+$string['dmelearntimeframemonths'] = 'Force Reset After X Months Ago <br>(0 = No course expiry limits)';
 $string['dmelearntimeframemonths_help'] = 'This options exists to prevent users that have completed a DM e-Learning course more than a certain amount of months ago (possibly via another website or Moodle) from syncing their completion percentage with this activities Moodle Grade.
 <br><br>If a users completion date is greater than the amount of months set here, they will be required to reset their course and complete the course assessments from the beginning.<br><br>If you do not need this feature set this field to 0.';
+$string['dmelearnpreventearlierthanyear'] = 'Force Reset if course was previously completed before this year!';
+$string['dmelearnpreventearlierthanyear_help'] = 'e.g If you select 2016, any course completed in 2015 or earlier will not be synced to this activity. The user will be required to do a reset before starting the course within this activity.<br>Note: If set "Force Reset After X Months Ago" is ignored.';
