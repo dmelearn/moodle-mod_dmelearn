@@ -16,7 +16,7 @@
         <FIELD NAME="grade" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="false" DEFAULT="0" SEQUENCE="false" PREVIOUS="maxattempt" NEXT="timemodified"/>
         <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="grade" NEXT="timeframemonths"/>
         <FIELD NAME="timeframemonths" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="timemodified" NEXT="preventearlierthanyear"/>
-        <FIELD NAME="preventearlierthanyear" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" DEFAULT="null" SEQUENCE="false" PREVIOUS="timeframemonths"/>
+        <FIELD NAME="preventearlierthanyear" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="timeframemonths"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
