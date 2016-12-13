@@ -79,7 +79,7 @@ function xmldb_dmelearn_upgrade($oldversion = 0) {
         // Define field preventearlierthanyear to be added to dmelearn.
         $table = new xmldb_table('dmelearn');
         // xmldb_field requires a name, type, precision, unsigned, notnull, sequence, default, previous
-        $field = new xmldb_field('preventearlierthanyear', XMLDB_TYPE_INTEGER, '10', true, null, null, null, 'timeframemonths');
+        $field = new xmldb_field('preventearlierthanyear', XMLDB_TYPE_INTEGER, '10', true, null, null, '0', 'timeframemonths');
 
         // Add field course.
         if (!$dbman->field_exists($table, $field)) {
