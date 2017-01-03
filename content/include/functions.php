@@ -21,7 +21,7 @@
  * @see Also make sure that Elmo_web_service_hash class is loaded too
  * @author        Chris Barton, AJ Dunn
  * @copyright     2015 Digital Media e-learning
- * @version       1.5.0
+ * @since         1.0.0
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
@@ -30,27 +30,34 @@
  * Generate the relevant headers with a fresh timestamp
  *
  * @see   See Documentation for all the required and optional headers
- * @param $public_key
- * @param $app_name
- * @param $firstname
- * @param $lastname
- * @param $email
- * @param $payroll
- * @param $secret_key
- * @return array $header    Makes an up-to-date header
+ * @param string $public_key
+ * @param string $app_name
+ * @param string $first_name
+ * @param string $last_name
+ * @param string $email
+ * @param string $payroll
+ * @param string $secret_key
+ * @return array $header    makes an up-to-date header
  */
-function make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key) {
+function make_header($public_key, $app_name, $first_name, $last_name, $email, $payroll, $secret_key) {
+
+    /* Trim to prevent issues sending data via header */
+    $first_name = str_replace('|', '', trim($first_name));
+    $last_name = str_replace('|', '', trim($last_name));
+    $email = str_replace('|', '', trim($email));
+    $payroll = str_replace('|', '', trim($payroll));
+
     return $header = array(
         // Note that the API will reject requests if the timestamp is older than 60 seconds,
         // So you will need to reset it with each request.
         'X-ELMO-TIMESTAMP' => time(),
         'X-ELMO-API-KEY' => $public_key,
         'X-ELMO-APP-NAME' => $app_name,
-        'X-ELMO-USER' => $firstname . '|' . $lastname, // Use a pipe char to separate first name and last name.
+        'X-ELMO-USER' => $first_name . '|' . $last_name, // Use a pipe char to separate first name and last name.
         'X-ELMO-EMAIL' => $email,
         'X-ELMO-PAYROLL' => $payroll,
         // Make a token -- use the Elmo_web_service_hash lib to do this.
-        'X-ELMO-TOKEN' => Elmo_web_service_hash::generate($firstname, $lastname, $email, $secret_key)
+        'X-ELMO-TOKEN' => Elmo_web_service_hash::generate($first_name, $last_name, $email, $secret_key)
     );
 }
 

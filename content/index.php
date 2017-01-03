@@ -87,6 +87,7 @@ try {
     // Check if we are unauthorised 'HTTP Error 401'.
     if ($e->getResponse()->getStatusCode() == '401') {
         // This Moodle is not authorised to access this course.
+        $unauthorised = true;
         include_once('include/noAccess.php');
         die();
     } else {
