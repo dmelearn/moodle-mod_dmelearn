@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.7.X (TBA)
+- Update PHP and JS packages.
+
 ## v1.7.1 (2017010400)
 - Fix issues with course access when name/email starts or ends with spaces or contains pipes.
 
