@@ -7,9 +7,9 @@
     "test": "gulp"
   },
   "dependencies": {
-    "gulp-clean-css": "^2.0.12",
-    "gulp": "^3.9.1",
     "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.0.3",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^2.0.0"
   },
