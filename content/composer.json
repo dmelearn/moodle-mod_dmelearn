@@ -8,7 +8,7 @@
     },
     "require": {
         "guzzlehttp/guzzle": "^5.3",
-        "league/plates": "^3.1"
+        "league/plates": "^3.3"
     },
     "require-dev": {
         "symfony/var-dumper": "^2.8"
