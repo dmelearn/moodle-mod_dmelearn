@@ -20,7 +20,7 @@
  * @package       mod_dmelearn
  * @author        Kien Vu, AJ Dunn, CJ Faulkner
  * @copyright     2015 BrightCookie (http://www.brightcookie.com.au), Digital Media e-learning
- * @version       1.0.1
+ * @version       1.0.2
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -108,7 +108,12 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         $mform->addHelpButton('name', 'dmelearnname', 'dmelearn');
 
         // Adding the standard "intro" and "introformat" fields.
-        $this->add_intro_editor();
+        if ($CFG->version >= 2015051100) {
+            $this->standard_intro_elements();
+        } else {
+            // Use the old method for adding editor introduction field. (Moodle is 2.8 or older).
+             $this->add_intro_editor();
+        }
 
         $mform->addRule('coursepath', null, 'required', null, 'client');
 
