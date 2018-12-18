@@ -13,7 +13,7 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with moodle-mod_dmelearn. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
 //
 // This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal).
 

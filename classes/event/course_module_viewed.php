@@ -15,7 +15,7 @@ namespace mod_dmelearn\event;
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with moodle-mod_dmelearn. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -30,7 +30,7 @@ defined('MOODLE_INTERNAL') || die();
  */
 class course_module_viewed extends \core\event\course_module_viewed {
     protected function init() {
-        $this->data['objecttable'] = 'DMELEARN';
+        $this->data['objecttable'] = 'dmelearn';
         parent::init();
     }
     // You might need to override get_url() and get_legacy_log_data() if view mode needs to be stored as well.

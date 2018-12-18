@@ -12,7 +12,7 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with moodle-mod_dmelearn. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * @package       mod_dmelearn
@@ -110,7 +110,7 @@ class mod_dmelearn_functions_testcase extends advanced_testcase {
         // Test course_request function.
         $request = course_request(
             $client,
-            (API_URL . '/' . API_COURSES . $coursepath),
+            (API_URL . API_COURSES . $coursepath),
             make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
         );
 

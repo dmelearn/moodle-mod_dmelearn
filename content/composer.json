@@ -1,16 +1,19 @@
 {
-    "description": "Digital Media e-Learning Moodle Activity Module",
     "name": "dmelearn/moodle-mod_dmelearn",
-    "config": {
-        "platform": {
-            "php": "5.4"
-        }
-    },
+    "description": "Digital Media e-Learning Moodle Activity Module",
+    "homepage": "http://digitalmedialearning.com.au",
+    "license": "proprietary",
     "require": {
         "guzzlehttp/guzzle": "^5.3",
         "league/plates": "^3.3"
     },
     "require-dev": {
         "symfony/var-dumper": "^2.8"
+    },
+    "config": {
+        "platform": {
+            "php": "5.4"
+        },
+        "sort-packages": true
     }
 }

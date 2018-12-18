@@ -1,7 +1,9 @@
 # Changelog
 
-## v1.7.X (TBA)
-- Update PHP and JS packages.
+## v1.8.0 (2018121800)
+- Update PHP and JS packages. Fixes for PHP 7.X.
+- Remove double slash URL used within a test.
+- Fix ‘Unknown table specified in objecttable field’ message when Dev Debugging messages on.
 
 ## v1.7.1 (2017010400)
 - Fix issues with course access when name/email starts or ends with spaces or contains pipes.

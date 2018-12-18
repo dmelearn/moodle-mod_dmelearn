@@ -11,13 +11,13 @@
 - Open the `content` folder inside this plugin from the terminal/command line.
 - Run `npm install` to install node packages listed within `package.json`.
 - Run `composer install` to install composer packages listed within `composer.json`.
-- If preparing for deployment run `composer install --no-dev -o` instead.
+- If preparing for deployment run `composer install --no-dev` instead.
 - Run `bower install` to install bower packages listed within `bower.json`.
 - Run `gulp` to run the default task within `gulpfile.js` this places the front end assets into the expected locations.
 
 ### Remove unused third party components files before deployment (Developers)
 - Open the `content` folder inside this plugin from the terminal/command line.
-- Run `gulp clean:vendor`, `gulp clean:git`, `gulp del:bower` and `del:nm`.
+- Run `gulp clean:vendor`, `gulp clean:git`, `gulp del:bower` and `gulp del:nm`.
 
 ### Installation / Usage
 * Either install the plugin as a .zip file via Moodle Plugin installer page or ...
