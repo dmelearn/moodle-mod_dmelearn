@@ -88,6 +88,8 @@ gulp.task('clean:vendor', function () {
         // Remove IDE files.
         'vendor/**/.editorconfig',
         // Remove documentation and test files not needed.
+        'vendor/league/plates/docs',
+        'vendor/league/plates/example',
         'vendor/guzzlehttp/guzzle/docs',
         'vendor/guzzlehttp/guzzle/tests',
         'vendor/guzzlehttp/ringphp/docs',
