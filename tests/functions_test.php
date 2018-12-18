@@ -110,7 +110,7 @@ class mod_dmelearn_functions_testcase extends advanced_testcase {
         // Test course_request function.
         $request = course_request(
             $client,
-            (API_URL . '/' . API_COURSES . $coursepath),
+            (API_URL . API_COURSES . $coursepath),
             make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
         );
 
