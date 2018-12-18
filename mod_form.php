@@ -83,6 +83,7 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         $select = $mform->addElement('select', 'coursepath', get_string('dmelearncoursepath', 'dmelearn'), $elmocoursearr);
 
         // Add field for limiting already completed courses by completion date.
+        $mform->setType('timeframemonths', PARAM_INT);
         $mform->addElement('text', 'timeframemonths', get_string('dmelearntimeframemonths', 'dmelearn'));
         $mform->setDefault('timeframemonths', '0');
         $mform->addHelpButton('timeframemonths', 'dmelearntimeframemonths', 'dmelearn');
