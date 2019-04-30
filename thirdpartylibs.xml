@@ -10,14 +10,14 @@
     <library>
         <location>content/vendor/guzzlehttp/guzzle/</location>
         <name>Guzzle</name>
-        <version>5.3.1</version>
+        <version>5.3.3</version>
         <license>MIT</license>
         <licenseversion></licenseversion>
     </library>
     <library>
         <location>content/vendor/guzzlehttp/ringphp/</location>
         <name>RingPHP</name>
-        <version>1.1.0</version>
+        <version>1.1.1</version>
         <license>MIT</license>
         <licenseversion></licenseversion>
     </library>
@@ -31,14 +31,14 @@
     <library>
         <location>content/vendor/league/plates/</location>
         <name>league/plates</name>
-        <version>3.1.1</version>
+        <version>3.3.0</version>
         <license>MIT</license>
         <licenseversion></licenseversion>
     </library>
     <library>
         <location>content/vendor/react/promise/</location>
         <name>React/Promise</name>
-        <version>2.4.1</version>
+        <version>2.7.1</version>
         <license>MIT</license>
         <licenseversion></licenseversion>
     </library>
