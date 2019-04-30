@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.0.0 (2019043000)
+- Launch site compatibility upgrades.
+
 ## v1.8.1 (2018121900)
 - Future compatibility updates for Mod_form
 
