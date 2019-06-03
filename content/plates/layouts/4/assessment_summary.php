@@ -62,7 +62,8 @@
                                                             <i class="icon dm-check"></i>
                                                         </div>
                                                     <?php else : ?>
-                                                        <?php $cmp = explode("/", $question['loc']); ?>
+                                                        <?php $fix_backslashed_urls = str_replace("\\","/", $question['loc']); ?>
+                                                        <?php $cmp = explode("/", $fix_backslashed_urls); ?>
                                                         <div class="assessment-summary__question__cross pull-right">
                                                             <i class="icon dm-cross"></i>
                                                             <a href="?id=<?= $mod_id ?>&course=<?= $cmp[0] ?>&module=<?= $cmp[1] ?>&page=<?= $cmp[2] ?>#<?= $question['short_name'] ?>">
