@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.8.2 (2018121901)
+- Add extra safety check for assessment summary hyperlinks.
+
 ## v1.8.1 (2018121900)
 - Future compatibility updates for Mod_form
 
