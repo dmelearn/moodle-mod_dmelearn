@@ -35,7 +35,8 @@ if ($version === null) {
             <td class="link">
 
                 <?php if (isset($block['loc']) && !empty($block['loc'])) : ?>
-                    <?php $cmp = explode("/", $block['loc']) ?>
+                    <?php $fix_backslashed_urls = str_replace("\\","/", $block['loc']); ?>
+                    <?php $cmp = explode("/", $fix_backslashed_urls); ?>
                     <a class="btn" href="?id=<?=$mod_id?>&course=<?=$cmp[0]?>&module=<?=$cmp[1]?>&page=<?=$cmp[2]?>">go to assessment</a>
                 <?php endif; ?>
             </td>
@@ -69,7 +70,8 @@ if ($version === null) {
 
                                     <?php if (isset($question_data['loc']) && !empty($question_data['loc'])) : ?>
                                     <td class="middle">
-                                        <?php $cmp = explode("/", $question_data['loc']) ?>
+                                        <?php $fix_backslashed_urls = str_replace("\\","/", $question['loc']); ?>
+                                        <?php $cmp = explode("/", $fix_backslashed_urls); ?>
                                         <a class="btn" href="?id=<?=$mod_id?>&course=<?=$cmp[0]?>&module=<?=$cmp[1]?>&page=<?=$cmp[2]?>">Go to Question</a>
                                     </td>
                                     <?php endif; ?>

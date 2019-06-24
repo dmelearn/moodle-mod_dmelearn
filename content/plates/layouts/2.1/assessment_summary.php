@@ -58,7 +58,8 @@
                                                             </div>
                                                             <div class="assessment-summary__questions__box clearfix">
                                                                 <div class="assessment-summary__questions__cross pull-right">
-                                                                    <?php $cmp = explode("/", $block['loc']) ?>
+                                                                    <?php $fix_backslashed_urls = str_replace("\\","/", $block['loc']); ?>
+                                                                    <?php $cmp = explode("/",  $fix_backslashed_urls) ?>
                                                                     <a href="?id=<?= $mod_id ?>&course=<?= $cmp[0] ?>&module=<?= $cmp[1] ?>&page=<?= $cmp[2] ?>">Go to page <i class="icon dm-arrow-forward"></i>
                                                                     </a>
                                                                 </div>
@@ -78,7 +79,8 @@
                                                                         <p><i class="icon dm-check"></i> Correct</p>
                                                                     </div>
                                                                 <?php else : ?>
-                                                                    <?php $cmp = explode("/", $question['loc']); ?>
+                                                                    <?php $fix_backslashed_urls = str_replace("\\","/", $question['loc']); ?>
+                                                                    <?php $cmp = explode("/", $fix_backslashed_urls); ?>
                                                                     <div class="assessment-summary__questions__cross pull-right">
                                                                         <a href="?id=<?= $mod_id ?>&course=<?= $cmp[0] ?>&module=<?= $cmp[1] ?>&page=<?= $cmp[2] ?>#<?= $question['short_name'] ?>">Go to question
                                                                             <i class="icon dm-arrow-forward"></i>
