@@ -24,7 +24,7 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once($CFG->dirroot . '/mod/dmelearn/lib.php');
+require_once $CFG->dirroot . '/mod/dmelearn/lib.php';
 
 /**
  * Execute mod_dmelearn upgrade from the given old version.
@@ -42,7 +42,7 @@ function xmldb_dmelearn_upgrade($oldversion = 0) {
         // Fix missing dmelearn grades in gradebook by forcing full update of grades for
         // courses containing dmelearn activities.
         global $CFG;
-        require_once($CFG->libdir.'/gradelib.php');
+        require_once $CFG->libdir.'/gradelib.php';
         // Get all course ids that contain a dmelearn activity.
         $sql = "SELECT DISTINCT course.id
               FROM {course} course

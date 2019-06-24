@@ -18,15 +18,15 @@
  * @package       mod_dmelearn
  * @author        Chris Barton, CJ Faulkner
  * @copyright     2015 Digital Media e-learning
- * @version       1.0.0
+ * @since         1.0.0
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(dirname(dirname(dirname(dirname(__FILE__))))."/config.php");
+require_once dirname(dirname(dirname(__DIR__))) . '/config.php';
 
 // TODO: Add Comments
 if (!$USER->id && $USER->id<2) {
-    die();
+    exit();
 }
 
 $firstname  = $USER->firstname;
@@ -44,10 +44,10 @@ $secret_key = get_config('mod_dmelearn', 'elmosecretkey');
 $app_name = get_config('mod_dmelearn', 'elmoappname');
 $ELMO_ENV = get_config('mod_dmelearn', 'elmourl');
 
-require_once('elmo_web_service_hash.php');
-require_once('./vendor/autoload.php');
-require_once('./include/constants.php');
-require_once('./include/functions.php');
+require_once 'elmo_web_service_hash.php';
+require_once './vendor/autoload.php';
+require_once './include/constants.php';
+require_once './include/functions.php';
 
 use GuzzleHttp\Client;
 
@@ -63,7 +63,7 @@ $user_id = $data['user_id'];
 try {
     $request = course_request(
         $client,
-        (API_URL . API_RESET . $course_path . '/' . $user_id),
+        API_URL . API_RESET . $course_path . '/' . $user_id,
         make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
     );
     $page_request = $request->json();

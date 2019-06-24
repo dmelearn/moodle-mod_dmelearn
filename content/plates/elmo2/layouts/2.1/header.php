@@ -4,14 +4,21 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Digital Media e-Learning Course">
 <meta name="author" content="Digital Media">
+
 <?php //CSS Google Fonts ?>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Varela|Material+Icons" rel="stylesheet" type="text/css">
+
+
+
 <?php //CSS jQuery UI Bootstrap Theme ?>
 <link rel="stylesheet" href="<?= $constants['base_css'] ?>jquery-ui-for-bootstrap.css">
 <?php //CSS Font Awesome 4.3.0 ?>
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 <?php //CSS ?>
 <link rel="stylesheet" href="dmicons/css/dmicons.min.css">
+
+
+
 <?php
 //Course CSS
 foreach ($course_data['course_css'] as $css) {
@@ -20,7 +27,7 @@ foreach ($course_data['course_css'] as $css) {
 }
 ?>
 <?php //jQuery ?>
-<script src="<?=$constants['base_js']?>jquery.min.js"></script>
+<script src="<?=$constants['base_libs']?>jquery/2/jquery.min.js"></script>
 
 <?php //Utility Scripts ?>
 <script src="<?=$constants['base_js']?>modernizr.custom.min.js"></script>
@@ -30,12 +37,14 @@ foreach ($course_data['course_css'] as $css) {
 <script src="<?=$constants['base_js']?>util/util.min.js"></script>
 <?php //Course scripts ?>
 <script src="<?=$course_constants['course_js']?>script.min.js"></script>
+
+
 <?php
 //Rewire, remap, retina.js, reset btn
 $this->insert('partials/template_min_js');
 //Dependency Scripts
-if (isset($course_data['configuration']['dependancy_scripts'])) {
-    foreach ($course_data['configuration']['dependancy_scripts'] as $dScript) {
+if (isset($course_data['configuration']['dependency_scripts'])) {
+    foreach ($course_data['configuration']['dependency_scripts'] as $dScript) {
         echo '<script src="' . $constants['base_js'] . $dScript['path'] . '/' . $dScript['script'] . '.min.js"></script>';
     }
 }
@@ -54,4 +63,5 @@ if (isset($course_data['configuration']['page_scripts'])) {
     }
 }
 //Course JS
-?><script src="js/dmelearn.min.js"></script>
+?>
+<script src="js/dmelearn.min.js"></script>

@@ -21,12 +21,13 @@
  * @package       mod_dmelearn
  * @author        Kien Vu, AJ Dunn
  * @copyright     2015 BrightCookie (http://www.brightcookie.com.au), Digital Media e-learning
- * @version       1.1.0
+ * @since         1.1.0
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-include_once(dirname(dirname(dirname(dirname(__FILE__)))) . "/config.php");
+include_once dirname(dirname(dirname(__DIR__))) . '/config.php';
+
 // Require gradelib to update grades correctly with grade_update function.
-require_once($CFG->libdir . '/gradelib.php');
+require_once $CFG->libdir . '/gradelib.php';
 
 // Check if Request id is valid.
 if (!isset($_REQUEST["id"]) || !$_REQUEST["id"]) {
@@ -52,7 +53,7 @@ $elearnid = filter_var($_REQUEST['id'], FILTER_SANITIZE_NUMBER_INT);
 
 require_login();
 
-$elmo = $DB->get_record('dmelearn', array('id' => $elearnid));
+$elmo = $DB->get_record('dmelearn', ['id' => $elearnid]);
 
 if (!$elmo) {
     print_error('Course does not exist', 'dmelearn');
@@ -72,14 +73,14 @@ $lastname   = $USER->lastname;
 $email      = $USER->email;
 $payroll    = $USER->idnumber;
 
-$lmscontenturl = "{$CFG->wwwroot}/mod/dmelearn/content/?id={$elearnid}";
+$lms_content_url = "{$CFG->wwwroot}/mod/dmelearn/content/?id={$elearnid}";
 // Generate Moodle menu.
-$lmscourse = $DB->get_record('course', array('id' => $elmo->course));
+$lms_course = $DB->get_record('course', ['id' => $elmo->course]);
 
-$lmsmenu = '
+$lms_menu = '
 <div class="lmsmenu">
   <div class="lmsmenuleft">
-    <i class="icon-home"></i> <a href="' . $CFG->wwwroot . '"> Home</a> <i class="icon-double-angle-right"></i> <i class="icon-tasks"></i><a href="' . $CFG->wwwroot . '/course/view.php?id=' . $elmo->course . '"> ' . $lmscourse->fullname . '</a>
+    <i class="icon-home"></i> <a href="' . $CFG->wwwroot . '"> Home</a> <i class="icon-double-angle-right"></i> <i class="icon-tasks"></i><a href="' . $CFG->wwwroot . '/course/view.php?id=' . $elmo->course . '"> ' . $lms_course->fullname . '</a>
   </div>
   <div class="lmsmenuright">
     You are logged in as ' . $USER->firstname . ' ' . $USER->lastname . ' (<a href="' . $CFG->wwwroot . '/login/logout.php">Log out</a>)
@@ -118,7 +119,7 @@ $lmsmenu = '
  * @param $percentage - percentage of course progress
  */
 function check_progress_page($elearnid, $course_complete, $percentage = 0) {
-    global $DB, $USER, $COURSE, $lmscontenturl;
+    global $DB, $USER, $COURSE, $lms_content_url;
 
     // Get the latest elmo user data from dmelearn_entries.
     $edata = $DB->get_record_sql(
@@ -129,7 +130,7 @@ function check_progress_page($elearnid, $course_complete, $percentage = 0) {
           ORDER BY id DESC
           LIMIT 1
           OFFSET 0",
-        array($elearnid, $USER->id)
+        [$elearnid, $USER->id]
     );
 
     // The first time an activity is started there will not be a record found.
@@ -137,8 +138,8 @@ function check_progress_page($elearnid, $course_complete, $percentage = 0) {
         // A record in dmelearn_entries does not already exist.
         // Record the last page visited.
         $trackdata = new StdClass();
-        $trackdata->page = "";
-        $trackdata->module = "";
+        $trackdata->page = '';
+        $trackdata->module = '';
         // Create a record for dmelearn_entries.
         $edata = new StdClass();
         $edata->dmelearn = $elearnid;
@@ -151,22 +152,21 @@ function check_progress_page($elearnid, $course_complete, $percentage = 0) {
     }
 
     // Get the 'last page visited' data out of 'dmelearn_entries'
-    $trackdata = json_decode($edata->trackdata);
+    $trackdata = json_decode($edata->trackdata, false);
     if (!is_object($trackdata)) {
         // Make a new blank trackdata object.
         $trackdata = new StdClass();
-        $trackdata->page = "";
-        $trackdata->module = "";
+        $trackdata->page = '';
+        $trackdata->module = '';
     }
 
-    if (!isset($_REQUEST["page"]) && isset($trackdata->page) && $trackdata->page != ""
-        && isset($trackdata->module) && $trackdata->module != "") {
+    if (!isset($_REQUEST['page']) && isset($trackdata->page, $trackdata->module) && $trackdata->page != '' && $trackdata->module != '') {
         // No requested page or module in URL but $trackdata (last visited page) contains a module and page.
-        echo '<script>window.location.href="' . $lmscontenturl . '&module=' . $trackdata->module
+        echo '<script>window.location.href="' . $lms_content_url . '&module=' . $trackdata->module
             .'&page=' . $trackdata->page . '";</script>';
-        die();
-    } elseif (isset($_REQUEST["module"]) && $_REQUEST["module"] != "" && isset($_REQUEST["page"])
-        && $_REQUEST["page"] != "") {
+        exit();
+    } elseif (isset($_REQUEST['module']) && $_REQUEST['module'] != "" && isset($_REQUEST['page'])
+        && $_REQUEST['page'] != '') {
         // Set trackdata to be equal to the requested page and module.
         $trackdata->page = filter_var($_REQUEST['page'], FILTER_SANITIZE_STRING);
         $trackdata->module = filter_var($_REQUEST['module'], FILTER_SANITIZE_STRING);
@@ -185,7 +185,7 @@ function check_progress_page($elearnid, $course_complete, $percentage = 0) {
 }
 
 /**
- * Updates Moodles grades with the current course grades
+ * Updates Moodle's grades with the current course grades
  *
  * @global $COURSE
  * @global $USER
@@ -198,7 +198,7 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
     global $COURSE, $USER, $DB;
 
     // Handle the Gradebook.
-    $params = array($elearnid, $COURSE->id);
+    $params = [$elearnid, $COURSE->id];
     $sql = "SELECT id, scaleid, grademin, grademax
             FROM {grade_items}
             WHERE itemtype = 'mod'
@@ -213,7 +213,7 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
     // Check if record exists in grade_items.
     if ($grade_item) {
         // Record in grade_item exists.
-        $params = array($grade_item->id, $USER->id);
+        $params = [$grade_item->id, $USER->id];
         $sql = "SELECT *
                 FROM {grade_grades}
                 WHERE itemid = ?

@@ -23,7 +23,7 @@
  *
  */
 
-echo $lmsmenu; // Show the LMS Top Menu Navigation. ?>
+echo $lms_menu; // Show the LMS Top Menu Navigation. ?>
 <div style="font-size: 20px;margin:25px;font-family: Arial, Helvetica, sans-serif;">
 
 <br><p><strong>Error:

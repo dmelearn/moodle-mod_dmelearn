@@ -20,7 +20,7 @@
  * @package    mod_dmelearn
  * @author     Chris Barton, AJ Dunn
  * @copyright  2015 Chris Barton, Digital Media e-learning
- * @version    1.0.0
+ * @since      1.0.0
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */

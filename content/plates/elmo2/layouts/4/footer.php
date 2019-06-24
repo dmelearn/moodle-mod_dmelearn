@@ -2,7 +2,7 @@
 <div class="footer">
     <div class="container">
         <hr class="clear">
-        <p class="version-stamp">Brought to you by the WCHN Digital Media e-Learning Team - &copy; <?=date("Y")?></p>
+        <p class="version-stamp">Brought to you by <?= $constants['brand_name'] ?> - &copy; <?=date("Y")?></p>
 
         <?php
         //If the user has completed the course the reset and certificate buttons will appear in the footer

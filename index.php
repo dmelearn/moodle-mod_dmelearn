@@ -24,13 +24,13 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(dirname(dirname(dirname(__FILE__))) . '/config.php'); // Moodle Config.
-require_once("lib.php");
+require_once dirname(dirname(__DIR__)) . '/config.php'; // Moodle Config.
+require_once 'lib.php';
 
 $id = required_param('id', PARAM_INT); // Course.
 
-if (!$course = $DB->get_record("course", array("id" => $id))) {
-    print_error("Course ID is incorrect");
+if (!$course = $DB->get_record('course', ['id' => $id])) {
+    print_error('Course ID is incorrect');
 }
 
 require_course_login($course);
@@ -40,7 +40,7 @@ header("location: {$CFG->wwwroot}/mod/dmelearn/content/?id={$elmo->id}");
 // Header.
 $strelmos = get_string('modulenameplural', 'dmelearn');
 $PAGE->set_pagelayout('incourse');
-$PAGE->set_url('/mod/dmelearn/index.php', array('id' => $id));
+$PAGE->set_url('/mod/dmelearn/index.php', ['id' => $id]);
 $PAGE->navbar->add($strelmos);
 $PAGE->set_title($strelmos);
 $PAGE->set_heading($course->fullname);
@@ -52,9 +52,9 @@ if (!$elmos = get_all_instances_in_course('dmelearn', $course)) {
     notice(get_string('thereareno',
         'moodle',
         get_string('modulenameplural', 'dmelearn')),
-        "../../course/view.php?id=$course->id"
+        "../../course/view.php?id={$course->id}"
     );
-    die;
+    exit();
 }
 
 // Sections.
@@ -68,8 +68,8 @@ $timenow = time();
 // Table data.
 $table = new html_table();
 
-$table->head = array();
-$table->align = array();
+$table->head = [];
+$table->align = [];
 if ($usesections) {
     $table->head[] = get_string('sectionname', 'format_' . $course->format);
     $table->align[] = 'center';
@@ -104,12 +104,12 @@ foreach ($elmos as $elmo) {
     // Link.
     if (!$elmo->visible) {
         // Show dimmed if the mod is hidden.
-        $table->data[$i][] = "<a class=\"dimmed\" href=\"view.php?id=$elmo->coursemodule\">"
-            . format_string($elmo->name, true) . "</a>";
+        $table->data[$i][] = "<a class=\"dimmed\" href=\"view.php?id={$elmo->coursemodule}\">"
+            . format_string($elmo->name, true) . '</a>';
     } else {
         // Show normal if the mod is visible.
-        $table->data[$i][] = "<a href=\"view.php?id=$elmo->coursemodule\">"
-            . format_string($elmo->name, true) . "</a>";
+        $table->data[$i][] = "<a href=\"view.php?id={$elmo->coursemodule}\">"
+            . format_string($elmo->name, true) . '</a>';
     }
 
     // Description.
@@ -117,28 +117,28 @@ foreach ($elmos as $elmo) {
 
     // Entries info.
     if (!empty($managersomewhere)) {
-        $table->data[$i][] = "";
+        $table->data[$i][] = '';
     }
 
     $i++;
 }
 
-echo "<br />";
+echo '<br>';
 echo html_writer::table($table);
 
 // Using newer logging method only for Moodle 2.7 or newer.
 // Check if Moodle is 2.7.X or newer.
 if ($CFG->version >= 2014051200) {
     // Use the new $event->trigger() for logging.
-    $params = array(
+    $params = [
         'context' => context_course::instance($course->id)
-    );
+    ];
     $event = \mod_dmelearn\event\course_module_instance_list_viewed::create($params);
     $event->add_record_snapshot('course', $course);
     $event->trigger();
 } else {
     // Use the old method of logging (Moodle is 2.6 or older).
-    add_to_log($course->id, 'dmelearn', "view all", "index.php?id=$course->id", "");
+    add_to_log($course->id, 'dmelearn', 'view all', "index.php?id={$course->id}", '');
 }
 
 echo $OUTPUT->footer();

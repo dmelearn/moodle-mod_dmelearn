@@ -18,24 +18,24 @@
  * @package    mod_dmelearn
  * @author     Chris Barton, AJ Dunn
  * @copyright  2015 Chris Barton, Digital Media e-learning
- * @version    1.0.0
+ * @since      1.0.0
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
 
-require_once(dirname(dirname(dirname(dirname(__FILE__)))) . "/config.php");
-require_once('elmo_web_service_hash.php');
+require_once dirname(dirname(dirname(__DIR__))) . '/config.php';
+require_once 'elmo_web_service_hash.php';
 
 // BrightCookie to put the lms setting back to ELMO content page.
 $ELMO_ENV = get_config('mod_dmelearn', 'elmourl');
 
 // Include guzzle and the libs we need.
-require_once('vendor/autoload.php');
-require_once('navigation.php');
-require_once('include/constants.php');
-require_once('include/functions.php');
+require_once 'vendor/autoload.php';
+require_once 'navigation.php';
+require_once 'include/constants.php';
+require_once 'include/functions.php';
 // A caching class.
-require_once('include/cache.php');
+require_once 'include/cache.php';
 // Header data - example its hardwired so change it.
 
 use GuzzleHttp\Client;
@@ -65,7 +65,7 @@ function get_key_courses()
     try {
          $request = course_request(
              $client,
-             (API_URL . API_KEY_COURSES . $public_key),
+             API_URL . API_KEY_COURSES . $public_key,
              make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
          );
          $page_request = $request->json();

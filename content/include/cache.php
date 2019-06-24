@@ -23,12 +23,13 @@ namespace mod_dmelearn\cache;
  * @package       mod_dmelearn\cache
  * @author        Chris Barton, AJ Dunn
  * @copyright     Digital Media e-learning
- * @version       1.0.0
+ * @since         1.0.0
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class Cache
 {
-    protected static $cache_dir = "cache/";
+    protected static $enabled = false; // Disabled for now
+    protected static $cache_dir = 'cache/';
 
     /**
      * Cache IS NOT used in this version (1.0.0) due to unresolved issues with caching
@@ -40,9 +41,11 @@ class Cache
      */
     public static function caching($filename, $string)
     {
-        //$f = fopen(self::$cache_dir.$filename.'.txt', 'w+');
-        //fwrite($f, $string);
-        //fclose($f);
+        if (self::$enabled) {
+            $f = fopen(self::$cache_dir . $filename . '.txt', 'w+');
+            fwrite($f, $string);
+            fclose($f);
+        }
     }
 
     /**
@@ -53,17 +56,17 @@ class Cache
      */
     public static function retrieve($filename)
     {
-        $filename = $filename . '.txt';
-        $path = self::$cache_dir . $filename;
-        if (file_exists($path)) {
-            // Read the file into a string.
-            $handle = fopen($path, "r+");
-            $contents = fread($handle, filesize($path));
-            fclose($handle);
-            return $contents;
-        } else {
-            // File not found.
-            return false;
+        if (self::$enabled) {
+            $filename .= '.txt';
+            $path = self::$cache_dir . $filename;
+            if (file_exists($path)) {
+                // Read the file into a string.
+                $handle = fopen($path, 'r+');
+                $contents = fread($handle, filesize($path));
+                fclose($handle);
+                return $contents;
+            }
         }
+        return false;
     }
 }

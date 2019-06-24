@@ -24,8 +24,8 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
-require_once("lib.php");
+require_once dirname(dirname(__DIR__)) . '/config.php';
+require_once 'lib.php';
 
 $id = required_param('id', PARAM_INT); // Course Module ID.
 
@@ -73,4 +73,4 @@ if ($CFG->version >= 2014051200) {
 }
 
 header("location: {$CFG->wwwroot}/mod/dmelearn/content/?id={$elmo->id}");
-die();
+exit();

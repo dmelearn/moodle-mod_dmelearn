@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . '/mod/dmelearn/backup/moodle2/backup_dmelearn_stepslib.php');
+require_once $CFG->dirroot . '/mod/dmelearn/backup/moodle2/backup_dmelearn_stepslib.php';
 
 class backup_dmelearn_activity_task extends backup_activity_task {
 

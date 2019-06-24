@@ -40,15 +40,11 @@ define('ELMO_WEB_BASE_CSS', $ELMO_ENV . 'css/');
 /**
  * Location of BASE JAVASCRIPT
  */
-define('ELMO_WEB_BASE_JAVASCRIPT', $ELMO_ENV . 'js/');
+define('ELMO_WEB_BASE_JAVASCRIPT', $ELMO_ENV . 'assets/js/');
 /**
- * Location of BASE IMAGES
+ * Location of BASE JAVASCRIPT
  */
-define('ELMO_WEB_BASE_IMAGES', $ELMO_ENV . 'images/');
-/**
- * Location of BASE COURSES folder
- */
-define('ELMO_WEB_BASE_COURSES', $ELMO_ENV . 'courses/');
+define('ELMO_WEB_BASE_LIBS', $ELMO_ENV . 'assets/libs/');
 /**
  * BASE API URI
  */
@@ -89,12 +85,11 @@ define('API_SET_ACTIVITY_STORAGE', 'api_form_interactive_set/');
 /**
  * Array of values to pass to the plates template.
  */
-$frontEndConstants = array(
+$frontEndConstants = [
     'elmo_env' => $ELMO_ENV,
     'base_url' => ELMO_WEB_BASE_URL,
     'base_assets' => ELMO_WEB_BASE_ASSETS,
     'base_css' => ELMO_WEB_BASE_CSS,
     'base_js' => ELMO_WEB_BASE_JAVASCRIPT,
-    'base_img' => ELMO_WEB_BASE_IMAGES,
-    'base_courses' => ELMO_WEB_BASE_COURSES
-);
+    'base_libs' => ELMO_WEB_BASE_LIBS
+];

@@ -364,7 +364,7 @@ function dmelearn_scale_used_anywhere($scaleid) {
  */
 function dmelearn_grade_item_update($dmelearn, $grades = null) {
     global $CFG;
-    require_once($CFG->libdir.'/gradelib.php');
+    require_once $CFG->libdir . '/gradelib.php';
 
     if (array_key_exists('cmidnumber', $dmelearn)) {
         $params = array('itemname'=>$dmelearn->name, 'idnumber'=>$dmelearn->cmidnumber);
@@ -400,7 +400,7 @@ function dmelearn_grade_item_update($dmelearn, $grades = null) {
  */
 function dmelearn_grade_item_delete($dmelearn) {
     global $CFG;
-    require_once($CFG->libdir.'/gradelib.php');
+    require_once $CFG->libdir . '/gradelib.php';
 
     return grade_update(
         'mod/dmelearn',
@@ -425,7 +425,7 @@ function dmelearn_grade_item_delete($dmelearn) {
  */
 function dmelearn_update_grades(stdClass $dmelearn = null, $userid = 0, $nullifnone = false) {
     global $CFG, $DB;
-    require_once($CFG->libdir . '/gradelib.php');
+    require_once $CFG->libdir . '/gradelib.php';
 
     if ($dmelearn != null) {
         if ($grades = dmelearn_get_user_grades($dmelearn, $userid)) {

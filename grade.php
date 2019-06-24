@@ -24,7 +24,7 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once("../../config.php");
+require_once '../../config.php';
 // Course module ID.
 $id = required_param('id', PARAM_INT);
 // Item number, may be != 0 for activities that allow more than one grade per user.

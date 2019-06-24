@@ -33,7 +33,7 @@
                     <div class="assessment-summary__content">
                         <div class="assessment-summary__progress">
                             <div class="">
-                                <?php foreach ($page_data['data']['assessment_summary']['block_data'] as $block) : ?>
+                                <?php foreach ($page_data['data']['\'assessment_summary\']']['block_data'] as $block) : ?>
                                     <div class="assessment-summary__block">
                                         <?php if ($block['complete']) : ?>
                                             <div class="assessment-summary__block__title clearfix">
@@ -108,7 +108,7 @@
                     <div class="row-fluid">
                         <div class="assessment-summary__certificate text-center">
                             <a href="<?= $constants['base_url'] ?>api/cert/download/<?= $page_data['data']['cert_data']['course_path'] ?>/<?= $page_data['data']['cert_data']['user_id'] ?>/<?= $page_data['data']['cert_data']['assessment_id'] ?>"><i
-                                    class="icon dm-ribbon"></i></a>
+                                        class="icon dm-ribbon"></i></a>
                         </div>
                         <div class="assessment-summary__download__text text-center">
                             <a class="btn dm-btn"

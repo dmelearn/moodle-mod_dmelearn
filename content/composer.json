@@ -4,6 +4,7 @@
     "homepage": "http://digitalmedialearning.com.au",
     "license": "proprietary",
     "require": {
+        "ext-json": "*",
         "guzzlehttp/guzzle": "^5.3",
         "league/plates": "^3.3"
     },

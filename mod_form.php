@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . '/course/moodleform_mod.php');
+require_once $CFG->dirroot . '/course/moodleform_mod.php';
 
 /**
  * Class mod_dmelearn_mod_form
@@ -40,7 +40,7 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         global $CFG;
         global $USER;
 
-        include_once("content/elmo_lib.php");
+        include_once 'content/elmo_lib.php';
 
         // Get array of available Courses.
         $elmocourses = get_key_courses();

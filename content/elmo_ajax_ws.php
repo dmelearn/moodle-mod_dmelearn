@@ -18,15 +18,15 @@
  * @package       mod_dmelearn
  * @author        Chris Barton, CJ Faulkner
  * @copyright     2015 Digital Media e-learning
- * @version       1.0.0
+ * @since         1.0.0
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(dirname(dirname(dirname(dirname(__FILE__)))) . "/config.php");
+require_once dirname(dirname(dirname(__DIR__))) . '/config.php';
 
 // TODO: Add more comments.
 if (!$USER->id && $USER->id < 2) {
-    die();
+    exit();
 }
 
 $firstname = $USER->firstname;
@@ -44,10 +44,10 @@ $secret_key = get_config('mod_dmelearn', 'elmosecretkey');
 $app_name = get_config('mod_dmelearn', 'elmoappname');
 $ELMO_ENV = get_config('mod_dmelearn', 'elmourl');
 
-require_once('elmo_web_service_hash.php');
-require_once('./vendor/autoload.php');
-require_once('./include/constants.php');
-require_once('./include/functions.php');
+require_once 'elmo_web_service_hash.php';
+require_once './vendor/autoload.php';
+require_once './include/constants.php';
+require_once './include/functions.php';
 
 use GuzzleHttp\Client;
 
@@ -55,19 +55,62 @@ $client = new Client();
 
 // Get all the data we need to make a request.
 $path = filter_var($_GET['request'], FILTER_SANITIZE_STRING);
-$data = array('data' => filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
+$data = [
+    'data' => filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING)
+];
 
 // Workout what the request actually is for.
-// Regex sucks in PHP, strip the first slash if it exists.
-if (substr($path, 0, 1) == '/') {
+// Strip the first slash if it exists.
+if (strpos($path, '/') === 0) {
     $path = substr($path, 1, strlen($path));
 }
 $path_explode = explode('/', $path);
 $request_path = $path_explode[0];
 
-$response;
+$response = null;
 // What type of request?
 switch ($request_path) {
+    case 'getQuestions':
+
+        try {
+            $response = get_question_request(
+                $client,
+                API_URL . 'api_assessment/get_questions',
+                make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key),
+                $data
+            );
+
+        } catch (GuzzleHttp\Exception\TransferException $e) {
+            exit();
+        }
+        // Feels bad man but you have json while you json.
+        $response = $response->json();
+        exit(json_encode($response));
+        break;
+
+    case 'validateQuestion':
+        if (count($path_explode) > 1) {
+            $id = $path_explode[1];
+        }
+
+        // $postData = json_decode($_POST, true);
+
+        try {
+            $response = validate_question_request(
+                $client,
+                API_URL . 'api_assessment/validate_question/' . $id,
+                make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key),
+                $_POST
+            );
+        } catch (GuzzleHttp\Exception\TransferException $e) {
+            exit();
+        }
+        // Feels bad man but you have json while you json.
+        $response = $response->json();
+
+        exit(json_encode($response));
+
+        break;
     // TODO: Add more matches here when needed.
     case 'validate_question':
         if (count($path_explode) > 1) {
@@ -76,7 +119,7 @@ switch ($request_path) {
         try {
             $response = validate_question_request(
                 $client,
-                (API_URL . API_VALIDATE . $id),
+                API_URL . API_VALIDATE . $id,
                 make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key),
                 $data
             );
@@ -96,7 +139,7 @@ switch ($request_path) {
         try {
             $response = load_activity_storage_request(
                 $client,
-                (API_URL . API_LOAD_ACTIVITY_STORAGE . $activity_name . '/' . $course_path),
+                API_URL . API_LOAD_ACTIVITY_STORAGE . $activity_name . '/' . $course_path,
                 make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key)
             );
         } catch (GuzzleHttp\Exception\TransferException $e) {
@@ -115,7 +158,7 @@ switch ($request_path) {
         try {
             $response = set_activity_storage_request(
                 $client,
-                (API_URL . API_SET_ACTIVITY_STORAGE . $activity_name . '/' . $course_path),
+                API_URL . API_SET_ACTIVITY_STORAGE . $activity_name . '/' . $course_path,
                 make_header($public_key, $app_name, $firstname, $lastname, $email, $payroll, $secret_key),
                 $data
             );
@@ -128,9 +171,9 @@ switch ($request_path) {
 
     default:
         $domain_info = parse_url($ELMO_ENV);
-        $domain = $domain_info["host"];
+        $domain = $domain_info['host'];
 
-        if ($path_explode[2] == $domain) {
+        if ($path_explode[2] === $domain) {
             echo get_ajax_content($path);
         }
         break;

@@ -25,7 +25,7 @@ namespace mod_dmelearn\navigation;
  * @package    mod_dmelearn\navigation
  * @author     Chris Barton, AJ Dunn, Digital Media e-learning
  * @copyright  2015-2016 Chris Barton, Digital Media e-learning
- * @version    1.5.0
+ * @since      1.5.0
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
@@ -56,19 +56,22 @@ class Navigation
     }
 
     /**
-     *  Make the navigation for a DMELEARN course based on the course version
+     * Make the navigation for a DMELEARN course based on the course version
      *
-     *  @return string Returns the correct HTML string with the navigation layout ready to be injected into a view
+     * @return string Returns the correct HTML string with the navigation layout ready to be injected into a view
      */
     public function make()
     {
         // Load correct navigation menu
-        if (isset($this->course_version) && $this->course_version == 4) {
-            return $this->makeCourseFour();
-        } elseif (isset($this->course_version) && $this->course_version == 2.1) {
-            return $this->makeNewNav();
-        } else {
-            return $this->makeStandardNavigation();
+        switch ($this->course_version) {
+            case 4:
+                return $this->makeCourseFour();
+                break;
+            case 2.1:
+                return $this->makeNewNav();
+                break;
+            default:
+                return $this->makeStandardNavigation();
         }
     }
 
@@ -78,23 +81,24 @@ class Navigation
     public function makeStandardNavigation()
     {
         // BC: changed to use Moodle ULR in navigation.
-        global $lmscontenturl;
+        global $lms_content_url;
 
         // If 'show_summary' is 'true' then append it to the navigation.
         // This was a dynamic thing in ELMO where elements were added to the navigation ad-hoc.
         // Some really old courses relied on this and its become a legacy support requirement.
 
         if (strtolower($this->show_summary) == 'true') {
-            $this->navigation['assessment_summary'] = array(
+            $this->navigation['assessment_summary'] = [
                 'title' => 'Assessment summary',
-                'pages' => array('assessment' => 'Assessment Summary'));
+                'pages' => ['assessment' => 'Assessment Summary']
+            ];
         }
 
         $navigation = $this->navigation; // A decoded navigation.json array
-        $site_url   = $this->site_url; // A string of the url of the Site
-        $course     = $this->course; // Current Course
-        $module     = $this->module; // Current module
-        $page       = $this->page; // Current page
+        $site_url = $this->site_url; // A string of the url of the Site
+        $course = $this->course; // Current Course
+        $module = $this->module; // Current module
+        $page = $this->page; // Current page
 
         // Build the HTML for the navigation menu
         $return_string = "<div class='course_nav'><ul class='modules nav nav-list'>";
@@ -111,27 +115,27 @@ class Navigation
                 $return_string .= "<li class='module";
                 // The module is active.
                 if ($module_key == $module) {
-                    $return_string .= " active";
+                    $return_string .= ' active';
                 }
                 $return_string .= "'>"
-                    . "<a href='" . $lmscontenturl
-                    . "&module=" . $module_key
-                    . "&page=" . $page_key
+                    . "<a href='" . $lms_content_url
+                    . '&module=' . $module_key
+                    . '&page=' . $page_key
                     . "'>"
-                    . $module_data['title'] . "</a></li>";
+                    . $module_data['title'] . '</a></li>';
             } else {
                 $page_key = key($module_data['pages']);
                 // More than 1 page in the module.
                 $return_string .= "<li class='module ";
                 if ($module_key === $module) {
-                    $return_string .= "active";
+                    $return_string .= 'active';
                 }
                 $return_string .= "'>"
-                    . "<a href='" . $lmscontenturl
-                    . "&module=" . $module_key
-                    . "&page=" . $page_key
+                    . "<a href='" . $lms_content_url
+                    . '&module=' . $module_key
+                    . '&page=' . $page_key
                     . "'>"
-                    . $module_data['title'] . "</a>";
+                    . $module_data['title'] . '</a>';
 
                 // The module is active.
                 if ($module_key === $module) {
@@ -142,22 +146,22 @@ class Navigation
                         $return_string .= "<li class='page";
 
                         if (($module_key === $module) && ($page_key === $page)) {
-                            $return_string .= " active";
+                            $return_string .= ' active';
                         }
                         $return_string .= "'>"
-                            . "<a href='" . $lmscontenturl
-                            . "&module=" . $module_key
-                            . "&page=" . $page_key
+                            . "<a href='" . $lms_content_url
+                            . '&module=' . $module_key
+                            . '&page=' . $page_key
                             . "'>"
-                            . $page_title . "</a>";
+                            . $page_title . '</a>';
 
-                        $return_string .= "</li>";
+                        $return_string .= '</li>';
                     }
-                    $return_string .= "</ul></li>";
+                    $return_string .= '</ul></li>';
                 }
             }
         }
-        $return_string .= "</ul></div>";
+        $return_string .= '</ul></div>';
         return $return_string;
     }
 
@@ -169,12 +173,13 @@ class Navigation
     public function makeCourseFour()
     {
         // BC: changed to use Moodle ULR in navigation.
-        global $lmscontenturl;
+        global $lms_content_url;
 
         if (strtolower($this->show_summary) == 'true') {
-            $this->navigation['assessment_summary'] = array(
+            $this->navigation['assessment_summary'] = [
                 'title' => 'Assessment summary',
-                'pages' => array('assessment' => 'Assessment Summary'));
+                'pages' => ['assessment' => 'Assessment Summary']
+            ];
         }
 
         $navigation = $this->navigation; // A decoded navigation.json array
@@ -201,19 +206,19 @@ class Navigation
 
                 // Include the 'active' class if on we are already on this page
                 if ($module_key == $module) {
-                    $return_string .= " active";
+                    $return_string .= ' active';
                 }
                 $return_string .= "'>";
 
                 // Add anchor with href to page
-                $return_string .= "<a href='" . $lmscontenturl
-                    . "&module=" . $module_key
-                    . "&page=" . $page_key
+                $return_string .= "<a href='" . $lms_content_url
+                    . '&module=' . $module_key
+                    . '&page=' . $page_key
                     . "'>"
-                    . $module_data['title'] . "</a>";
+                    . $module_data['title'] . '</a>';
 
                 // Close the list item
-                $return_string .= "</li>";
+                $return_string .= '</li>';
 
             } else {
                 // Get ALL the pages within the module
@@ -224,25 +229,25 @@ class Navigation
 
                     // Include the 'active' class if on we are already on this page
                     if (($module_key === $module) && ($page_key === $page)) {
-                        $return_string .= " active";
+                        $return_string .= ' active';
                     }
                     $return_string .= "'>";
 
                     // Add anchor with href to page
-                    $return_string .= "<a href='" . $lmscontenturl
-                        . "&module=" . $module_key
-                        . "&page=" . $page_key
+                    $return_string .= "<a href='" . $lms_content_url
+                        . '&module=' . $module_key
+                        . '&page=' . $page_key
                         . "'>"
-                        . $page_title . "</a>";
+                        . $page_title . '</a>';
 
                     // Close the list item
-                    $return_string .= "</li>";
+                    $return_string .= '</li>';
                 }
             }
 
         }
         // Close ul and divs
-        $return_string .= "</ul></div></div>";
+        $return_string .= '</ul></div></div>';
         return $return_string;
     }
 
@@ -254,23 +259,24 @@ class Navigation
     public function makeNewNav()
     {
         // BC: changed to use Moodle ULR in navigation.
-        global $lmscontenturl;
+        global $lms_content_url;
 
         // If 'show_summary' is 'true' then append it to the navigation.
         // This was a dynamic thing in ELMO where elements were added to the navigation ad-hoc.
         // Some really old courses relied on this and its become a legacy support requirement.
 
         if (strtolower($this->show_summary) == 'true') {
-            $this->navigation['assessment_summary'] = array(
+            $this->navigation['assessment_summary'] = [
                 'title' => 'Assessment summary',
-                'pages' => array('assessment' => 'Assessment Summary'));
+                'pages' => ['assessment' => 'Assessment Summary']
+            ];
         }
 
         $navigation = $this->navigation; // A decoded navigation.json array
-        $site_url   = $this->site_url; // A string of the url of the Site
-        $course     = $this->course; // Current Course
-        $module     = $this->module; // Current module
-        $page       = $this->page; // Current page
+        $site_url = $this->site_url; // A string of the url of the Site
+        $course = $this->course; // Current Course
+        $module = $this->module; // Current module
+        $page = $this->page; // Current page
 
         // Build the HTML for the navigation menu
         $return_string = '<ul class="modules nav nav-list">';
@@ -287,27 +293,27 @@ class Navigation
                 $return_string .= "<li class='module";
                 // The module is active.
                 if ($module_key == $module) {
-                    $return_string .= " active";
+                    $return_string .= ' active';
                 }
                 $return_string .= "'>"
-                    . "<a href='" . $lmscontenturl
-                    . "&module=" . $module_key
-                    . "&page=" . $page_key
+                    . "<a href='" . $lms_content_url
+                    . '&module=' . $module_key
+                    . '&page=' . $page_key
                     . "'>"
-                    . $module_data['title'] . "</a></li>";
+                    . $module_data['title'] . '</a></li>';
             } else {
                 $page_key = key($module_data['pages']);
                 // More than 1 page in the module.
                 $return_string .= "<li class='module ";
                 if ($module_key === $module) {
-                    $return_string .= "active";
+                    $return_string .= 'active';
                 }
                 $return_string .= "'>"
-                    . "<a href='" . $lmscontenturl
-                    . "&module=" . $module_key
-                    . "&page=" . $page_key
+                    . "<a href='" . $lms_content_url
+                    . '&module=' . $module_key
+                    . '&page=' . $page_key
                     . "'>"
-                    . $module_data['title'] . "</a>";
+                    . $module_data['title'] . '</a>';
 
                 // The module is active.
                 if ($module_key === $module) {
@@ -318,22 +324,52 @@ class Navigation
                         $return_string .= "<li class='page";
 
                         if (($module_key === $module) && ($page_key === $page)) {
-                            $return_string .= " active";
+                            $return_string .= ' active';
                         }
                         $return_string .= "'>"
-                            . "<a href='" . $lmscontenturl
-                            . "&module=" . $module_key
-                            . "&page=" . $page_key
+                            . "<a href='" . $lms_content_url
+                            . '&module=' . $module_key
+                            . '&page=' . $page_key
                             . "'>"
-                            . $page_title . "</a>";
+                            . $page_title . '</a>';
 
-                        $return_string .= "</li>";
+                        $return_string .= '</li>';
                     }
-                    $return_string .= "</ul></li>";
+                    $return_string .= '</ul></li>';
                 }
             }
         }
-        $return_string .= "</ul>";
+        $return_string .= '</ul>';
         return $return_string;
+    }
+
+    public function getPrevURL($nav_buttons)
+    {
+        // Splits the minus string into module & page and sets the previous url array.
+        if (isset($nav_buttons['minus'])) {
+            $prev = explode('/', $nav_buttons['minus']);
+            $previous_url = [
+                'module' => $prev[0],
+                'page' => $prev[1]
+            ];
+        } else {
+            $previous_url = false;
+        }
+        return $previous_url;
+    }
+
+    public function getNextURL($nav_buttons)
+    {
+        // Splits the minus string into module & page and sets the next url array.
+        if (isset($nav_buttons['plus'])) {
+            $next = explode('/', $nav_buttons['plus']);
+            $next_url = [
+                'module' => $next[0],
+                'page' => $next[1]
+            ];
+        } else {
+            $next_url = false;
+        }
+        return $next_url;
     }
 }
