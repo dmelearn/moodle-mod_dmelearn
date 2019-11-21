@@ -77,7 +77,8 @@ function course_request(&$client, $path, $headers) {
         return $client->get(
             $path,
             [
-                'headers' => $headers
+                'headers' => $headers,
+                'proxy' => make_guzzle_proxy_config()
             ]
         );
     } catch (GuzzleHttp\Exception\ServerException $e) {
@@ -106,7 +107,8 @@ function validate_question_request(&$client, $path, $headers, $post_data = null)
             $path,
             [
                 'headers' => $headers,
-                'json' => $post_data
+                'json' => $post_data,
+                'proxy' => make_guzzle_proxy_config()
             ]
         );
     } catch (GuzzleHttp\Exception\RequestException $e) {
@@ -129,7 +131,8 @@ function load_activity_storage_request(&$client, $path, $headers) {
         return $client->get(
             $path,
             [
-                'headers' => $headers
+                'headers' => $headers,
+                'proxy' => make_guzzle_proxy_config()
             ]
         );
     } catch (GuzzleHttp\Exception\RequestException $e) {
@@ -154,7 +157,8 @@ function set_activity_storage_request(&$client, $path, $headers, $post_data = nu
             $path,
             [
                 'headers' => $headers,
-                'json' => $post_data
+                'json' => $post_data,
+                'proxy' => make_guzzle_proxy_config()
             ]
         );
     } catch (GuzzleHttp\Exception\RequestException $e) {
@@ -237,4 +241,26 @@ function support_course_num($version_num) {
     $supported = array(1, 2, 2.1, 3, 4);
 
     return (in_array($version_num, $supported)) ? true : false;
+}
+
+/**
+ * Use proxy settings from Site Administration if set.
+ *
+ * @return string|null configuration text for proxy setting for curl
+ */
+function make_guzzle_proxy_config() {
+    global $CFG;
+    $proxy = null;
+
+    if (!empty($CFG->proxyhost) && !is_proxybypass(API_URL)) {
+        $proxy = ''; // Add Protocol (Could also be http:// or sock5://). Empty string should work for both.
+        if (!empty($CFG->proxyuser) && !empty($CFG->proxypassword)) {
+            $proxy .= $CFG->proxyuser . ':' . $CFG->proxypassword . '@';
+        }
+        $proxy .= $CFG->proxyhost;
+        if (!empty($CFG->proxyport)) {
+            $proxy .= ':' . $CFG->proxyport;
+        }
+    }
+    return $proxy;
 }
