@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.9.0 (2019112100)
+- Use Proxy Setting from Moodle Site Administration if set.
+
 ## v1.8.2 (2018121901)
 - Add extra safety check for assessment summary hyperlinks.
 
