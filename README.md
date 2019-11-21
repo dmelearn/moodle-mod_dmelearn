@@ -7,9 +7,10 @@
 ## Setup
 ### Add required third party components (Developers)
 - Requires [Composer](https://getcomposer.org/), [Bower](http://bower.io/), [Node.js](https://nodejs.org/).
-- Node packages can be installed using [NPM](https://www.npmjs.com/). This includes [Gulp](http://gulpjs.com/), [gulp-rename](https://www.npmjs.com/package/gulp-rename), [del](https://www.npmjs.com/package/del) and [gulp-uglify](https://www.npmjs.com/package/gulp-uglify).
+- Node packages can be installed using [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/).
+This includes [Gulp](http://gulpjs.com/), [gulp-rename](https://www.npmjs.com/package/gulp-rename), [del](https://www.npmjs.com/package/del) and [gulp-uglify](https://www.npmjs.com/package/gulp-uglify).
 - Open the `content` folder inside this plugin from the terminal/command line.
-- Run `npm install` to install node packages listed within `package.json`.
+- Run `yarn install` to install node packages listed within `package.json`.
 - Run `composer install` to install composer packages listed within `composer.json`.
 - If preparing for deployment run `composer install --no-dev` instead.
 - Run `bower install` to install bower packages listed within `bower.json`.
@@ -27,10 +28,12 @@
 * Go to Site Administration -> Plugins -> Activity modules -> Digital Media e-Learning.
 * Enter all required configuration details for the mod_dmelearn plugin (Provided to DM partners only).
 * `DM e-Learning` Activities will now be available to add to Moodle Courses.
+* The plugin will use proxy setting from Site Administration -> Server -> HTTP -> Web proxy.
+If you do not wish to use these proxy settings for the plugin please enter the API URL int the ``Proxy bypass hosts`` field on this page.
 
 ## Requirements
 - PHP 5.4.0 or above with short echo tag support and the [cURL extension](http://php.net/manual/en/book.curl.php).
-- Moodle 2.5, 2.6, 2.7, 2.8, 2.9, 3.0+
+- Moodle 2.6, 2.7, 2.8, 2.9, 3.x+
 - https://docs.moodle.org/25/en/Installing_Moodle#Requirements
 
 ## Authors
