@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.9.1 (2019112800)
+- Add unique feedback on DM Assessment self-reset and set grade back to NULL.
+- Leave grade NULL until DM Assessment is 100% completed, as some moodle instances might not set a grade to pass.
+
 ## v1.9.0 (2019112100)
 - Use Proxy Setting from Moodle Site Administration if set.
 
