@@ -275,6 +275,9 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
             // Update if needed.
             if ($grade_grades->rawgrade != $grade_of_rawgrademax) {
                 $grade_grades->rawgrade = $grade_of_rawgrademax;
+                if ($percentage != '100') {
+                    $grade_grades->rawgrade = null;
+                }
                 //$grade_grades->overridden = time();
                 grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
             } elseif ($grade_of_rawgrademax == 0) {
