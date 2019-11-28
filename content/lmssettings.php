@@ -222,7 +222,7 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
                 OFFSET 0";
         $grade_grades = $DB->get_record_sql($sql, $params);
 
-        // Check if record exists in $grade_grades.
+        // Check if record exists in grade_grades ana
         if (!$grade_grades) {
             // This is for moodle 2.7 or older.
             // Record in grade_grades does not exist.
@@ -245,19 +245,29 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
             }
             grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
         }
+
         // Record in grade_grades already exists.
         $grade_grades->timemodified = time();
+
+        // Updating Grades
         if ($course_complete == 1 && $grade_grades->rawgrade != $grade_grades->rawgrademax) {
             // API says complete but gradebook does not reflect this yet.
             // Set raw grade to 100% complete.
             $grade_grades->rawgrade = $grade_grades->rawgrademax;
-            $grade_grades->overridden = time();
+            $grade_grades->overridden = 0; // Clear any overridden activity module grades
             grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
         } elseif ($course_complete != 1 && $grade_grades->rawgrade == $grade_grades->rawgrademax) {
-            // API says NOT complete but gradebook does not reflect this yet.
-            // Set grade to % complete.
-            $grade_grades->rawgrade = round(($percentage / 100) * $grade_grades->rawgrademax, 5);
-            $grade_grades->overridden = time();
+            // API says NOT complete but gradebook does not reflect this.
+            // User has manually reset DM Assessments in Activity Module.
+
+            // Get Current time in international format
+            $currentTime = \DateTime::createFromFormat( 'U', time());
+            $formattedString = $currentTime->format( 'c' );
+
+            // Set Grade back to null and add Feedback about reset time.
+            $grade_grades->rawgrade = null;
+            $grade_grades->feedback = 'User reset at ' . $formattedString . '.';
+            $grade_grades->overridden = 0; // Clear any overridden activity module grades
             grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
         } else {
             // Grade as percentage of rawgrademax.
@@ -265,11 +275,11 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
             // Update if needed.
             if ($grade_grades->rawgrade != $grade_of_rawgrademax) {
                 $grade_grades->rawgrade = $grade_of_rawgrademax;
-                $grade_grades->overridden = time();
+                //$grade_grades->overridden = time();
                 grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
             } elseif ($grade_of_rawgrademax == 0) {
-                $grade_grades->rawgrade = $grade_of_rawgrademax;
-                $grade_grades->overridden = time();
+                $grade_grades->rawgrade = null;
+                //$grade_grades->overridden = time();
                 grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
             }
         }
