@@ -269,6 +269,10 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
             $grade_grades->feedback = 'User reset at ' . $formattedString . '.';
             $grade_grades->overridden = 0; // Clear any overridden activity module grades
             grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
+
+            // Reset Just happened
+            clear_completion_dates(true);
+
         } else {
             // Grade as percentage of rawgrademax.
             $grade_of_rawgrademax = round(($percentage / 100) * $grade_grades->rawgrademax, 5);
@@ -286,5 +290,82 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
                 grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
             }
         }
+    }
+}
+
+/**
+ * If a learn has chosen to reset DM Assessment Questions
+ * the Moodle Administrators may want to track the new completion dates
+ * for their course completions.
+ *
+ * @todo make this optional in activity module settings
+ * @param bool $purge_completion should the completion cache be cleared?
+ */
+function clear_completion_dates($purge_completion = false) {
+    global $COURSE, $USER, $DB;
+
+    $completion = new completion_info($COURSE);
+    if ($completion->is_enabled()) {
+        return;
+    }
+
+    // Handle Course Completion
+    $params = array('course' => $COURSE->id, 'userid' => $USER->id);
+    $values = $DB->get_record('course_completions', $params);
+
+    $timenow = time();
+
+    if (isset($values->id)) {
+        $course_completion_id = $values->id;
+        $course_completion_timestarted = $values->timestarted;
+        $course_completion_timeenrolled = $values->timeenrolled;
+
+        $params['id'] = $course_completion_id;
+        $params['timecompleted'] = null;
+        $params['reaggregate'] = $timenow;
+
+        if ($course_completion_timestarted > 0) {
+            $params['timestarted'] = $timenow;
+        } elseif ($course_completion_timeenrolled > 0) {
+            $params['timeenrolled'] = $timenow;
+        }
+        $DB->update_record('course_completions', $params);
+    }
+
+    // Handle Course Completion Criteria
+    $params2 = array('course' => $COURSE->id, 'userid' => $USER->id);
+    $criterion = $DB->get_records('course_completion_crit_compl', $params2);
+
+    foreach ((array)$criterion as $id => $criteria) {
+        $crit_params = array();
+        $crit_compl_id = $criteria->id;
+        $criteria_id = $criteria->criteriaid;
+        $timecompleted = $criteria->timecompleted; // need to be NULLed
+
+        $compl_criteria = $DB->get_record('course_completion_criteria', array('id' => $criteria_id));
+        $crit_params['id'] = $crit_compl_id;
+        $crit_params['timecompleted'] = null;
+
+        // Reset Time for Activity Completion
+        if ($compl_criteria->module === 'dmelearn'
+            && $compl_criteria->criteriatype == COMPLETION_CRITERIA_TYPE_ACTIVITY
+        ) {
+            $DB->update_record('course_completion_crit_compl', $crit_params);
+        }
+
+        // Reset Time for Activity Completion
+        if ($compl_criteria->module === null
+            && $compl_criteria->gradepass > 0
+            && $compl_criteria->criteriatype == COMPLETION_CRITERIA_TYPE_GRADE
+        ) {
+            $crit_params['gradefinal'] = null;
+            // we wanna set timecompleted to null, mate
+            $DB->update_record('course_completion_crit_compl', $crit_params);
+        }
+    }
+
+    // @todo make this optional in activity module settings
+    if ($purge_completion) {
+        cache::make('core', 'completion')->purge();
     }
 }
