@@ -264,3 +264,51 @@ function make_guzzle_proxy_config() {
     }
     return $proxy;
 }
+
+/**
+ * Updating the completion status of an Activity Module. Run when completed or reset.
+ * 
+ * @param int $courseID course id
+ * @param int $courseModuleID course module id
+ * @param int $userID user id
+ * @param bool|null $courseCompleted known module completion status
+ * @return bool
+ */
+function update_course_completion_status($courseID, $courseModuleID, $userID, $courseCompleted = null) {
+    global $DB;
+
+    // Get the Course
+    $course = $DB->get_record('course', array('id' => $courseID));
+
+    if (!(isset($course)) || !(isset($courseModuleID))) {
+        return false;
+    }
+
+    // Get the Course Module
+    $courseModule = get_coursemodule_from_id('dmelearn', $courseModuleID, $courseID);
+
+    if (!(isset($courseModule))) {
+        return false;
+    }
+
+    // Update completion state.
+    $completion = new completion_info($course);
+
+    if ($completion->is_enabled($courseModule)) {
+        if ($courseCompleted === true) {
+            $completion->update_state(
+                $courseModule,
+                COMPLETION_COMPLETE,
+                $userID
+            );
+        }
+        if ($courseCompleted === false) {
+            $completion->update_state(
+                $courseModule,
+                COMPLETION_INCOMPLETE,
+                $userID
+            );
+        }
+    }
+    return true;
+}

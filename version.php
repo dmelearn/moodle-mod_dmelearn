@@ -27,9 +27,9 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_dmelearn';
-$plugin->version = 2019112800;
-$plugin->release = 'v1.9.1';
-$plugin->requires = 2013111800; // Requires Moodle 2.6 or newer.
+$plugin->version = 2019120300;
+$plugin->release = 'v1.9.2';
+$plugin->requires = 2014051200; // Requires Moodle 2.7 or newer.
 $plugin->maturity = MATURITY_STABLE;
 $plugin->cron = 0;
 $plugin->dependencies = array();

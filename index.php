@@ -126,19 +126,12 @@ foreach ($elmos as $elmo) {
 echo "<br />";
 echo html_writer::table($table);
 
-// Using newer logging method only for Moodle 2.7 or newer.
-// Check if Moodle is 2.7.X or newer.
-if ($CFG->version >= 2014051200) {
-    // Use the new $event->trigger() for logging.
-    $params = array(
-        'context' => context_course::instance($course->id)
-    );
-    $event = \mod_dmelearn\event\course_module_instance_list_viewed::create($params);
-    $event->add_record_snapshot('course', $course);
-    $event->trigger();
-} else {
-    // Use the old method of logging (Moodle is 2.6 or older).
-    add_to_log($course->id, 'dmelearn', "view all", "index.php?id=$course->id", "");
-}
+// Use the new Moodle 2.7+ $event->trigger() for logging.
+$params = array(
+    'context' => context_course::instance($course->id)
+);
+$event = \mod_dmelearn\event\course_module_instance_list_viewed::create($params);
+$event->add_record_snapshot('course', $course);
+$event->trigger();
 
 echo $OUTPUT->footer();

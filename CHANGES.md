@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.9.2 (2019120300)
+- Update completion information for a course when activity is completed or reset.
+- New minimum requirement of Moodle 2.7+, 2.6 and below not supported.
+
 ## v1.9.1 (2019112800)
 - Add unique feedback on DM Assessment self-reset and set grade back to NULL.
 - Leave grade NULL until DM Assessment is 100% completed, as some moodle instances might not set a grade to pass.
