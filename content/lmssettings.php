@@ -256,6 +256,10 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
             $grade_grades->rawgrade = $grade_grades->rawgrademax;
             $grade_grades->overridden = 0; // Clear any overridden activity module grades
             grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
+
+            // Update the course completions as complete
+            update_course_completion_status($COURSE->id, cmid_from_elearnid($elearnid), $USER->id, true);
+
         } elseif ($course_complete != 1 && $grade_grades->rawgrade == $grade_grades->rawgrademax) {
             // API says NOT complete but gradebook does not reflect this.
             // User has manually reset DM Assessments in Activity Module.
@@ -270,6 +274,9 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
             $grade_grades->overridden = 0; // Clear any overridden activity module grades
             grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
 
+            // Update the course completions as incomplete
+            update_course_completion_status($COURSE->id, cmid_from_elearnid($elearnid), $USER->id, false);
+
             // Reset Just happened
             //@todo clear_completion_dates(true);
 
@@ -279,15 +286,24 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
             // Update if needed.
             if ($grade_grades->rawgrade != $grade_of_rawgrademax) {
                 $grade_grades->rawgrade = $grade_of_rawgrademax;
+                $complete = true;
                 if ($percentage != '100') {
                     $grade_grades->rawgrade = null;
+                    $complete = false;
                 }
                 //$grade_grades->overridden = time();
                 grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
+
+                // Update the course completions as incomplete
+                update_course_completion_status($COURSE->id, cmid_from_elearnid($elearnid), $USER->id, $complete);
+
             } elseif ($grade_of_rawgrademax == 0) {
                 $grade_grades->rawgrade = null;
                 //$grade_grades->overridden = time();
                 grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
+
+                // Update the course completions as incomplete
+                update_course_completion_status($COURSE->id, cmid_from_elearnid($elearnid), $USER->id, false);
             }
         }
     }
@@ -368,4 +384,38 @@ function clear_completion_dates($purge_completion = false) {
     if ($purge_completion) {
         cache::make('core', 'completion')->purge();
     }
+}
+
+/**
+ * Get Coures Module ID
+ * 
+ * @return int|null
+ */
+function cmid_from_elearnid($elearnid) {
+    global $DB, $COURSE;
+
+    $instance_id = $elearnid;
+    $course_id = $COURSE->id;
+    $module_name = 'dmelearn';
+
+    $module = $DB->get_record('modules', array(
+        'name' => $module_name
+    ));
+
+    if (!isset($module->id)) {
+        return null;
+    }
+
+    $module_id = $module->id;
+
+    $cm = $DB->get_record('course_modules', array(
+        'course' => $course_id,
+        'module' => $module_id,
+        'instance' => $instance_id
+    ));
+
+    if (isset($cm->id)) {
+        return $cm->id;
+    }
+    return null;
 }
