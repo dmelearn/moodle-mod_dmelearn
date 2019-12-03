@@ -299,8 +299,8 @@ function update_course_completion_status($courseID, $courseModuleID, $userID, $c
             $completion->update_state(
                 $courseModule,
                 COMPLETION_COMPLETE,
-                $userID)
-            ;
+                $userID
+            );
         }
         if ($courseCompleted === false) {
             $completion->update_state(
