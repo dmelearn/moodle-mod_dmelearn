@@ -55,22 +55,15 @@ if (!$cw = $DB->get_record('course_sections', array('id' => $coursemodule->secti
     print_error("Course module is incorrect");
 }
 
-// Using newer logging method only for Moodle 2.7 or newer.
-// If Moodle is 2.7.X or newer.
-if ($CFG->version >= 2014051200) {
-    // Use the new $event->trigger() for logging.
-    $event = \mod_dmelearn\event\course_module_viewed::create(array(
-        'objectid' => $PAGE->cm->instance,
-        'context' => $PAGE->context,
-    ));
-    $event->add_record_snapshot('course', $PAGE->course);
-    // In the next line you can use $PAGE->activityrecord if it is set, or skip this line if you don't have a record
-    // $event->add_record_snapshot($PAGE->cm->modname, $activityrecord);
-    $event->trigger();
-} else {
-    // Use the old method of logging (Moodle is 2.6 or older).
-    add_to_log($course->id, "dmelearn", "view", "view.php?id=$coursemodule->id", $elmo->id, $coursemodule->id);
-}
+// Use the new Moodle 2.7+ $event->trigger() for logging.
+$event = \mod_dmelearn\event\course_module_viewed::create(array(
+    'objectid' => $PAGE->cm->instance,
+    'context' => $PAGE->context,
+));
+$event->add_record_snapshot('course', $PAGE->course);
+// In the next line you can use $PAGE->activityrecord if it is set, or skip this line if you don't have a record
+// $event->add_record_snapshot($PAGE->cm->modname, $activityrecord);
+$event->trigger();
 
 header("location: {$CFG->wwwroot}/mod/dmelearn/content/?id={$elmo->id}");
 die();
