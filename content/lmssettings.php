@@ -271,7 +271,7 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
             grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
 
             // Reset Just happened
-            clear_completion_dates(true);
+            //@todo clear_completion_dates(true);
 
         } else {
             // Grade as percentage of rawgrademax.
