@@ -83,7 +83,7 @@ $string['showoverview'] = 'Show Digital Media e-Learning overview on my moodle';
 $string['startoredit'] = 'Start or edit my Digital Media e-Learning entry';
 $string['viewallentries'] = 'View {$a} Digital Media e-Learning entries';
 $string['viewentries'] = 'View entries';
-// For mod_form.php
+// For mod_form.php.
 $string['mfnocourses'] = '<style>.mf-info{color:#e32f0b;font-weight:bold;}</style><div><span class="mf-info">Information:</span> The DM e-Learning server did not return any available courses. Please contact Digital Media for help.</div><br>';
 $string['mfinstructions'] = '<style>.mf-instruct{color:#2ca02c;font-weight:bold;}</style><div><span class="mf-instruct">Instructions:</span> The form will let you add a DM e-Learning course into an activity within your Moodle Course.
 <ol><li>Select a DM e-Learning Course from the dropdown below.</li><li>OPTIONAL: Enter the number of months that you will allow access to a course after it has been 100% completed on DM e-Learning. If expired, users will need to reset the course and Moodle Grade before gaining access. (DEFAULT: 0 = No course expiry limits).</li>

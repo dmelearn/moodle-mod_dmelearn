@@ -31,7 +31,7 @@ defined('MOODLE_INTERNAL') || die();
 global $CFG;
 
 if ($ADMIN->fulltree) {
-    // Add Settings
+    // Add Settings.
     $settings->add(new admin_setting_heading(
         'mod_dmelearn/dmelearnsettinginfo',
         '',
