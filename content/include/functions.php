@@ -82,7 +82,7 @@ function course_request(&$client, $path, $headers) {
             ]
         );
     } catch (GuzzleHttp\Exception\ServerException $e) {
-        // 500 level errors
+        // 500 level errors.
         if (isset($CFG->debug) && !$CFG->debug == 0) {
             echo $e->getMessage();
         }
@@ -277,14 +277,14 @@ function make_guzzle_proxy_config() {
 function update_course_completion_status($courseID, $courseModuleID, $userID, $courseCompleted = null) {
     global $DB;
 
-    // Get the Course
+    // Get the Course.
     $course = $DB->get_record('course', array('id' => $courseID));
 
     if (!(isset($course)) || !(isset($courseModuleID))) {
         return false;
     }
 
-    // Get the Course Module
+    // Get the Course Module.
     $courseModule = get_coursemodule_from_id('dmelearn', $courseModuleID, $courseID);
 
     if (!(isset($courseModule))) {

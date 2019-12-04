@@ -12,7 +12,7 @@
             <?php // Page content ?>
             <?php if (isset($page_data['data']['assessment_summary'])) : ?>
                 <?php $this->insert('layouts/4/assessment_summary'); ?>
-            <?php elseif (isset($page_data['content'])) : ?>
+            <?php else if (isset($page_data['content'])) : ?>
                 <?= $page_data['content'] ?>
             <?php endif; ?>
         </div>

@@ -1,11 +1,11 @@
 <?php
-// JS Not Minified
-// Setup Variables
+// JS Not Minified.
+// Setup Variables.
 $coursepath = $page_data['data']['cert_data']['course_path'];
 ?>
 <script>
 (function(window, document, undefined) {
-var r = window.routes; //Reference routes
+var r = window.routes; // Reference routes.
     r.base = '<?=$constants['base_url']?>';
     r.course.path = r.base + 'courses/<?=$coursepath?>/';
     r.course.img = r.base + 'images/';
@@ -13,63 +13,63 @@ var r = window.routes; //Reference routes
     r.course.images = r.course.resources + 'images/';
 })(window);
 $(function() {
-    //Fix for IE8 and IE9 to allow form interactive ajax
+    // Fix for IE8 and IE9 to allow form interactive ajax.
     $.support.cors = true;
-    //Path to redirect ajax requests to
+    // Path to redirect ajax requests to.
     var path = 'elmo_ajax_ws.php?request=';
     $.ajaxSetup({
         global: true,
         beforeSend: function(jqXHR, settings) {
-            //Current url.
+            // Current url.
             var before_url = settings.url;
-            //Check if we are doing a form_interactive
+            // Check if we are doing a form_interactive.
             if (before_url.indexOf("/form_interactive/loadData/") > -1) {
-                //For load data form interactive
+                // For load data form interactive.
                 var matches = before_url.split("form_interactive/loadData/");
                 var interactive = matches[1].split("?")[0];
 
                 settings.url = path + "form_interactive_load/" + interactive + '/' + '<?=$coursepath?>';
             }
             else if (before_url.indexOf("/form_interactive/checkData/") > -1) {
-                //For setting data form interactive
+                // For setting data form interactive.
                 var matches = before_url.split("form_interactive/checkData/");
                 var interactive = matches[1].split("?")[0];
 
                 settings.url = path + "form_interactive_set/" + interactive + '/' + '<?=$coursepath?>';
             }
             else {
-                //For Validate Question etc.
-                //Split the string at /client_api because we need the string that follows this text
+                // For Validate Question etc.
+                // Split the string at /client_api because we need the string that follows this text.
                 var matches = before_url.split("/client_api");
-                //If there is only one string left over then that "/client_api" string didn't exist
+                // If there is only one string left over then that "/client_api" string didn't exist.
                 if ($(matches).length === 1) {
                     matches = null;
                 }
-                //If there was a result.
+                // If there was a result.
                 if (matches !== null) {
-                    //Remap
+                    // Remap.
                     settings.url = path + matches[1];
                 } else if (before_url.indexOf("<?=$constants['elmo_env']?>") === 0) {
-                    //BC script. Remap
+                    // BC script. Remap.
                     settings.url = path + before_url;
                 }
             }
         }
     });
-    //Init plugins
+    // Init plugins.
     if (typeof $.fn.elmo_multipleChoice !== 'undefined') {
         $('.question').elmo_multipleChoice({
             imagePath: window.routes.img,
             courseImages: window.routes.course.images
         });
     }
-    //Finds the reset assessments button
+    // Finds the reset assessments button.
     var reset_button = $('.reset_button');
     var pos = this;
     var reset_course = function() {
         reset_button.on('click', function() {
             reset_button.unbind('click');
-            //Ajax Request send the course_path and user_id back to ELMO to reset it in the database
+            // Ajax Request send the course_path and user_id back to ELMO to reset it in the database.
             var request = $.ajax({
                 type: 'POST',
                 url: 'elmo_ajax_ws_reset.php',
@@ -78,7 +78,7 @@ $(function() {
                     user_id: "<?=$page_data['data']['cert_data']['user_id']?>"
                 },
                 success: function(data, status) {
-                    //If data returned is true refresh the current page
+                    // If data returned is true refresh the current page.
                     if (data == 1) {
                         reset_button.parents('.modal').modal('hide');
                         window.location.href = '<?=$content_url?>';

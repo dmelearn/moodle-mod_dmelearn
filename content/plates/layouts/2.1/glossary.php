@@ -1,7 +1,7 @@
 <?php
-// Set this initial item id
+// Set this initial item id.
 $itemID = 1;
-// Get the array of glossary items
+// Get the array of glossary items.
 $glossary = $course_data['glossary']['glossary_items'];
 
 /**
@@ -19,7 +19,7 @@ function sortObjectsByTitle($first, $second)
     return ($first['title'] < $second['title']) ? -1 : 1;
 }
 
-// Start the sorting of the objects
+// Start the sorting of the objects.
 usort($glossary, 'sortObjectsByTitle');
 ?>
 <div class="dm-gloss">

@@ -1,4 +1,4 @@
-<?php //Course shell version 2 ?>
+<?php // Course shell version 2. ?>
 <div class="course_head">
     <div class="course_head_inner container">
         <h1><?=$course_data['name']?></h1>
@@ -6,14 +6,14 @@
 </div>
 <div class="container content-container">
     <div class="row course_content">
-        <?php //If the user has completed the course the reset and certificate buttons will appear ?>
+        <?php // If the user has completed the course the reset and certificate buttons will appear. ?>
         <?php if ($page_data['data']['cert_data']['has_certificate']) : ?>
             <div class="alert alert-info clearfix reset_and_cert_buttons">
                 <p class="pull-left"><strong>Well Done!</strong>  You have completed the assessment for this course.</p>
                 <a class="btn pull-right btn-success" href="<?=$constants['base_url']?>api/cert/download/<?=$page_data['data']['cert_data']['course_path']?>/<?=$page_data['data']['cert_data']['user_id']?>/<?=$page_data['data']['cert_data']['assessment_id']?>">Download Certificate (PDF)</a>
                 <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target=".reset_modal">Reset Course</button>
             </div>
-            <?php //Modal ?>
+            <?php // Modal. ?>
             <div class="modal fade reset_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -37,23 +37,23 @@
         <?php if ($navigation) : ?>
         <nav class="col-md-3">
             <?php
-            //Next and Back Buttons inside navigation
+            // Next and Back Buttons inside navigation.
             $this->insert('partials/prev_next');
-            //Navigation
+            // Navigation.
             echo $navigation;
             ?>
         </nav>
         <?php endif;?>
 
-        <?php //page content ?>
+        <?php // Page content. ?>
         <div id="maincontent" class="col-md-9 course_body">
             <?php if (isset($page_data['data']['assessment_summary'])) : ?>
                 <?php $this->insert('partials/assessment_summary'); ?>
-            <?php elseif (isset($page_data['content'])) : ?>
+            <?php else if (isset($page_data['content'])) : ?>
                 <?=$page_data['content']?>
             <?php endif; ?>
         </div>
-        <?php //Next and back buttons at bottom of screen ?>
+        <?php // Next and back buttons at bottom of screen. ?>
         <div class="col-md-12">
             <div class="col-md-3 bottom-pn">
                 <?php $this->insert('partials/prev_next'); ?>

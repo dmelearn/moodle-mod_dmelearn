@@ -1,7 +1,7 @@
 <?php
-//Assessment Summary
+// Assessment Summary.
 $version = isset($course_data['configuration']['course_version']) ? $course_data['configuration']['course_version'] : null;
-// If course version has not been set it should be a version 1
+// If course version has not been set it should be a version 1.
 if ($version === null) {
     $version = 1;
 }
@@ -11,7 +11,7 @@ if ($version === null) {
         <?php foreach ($page_data['data']['assessment_summary']['block_data'] as $block) : ?>
 
         <tr>
-            <?php //Block name ?>
+            <?php // Block name. ?>
             <td>
                 <?php if (isset($block['questions'])) : ?>
                     <?php if ($version === null || $version === 1) : ?>
@@ -21,9 +21,9 @@ if ($version === null) {
                     <?php endif; ?>
                 <?php endif; ?>
             </td>
-            <?php //Number correct ?>
+            <?php // Number correct. ?>
             <td><?=$block['number_completed']?> out of <?=$block['mark']?> questions completed</td>
-            <?php //If Complete Show a tick ?>
+            <?php // If Complete Show a tick. ?>
             <td>
                 <?php if ($block['complete']) : ?>
                 <img src="<?=$course_constants['course_img']?>tick_default.png">
@@ -31,7 +31,7 @@ if ($version === null) {
                 <img src="<?=$constants['base_img']?>course_default/assessment-sum-roundel.png">
                 <?php endif; ?>
             </td>
-            <?php //Loc Link if Available ?>
+            <?php // Loc Link if Available. ?>
             <td class="link">
 
                 <?php if (isset($block['loc']) && !empty($block['loc'])) : ?>
@@ -87,7 +87,7 @@ if ($version === null) {
         <?php endforeach;?>
 
     </table>
-    <?php //Overall progress ?>
+    <?php // Overall progress. ?>
     <div class="summary_progess_bar">
         <h2 class="assessment-sum-head"> You are <?=$page_data['data']['assessment_summary']['progress']['percentage']?>% complete (<?=$page_data['data']['assessment_summary']['progress']['completed_questions']?> of <?=$page_data['data']['assessment_summary']['progress']['total_questions']?> questions correct) </h2>
         <div class="progress assessment-sum-bar">

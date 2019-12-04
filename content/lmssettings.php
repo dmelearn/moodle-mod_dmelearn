@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of moodle-mod_dmelearn for Moodle - http://moodle.org/
 //
 // moodle-mod_dmelearn is free software: you can redistribute it and/or modify
@@ -24,7 +23,7 @@
  * @version       1.1.0
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-include_once(dirname(dirname(dirname(dirname(__FILE__)))) . "/config.php");
+require_once("../../../config.php");
 // Require gradelib to update grades correctly with grade_update function.
 require_once($CFG->libdir . '/gradelib.php');
 
@@ -63,7 +62,7 @@ $course = $elmo->coursepath;
 // Number of months to accept already completed ELMO courses.
 $timeframemonths = $elmo->timeframemonths;
 
-// Earliest Year to accept previously completed course data from ELMO;
+// Earliest Year to accept previously completed course data from ELMO.
 $preventearlierthanyear = $elmo->preventearlierthanyear;
 
 // SOME USER DATA needed to make a request.
@@ -146,11 +145,11 @@ function check_progress_page($elearnid, $course_complete, $percentage = 0) {
         $edata->grade = $percentage;
         $edata->trackdata = json_encode($trackdata);
         $edata->modified = time();
-        // Insert the record
+        // Insert the record.
         $DB->insert_record('dmelearn_entries', $edata);
     }
 
-    // Get the 'last page visited' data out of 'dmelearn_entries'
+    // Get the 'last page visited' data out of 'dmelearn_entries'.
     $trackdata = json_decode($edata->trackdata);
     if (!is_object($trackdata)) {
         // Make a new blank trackdata object.
@@ -165,7 +164,7 @@ function check_progress_page($elearnid, $course_complete, $percentage = 0) {
         echo '<script>window.location.href="' . $lmscontenturl . '&module=' . $trackdata->module
             .'&page=' . $trackdata->page . '";</script>';
         die();
-    } elseif (isset($_REQUEST["module"]) && $_REQUEST["module"] != "" && isset($_REQUEST["page"])
+    } else if (isset($_REQUEST["module"]) && $_REQUEST["module"] != "" && isset($_REQUEST["page"])
         && $_REQUEST["page"] != "") {
         // Set trackdata to be equal to the requested page and module.
         $trackdata->page = filter_var($_REQUEST['page'], FILTER_SANITIZE_STRING);
@@ -254,13 +253,13 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
             // API says complete but gradebook does not reflect this yet.
             // Set raw grade to 100% complete.
             $grade_grades->rawgrade = $grade_grades->rawgrademax;
-            $grade_grades->overridden = 0; // Clear any overridden activity module grades
+            $grade_grades->overridden = 0; // Clear any overridden activity module grades.
             grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
 
             // Update the course completions as complete
             update_course_completion_status($COURSE->id, cmid_from_elearnid($elearnid), $USER->id, true);
 
-        } elseif ($course_complete != 1 && $grade_grades->rawgrade == $grade_grades->rawgrademax) {
+        } else if ($course_complete != 1 && $grade_grades->rawgrade == $grade_grades->rawgrademax) {
             // API says NOT complete but gradebook does not reflect this.
             // User has manually reset DM Assessments in Activity Module.
 
@@ -271,13 +270,13 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
             // Set Grade back to null and add Feedback about reset time.
             $grade_grades->rawgrade = null;
             $grade_grades->feedback = 'User reset at ' . $formattedString . '.';
-            $grade_grades->overridden = 0; // Clear any overridden activity module grades
+            $grade_grades->overridden = 0; // Clear any overridden activity module grades.
             grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
 
             // Update the course completions as incomplete
             update_course_completion_status($COURSE->id, cmid_from_elearnid($elearnid), $USER->id, false);
 
-            // Reset Just happened
+            // Reset Just happened.
             //@todo clear_completion_dates(true);
 
         } else {
@@ -294,15 +293,15 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
                 //$grade_grades->overridden = time();
                 grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
 
-                // Update the course completions as incomplete
+                // Update the course completions as incomplete.
                 update_course_completion_status($COURSE->id, cmid_from_elearnid($elearnid), $USER->id, $complete);
 
-            } elseif ($grade_of_rawgrademax == 0) {
+            } else if ($grade_of_rawgrademax == 0) {
                 $grade_grades->rawgrade = null;
                 //$grade_grades->overridden = time();
                 grade_update('mod/dmelearn', $COURSE->id, 'mod', 'dmelearn', $elearnid, 0, $grade_grades);
 
-                // Update the course completions as incomplete
+                // Update the course completions as incomplete.
                 update_course_completion_status($COURSE->id, cmid_from_elearnid($elearnid), $USER->id, false);
             }
         }
@@ -325,7 +324,7 @@ function clear_completion_dates($purge_completion = false) {
         return;
     }
 
-    // Handle Course Completion
+    // Handle Course Completion.
     $params = array('course' => $COURSE->id, 'userid' => $USER->id);
     $values = $DB->get_record('course_completions', $params);
 
@@ -342,13 +341,13 @@ function clear_completion_dates($purge_completion = false) {
 
         if ($course_completion_timestarted > 0) {
             $params['timestarted'] = $timenow;
-        } elseif ($course_completion_timeenrolled > 0) {
+        } else if ($course_completion_timeenrolled > 0) {
             $params['timeenrolled'] = $timenow;
         }
         $DB->update_record('course_completions', $params);
     }
 
-    // Handle Course Completion Criteria
+    // Handle Course Completion Criteria.
     $params2 = array('course' => $COURSE->id, 'userid' => $USER->id);
     $criterion = $DB->get_records('course_completion_crit_compl', $params2);
 
@@ -356,31 +355,31 @@ function clear_completion_dates($purge_completion = false) {
         $crit_params = array();
         $crit_compl_id = $criteria->id;
         $criteria_id = $criteria->criteriaid;
-        $timecompleted = $criteria->timecompleted; // need to be NULLed
+        $timecompleted = $criteria->timecompleted; // need to be NULLed.
 
         $compl_criteria = $DB->get_record('course_completion_criteria', array('id' => $criteria_id));
         $crit_params['id'] = $crit_compl_id;
         $crit_params['timecompleted'] = null;
 
-        // Reset Time for Activity Completion
+        // Reset Time for Activity Completion.
         if ($compl_criteria->module === 'dmelearn'
             && $compl_criteria->criteriatype == COMPLETION_CRITERIA_TYPE_ACTIVITY
         ) {
             $DB->update_record('course_completion_crit_compl', $crit_params);
         }
 
-        // Reset Time for Activity Completion
+        // Reset time for Activity Completion.
         if ($compl_criteria->module === null
             && $compl_criteria->gradepass > 0
             && $compl_criteria->criteriatype == COMPLETION_CRITERIA_TYPE_GRADE
         ) {
             $crit_params['gradefinal'] = null;
-            // we wanna set timecompleted to null, mate
+            // We want to set timecompleted to null.
             $DB->update_record('course_completion_crit_compl', $crit_params);
         }
     }
 
-    // @todo make this optional in activity module settings
+    // @todo make this optional in activity module settings.
     if ($purge_completion) {
         cache::make('core', 'completion')->purge();
     }

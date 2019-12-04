@@ -1,4 +1,4 @@
-<?php //Course shell version 1 ?>
+<?php // Course shell version 1. ?>
 <style>
 .course_head_expired {
     padding: 30px;
@@ -34,7 +34,7 @@
             <button type="button" class="btn btn-danger pull-right button-click" data-toggle="modal" data-target=".reset_modal">Reset Course</button>
             
         </div>
-        <?php //Modal ?>
+        <?php // Modal. ?>
         <div class="modal fade reset_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">

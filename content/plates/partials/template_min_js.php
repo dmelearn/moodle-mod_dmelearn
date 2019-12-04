@@ -1,6 +1,6 @@
 <?php
-// Minified Version of template_js.php
-// Setup Variables
+// Minified Version of template_js.php.
+// Setup Variables.
 $coursepath = $page_data['data']['cert_data']['course_path'];
 ?><script>
 !function(a,b,c){var d=a.routes;d.base="<?=$constants['base_url']?>",d.course.path=d.base+"courses/<?=$coursepath?>/",d.course.img=d.base+"images/",d.course.resources=d.course.path+"resources/",d.course.images=d.course.resources+"images/"}(window);

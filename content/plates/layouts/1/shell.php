@@ -6,14 +6,14 @@
 <div class="container content-container">
     <div class="row course_content">
         <?php
-        //If the user has completed the course the reset and certificate buttons will appear
+        // If the user has completed the course the reset and certificate buttons will appear.
         if ($page_data['data']['cert_data']['has_certificate']) : ?>
         <div class="alert alert-info clearfix reset_and_cert_buttons">
             <p class="pull-left"><strong>Well Done!</strong>  You have completed the assessment for this course.</p>
             <a class="btn pull-right btn-success" href="<?=$constants['base_url']?>api/cert/download/<?=$page_data['data']['cert_data']['course_path']?>/<?=$page_data['data']['cert_data']['user_id']?>/<?=$page_data['data']['cert_data']['assessment_id']?>">Download Certificate (PDF)</a>
             <a class="btn pull-right btn-danger" href ='#reset_modal' data-toggle="modal">Reset Course</a>
         </div>
-        <?php //Modal ?>
+        <?php // Modal. ?>
         <div id="reset_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
@@ -33,9 +33,9 @@
         <?php if (isset($navigation)) : ?>
         <nav class="span3">
             <?php
-            //Next and Back Buttons inside navigation
+            // Next and Back Buttons inside navigation.
             $this->insert('partials/prev_next');
-            //Navigation
+            // Navigation.
             echo $navigation;
             ?>
         </nav>
@@ -44,11 +44,11 @@
         <div id="maincontent" class="span9 course_body">
             <?php if (isset($page_data['data']['assessment_summary'])) : ?>
                 <?php $this->insert('partials/assessment_summary'); ?>
-            <?php elseif (isset($page_data['content'])) : ?>
+            <?php else if (isset($page_data['content'])) : ?>
                 <?=$page_data['content']?>
             <?php endif; ?>
         </div>
-        <?php //Next and back buttons ?>
+        <?php // Next and back buttons. ?>
         <div class="span12">
             <div class="span3 bottom-pn">
                 <?php $this->insert('partials/prev_next'); ?>

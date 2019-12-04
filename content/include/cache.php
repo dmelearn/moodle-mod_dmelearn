@@ -1,7 +1,4 @@
 <?php
-
-namespace mod_dmelearn\cache;
-
 // This file is part of moodle-mod_dmelearn for Moodle - http://moodle.org/
 //
 // moodle-mod_dmelearn is free software: you can redistribute it and/or modify
@@ -17,6 +14,9 @@ namespace mod_dmelearn\cache;
 // You should have received a copy of the GNU General Public License
 // along with Moodle. If not, see <http://www.gnu.org/licenses/>.
 
+namespace mod_dmelearn\cache;
+
+defined('MOODLE_INTERNAL') || die();
 
 /**
  * Class Cache
@@ -38,8 +38,7 @@ class Cache
      * @param $string
      * @todo re-implement limited caching for static content.
      */
-    public static function caching($filename, $string)
-    {
+    public static function caching($filename, $string) {
         //$f = fopen(self::$cache_dir.$filename.'.txt', 'w+');
         //fwrite($f, $string);
         //fclose($f);
@@ -51,8 +50,7 @@ class Cache
      * @param $filename
      * @return string|false
      */
-    public static function retrieve($filename)
-    {
+    public static function retrieve($filename) {
         $filename = $filename . '.txt';
         $path = self::$cache_dir . $filename;
         if (file_exists($path)) {

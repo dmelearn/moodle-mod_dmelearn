@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle. If not, see <http://www.gnu.org/licenses/>.
 
+defined('MOODLE_INTERNAL') || die();
+
 /**
  * Basic Set of Constants
  *
@@ -86,9 +88,7 @@ define('API_LOAD_ACTIVITY_STORAGE', 'api_form_interactive_load/');
  */
 define('API_SET_ACTIVITY_STORAGE', 'api_form_interactive_set/');
 
-/**
- * Array of values to pass to the plates template.
- */
+// Array of values to pass to the plates template.
 $frontEndConstants = array(
     'elmo_env' => $ELMO_ENV,
     'base_url' => ELMO_WEB_BASE_URL,

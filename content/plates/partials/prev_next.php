@@ -21,7 +21,7 @@ if ($version === null) {
     </a>
     <?php endif; ?>
 </div>
-<?php elseif ($version != 4) : ?>
+<?php else if ($version != 4) : ?>
 <div class = "prev_next row-fluid">
     <?php if ($previous_url) : ?>
     <a class="button-flat-primary prev_button col-md-6"

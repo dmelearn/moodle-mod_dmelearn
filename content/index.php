@@ -68,7 +68,7 @@ try {
     $limitbymonths = '/';
 
     if ($preventearlierthanyear > 2000) {
-        // A value of 0 or null means this is not used
+        // A value of 0 or null means this is not used.
         // Include the minimum year completion date in the API URL.
         $limitbymonths .= '0/' . $preventearlierthanyear;
     } else if ($timeframemonths >= 1) {
@@ -117,7 +117,7 @@ if (!support_course_num($course_version)) {
 
 if (isset($module) && !isset($page)) {
     // We have a module but need to get the FIRST page.
-} elseif (!isset($module) && !isset($page)) {
+} else if (!isset($module) && !isset($page)) {
     // We need to get module and page to make a page_request.
     if ($course_request['user']['last_visited']) {
         // We want to request the following page.
@@ -164,7 +164,7 @@ try {
             throw new moodle_exception('pagenotfound', 'dmelearn');
         }
         die();
-    } elseif ($e->getResponse()->getStatusCode() == '400') {
+    } else if ($e->getResponse()->getStatusCode() == '400') {
         // This will happen when no page is specified in the request URL.
         // lmssettings.php will redirect the users to the last saved page.
         if (isset($CFG->debug) && !$CFG->debug == 0) {
@@ -229,7 +229,7 @@ $courseConstants = array(
     'course_img' => ELMO_WEB_COURSE_IMAGES
 );
 
-// Create new Plates Instance Loaded From Composer
+// Create new Plates Instance Loaded From Composer.
 $plates = new League\Plates\Engine(__DIR__ . '/plates');
 
 $page = array(
@@ -259,7 +259,7 @@ $tf_has_expired = isset($course_request["tf_has_expired"]) ? $course_request["tf
 if ($tf_has_expired) {
     // Course that requires reset before it can be viewed.
     $page['timeframemonths'] = $timeframemonths;
-    // Output Template
+    // Output Template.
     $plates->addData($page);
     echo $plates->render('base_reset');
     die();

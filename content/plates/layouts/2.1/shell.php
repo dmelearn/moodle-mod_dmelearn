@@ -1,4 +1,4 @@
-<?php //Course shell version 2.1 ?>
+<?php // Course shell version 2.1. ?>
 <a href="#maincontent" id="skip" class="text-primary">Skip to content</a>
 
 <div class="course-head">
@@ -13,17 +13,17 @@
     <?php if ($navigation) : ?>
         <script>
           hideMenu();
-          // Do side menu check
+          // Do side menu check.
           $(function() {
             checkMenuIcon();
           });
 
-          // Check again when the window is resized
+          // Check again when the window is resized.
           $(window).resize(function() {
             hideMenu();
           });
 
-          // Resize the course content so the footer is below the sidebar always
+          // Resize the course content so the footer is below the sidebar always.
           function contentMinHeight() {
             var sidebar = $('.course__sidebar');
             var courseBody = $('.course__content__wrapper');
@@ -33,11 +33,11 @@
             }
           }
 
-          // Checks if the side menu needs to be open or closed
+          // Checks if the side menu needs to be open or closed.
           function hideMenu() {
             var viewportWidth = $(window).width();
             var openWindow = localStorage.getItem('dmSidebarOpen');
-            // If the local storage is set to close then keep it closed
+            // If the local storage is set to close then keep it closed.
             if (openWindow == 'false') {
               $(".course__content").addClass("closed-menu");
               $('#nav-box ul').removeClass('open');
@@ -54,7 +54,7 @@
             }
           }
 
-          // Check which icon should be shown on the menu
+          // Check which icon should be shown on the menu.
           function checkMenuIcon() {
             if (localStorage.getItem('dmSidebarOpen') == 'false' || $(window).width() < 990) {
               $('#nav-box ul').removeClass('open');
@@ -63,7 +63,7 @@
             }
           }
 
-          // This function is called when the close menu button is clicked
+          // This function is called when the close menu button is clicked.
           function smallScreen() {
             $('.course__content').toggleClass('closed-menu')
             $('#nav-box ul').toggleClass('open');
@@ -98,9 +98,9 @@
         </aside>
     <?php endif; ?>
 
-    <?php //page content ?>
+    <?php // Page content. ?>
     <div class="course__content__wrapper clearfix">
-        <?php //If the user has completed the course the reset and certificate buttons will appear ?>
+        <?php // If the user has completed the course the reset and certificate buttons will appear. ?>
         <?php if ($page_data['data']['cert_data']['has_certificate']) : ?>
             <div class="alert alert-info clearfix row-fluid reset_and_cert_buttons">
                 <p class="pull-left"><strong>Well Done!</strong> You have completed the assessment for this course.</p>
@@ -109,7 +109,7 @@
                     Certificate (PDF)</a>
                 <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target=".reset_modal">Reset Course</button>
             </div>
-            <?php //Modal ?>
+            <?php // Modal. ?>
             <div class="modal fade reset_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -132,7 +132,7 @@
         <div id="maincontent" class="course-body clearfix">
             <?php if (isset($page_data['data']['assessment_summary'])) : ?>
                 <?php $this->insert('layouts/2.1/assessment_summary'); ?>
-            <?php elseif (isset($page_data['content'])) : ?>
+            <?php else if (isset($page_data['content'])) : ?>
                 <?= $page_data['content'] ?>
             <?php endif; ?>
             <?php //Next and back buttons at bottom of screen ?>

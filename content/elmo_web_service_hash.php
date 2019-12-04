@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle. If not, see <http://www.gnu.org/licenses/>.
 
+defined('MOODLE_INTERNAL') || die();
+
 /**
  * Class Elmo_web_service_hash
  *
@@ -37,8 +39,7 @@ abstract class Elmo_web_service_hash
      * @param $secret_key
      * @return string The generated hash token
      */
-    public static function generate($first_name, $last_name, $email, $secret_key)
-    {
+    public static function generate($first_name, $last_name, $email, $secret_key) {
         return hash_hmac('sha256', $first_name . $last_name . $email, $secret_key);
     }
 }

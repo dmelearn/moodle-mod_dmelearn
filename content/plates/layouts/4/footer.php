@@ -1,18 +1,18 @@
-<?php //Version 4 Footer ?>
+<?php // Version 4 Footer. ?>
 <div class="footer">
     <div class="container">
         <hr class="clear">
         <p class="version-stamp">Brought to you by the WCHN Digital Media e-Learning Team - &copy; <?=date("Y")?></p>
 
         <?php
-        //If the user has completed the course the reset and certificate buttons will appear in the footer
+        // If the user has completed the course the reset and certificate buttons will appear in the footer.
         if ($page_data['data']['cert_data']['has_certificate']): ?>
             <div class="alert alert-info clearfix row-fliud reset_and_cert_buttons">
                 <p class="pull-left"><strong>Well Done!</strong>  You have completed the assessment for this course.</p>
                 <a class="btn pull-right btn-success" href="<?=$constants['base_url']?>api/cert/download/<?=$page_data['data']['cert_data']['course_path']?>/<?=$page_data['data']['cert_data']['user_id']?>/<?=$page_data['data']['cert_data']['assessment_id']?>">Download Certificate (PDF)</a>
                 <button type="button" class="btn btn-danger pull-right" data-toggle="modal" data-target=".reset_modal">Reset Course</button>
             </div>
-            <?php //Modal ?>
+            <?php // Modal. ?>
             <div class="modal fade reset_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="z-index: 3000;">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -35,8 +35,8 @@
 
     </div>
 </div>
-<?php //Jquery-UI ?>
+<?php // Jquery-UI. ?>
 <script src="<?=$constants['base_js']?>jquery-ui.min.js"></script>
 <script src="<?=$constants['base_js']?>jquery.ui.touch-punch.min.js"></script>
-<?php //Bootstrap 3 JS  ?>
+<?php // Bootstrap 3 JS. ?>
 <script src="js/bootstrap.min.js"></script>

@@ -367,23 +367,23 @@ function dmelearn_grade_item_update($dmelearn, $grades = null) {
     require_once($CFG->libdir.'/gradelib.php');
 
     if (array_key_exists('cmidnumber', $dmelearn)) {
-        $params = array('itemname'=>$dmelearn->name, 'idnumber'=>$dmelearn->cmidnumber);
+        $params = array('itemname' => $dmelearn->name, 'idnumber' => $dmelearn->cmidnumber);
     } else {
-        $params = array('itemname'=>$dmelearn->name);
+        $params = array('itemname' => $dmelearn->name);
     }
     if ($dmelearn->grade > 0) {
         $params['gradetype']  = GRADE_TYPE_VALUE;
         $params['grademax']   = $dmelearn->grade;
         $params['grademin']   = 0;
         $params['multfactor'] = 1.0;
-    } elseif ($dmelearn->grade < 0) {
+    } else if ($dmelearn->grade < 0) {
         $params['gradetype'] = GRADE_TYPE_SCALE;
         $params['scaleid']   = -$dmelearn->grade;
     } else {
         $params['gradetype']  = GRADE_TYPE_NONE;
         $params['multfactor'] = 1.0;
     }
-    if ($grades  === 'reset') {
+    if ($grades === 'reset') {
         $params['reset'] = true;
         $grades = null;
     }
@@ -430,7 +430,7 @@ function dmelearn_update_grades(stdClass $dmelearn = null, $userid = 0, $nullifn
     if ($dmelearn != null) {
         if ($grades = dmelearn_get_user_grades($dmelearn, $userid)) {
             dmelearn_grade_item_update($dmelearn, $grades);
-        } elseif ($userid && $nullifnone) {
+        } else if ($userid && $nullifnone) {
             $grade = new stdClass();
             $grade->userid   = $userid;
             $grade->rawgrade = null;
@@ -697,7 +697,7 @@ function dmelearn_get_user_grades($dmelearn, $userid = 0) {
     if (!$dmelearn) {
         return false;
     } else {
-        // $dmelearn supplied.
+        // A $dmelearn supplied.
         if ($userid) {
             // User ID supplied.
             $params = array($dmelearn->id, $userid);

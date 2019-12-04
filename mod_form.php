@@ -36,7 +36,7 @@ class mod_dmelearn_mod_form extends moodleform_mod {
     /**
      * Defines forms elements
      */
-    function definition() {
+    public function definition() {
         global $CFG;
         global $USER;
 
@@ -60,7 +60,7 @@ class mod_dmelearn_mod_form extends moodleform_mod {
             $mform->addElement('html', get_string('mfnocourses', 'dmelearn'));
         }
 
-        // Years
+        // Select a minimum year to sync results from.
         $preventEarlierThanYear = array(
             '0' => '',
             '2013' => '2013',
@@ -81,7 +81,7 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         // Help text for new users.
         $mform->addElement('html', get_string('mfinstructions', 'dmelearn'));
 
-        // Adding the rest of newmodule settings, spreading all them into this fieldset
+        // Adding the rest of newmodule settings, spreading all them into this fieldset.
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
         $mform->addElement('header', 'dmelearnsetting', get_string('dmelearnsetting', 'dmelearn'));
 
