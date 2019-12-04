@@ -1,22 +1,22 @@
 <?php
-// This file is part of moodle-mod_dmelearn for Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/
 //
-// moodle-mod_dmelearn is free software: you can redistribute it and/or modify
+// Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// moodle-mod_dmelearn is distributed in the hope that it will be useful,
+// Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
-//
-// This plug-in is based on mod_journal by David Monllaó (https://moodle.org/plugins/view/mod_journal).
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Redirect the user to the appropiate submission related page.
+ *
  * @package       mod_dmelearn
  * @author        Kien Vu, CJ Faulkner
  * @copyright     2015 BrightCookie (http://www.brightcookie.com.au), Digital Media e-learning
@@ -25,11 +25,15 @@
  */
 
 require_once("../../config.php");
+
 // Course module ID.
 $id = required_param('id', PARAM_INT);
-// Item number, may be != 0 for activities that allow more than one grade per user.
+
+// Item number may be != 0 for activities that allow more than one grade per user.
 $itemnumber = optional_param('itemnumber', 0, PARAM_INT);
+
 // Graded user ID (optional).
 $userid = optional_param('userid', 0, PARAM_INT);
+
 // In the simplest case just redirect to the view page.
 redirect('view.php?id=' . $id);
