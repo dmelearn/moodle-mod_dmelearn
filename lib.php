@@ -69,46 +69,45 @@ function dmelearn_supports($feature) {
 }
 
 /**
- * Saves a new instance of the dmelearn into the database
+ * Saves a new instance of the dmelearn into the database.
  *
- * Given an object containing all the necessary data,
- * (defined by the form in mod_form.php) this function
- * will create a new instance and return the id number
- * of the new instance.
+ * Given an object containing all the necessary data, (defined by the form
+ * in mod_form.php) this function will create a new instance and return the id
+ * number of the instance.
  *
- * @param stdClass $dmelearn Submitted data from the form in mod_form.php
- * @param mod_dmelearn_mod_form $mform The form instance itself (if needed)
- * @return int The id of the newly inserted dmelearn record
+ * @param object $dmelearn An object from the form.
+ * @param mod_dmelearn_mod_form $mform The form.
+ * @return int The id of the newly inserted record.
  */
-function dmelearn_add_instance(stdClass $dmelearn, mod_dmelearn_mod_form $mform = null) {
+function dmelearn_add_instance($dmelearn, $mform = null) {
     global $DB;
 
     $dmelearn->timecreated = time();
-
     $dmelearn->id = $DB->insert_record('dmelearn', $dmelearn);
+
     dmelearn_grade_item_update($dmelearn);
 
     return $dmelearn->id;
 }
 
 /**
- * Updates an instance of the dmelearn in the database
+ * Updates an instance of the dmelearn in the database.
  *
- * Given an object containing all the necessary data,
- * (defined by the form in mod_form.php) this function
- * will update an existing instance with new data.
+ * Given an object containing all the necessary data (defined in mod_form.php),
+ * this function will update an existing instance with new data.
  *
- * @param stdClass $dmelearn An object from the form in mod_form.php
- * @param mod_dmelearn_mod_form $mform The form instance itself (if needed)
- * @return boolean Success/Fail
+ * @param object $dmelearn An object from the form in mod_form.php.
+ * @param mod_dmelearn_mod_form $mform The form.
+ * @return bool True if successful, false otherwise.
  */
-function dmelearn_update_instance(stdClass $dmelearn, mod_dmelearn_mod_form $mform = null) {
+function dmelearn_update_instance($dmelearn, $mform = null) {
     global $DB;
 
     $dmelearn->timemodified = time();
     $dmelearn->id = $dmelearn->instance;
 
     $result = $DB->update_record('dmelearn', $dmelearn);
+
     dmelearn_grade_item_update($dmelearn);
     dmelearn_update_grades($dmelearn, 0, false);
 
@@ -116,19 +115,20 @@ function dmelearn_update_instance(stdClass $dmelearn, mod_dmelearn_mod_form $mfo
 }
 
 /**
- * Removes an instance of the dmelearn from the database
+ * Removes an instance of the dmelearn from the database.
  *
  * Given an ID of an instance of this module,
  * this function will permanently delete the instance
  * and any data that depends on it.
  *
- * @param int $id Id of the module instance
- * @return boolean Success/Failure
+ * @param int $id Id of the module instance.
+ * @return bool True if successful, false on failure.
  */
 function dmelearn_delete_instance($id) {
     global $DB;
 
-    if (! $dmelearn = $DB->get_record('dmelearn', array('id' => $id))) {
+    $exists = $DB->get_record('dmelearn', array('id' => $id));
+    if (!$exists) {
         return false;
     }
 
@@ -321,9 +321,9 @@ function dmelearn_get_extra_capabilities() {
  * This function returns if a scale is being used by one dmelearn
  * if it has support for grading and scales.
  *
- * @param int $dmelearnid ID of an instance of this module
- * @param int $scaleid ID of the scale
- * @return bool true if the scale is used by the given dmelearn instance
+ * @param int $dmelearnid ID of an instance of this module.
+ * @param int $scaleid ID of the scale.
+ * @return bool True if the scale is used by the given dmelearn instance.
  */
 function dmelearn_scale_used($dmelearnid, $scaleid) {
     global $DB;
@@ -340,8 +340,8 @@ function dmelearn_scale_used($dmelearnid, $scaleid) {
  *
  * This is used to find out if scale used anywhere.
  *
- * @param int $scaleid ID of the scale
- * @return boolean true if the scale is used by any dmelearn instance
+ * @param int $scaleid ID of the scale.
+ * @return bool True if the scale is used by any dmelearn instance.
  */
 function dmelearn_scale_used_anywhere($scaleid) {
     global $DB;
@@ -354,79 +354,73 @@ function dmelearn_scale_used_anywhere($scaleid) {
 }
 
 /**
- * Creates or updates grade item for the given dmelearn instance
+ * Creates or updates grade item for the given dmelearn instance.
  *
  * Needed by {@link grade_update_mod_grades()}.
  *
- * @param stdClass $dmelearn instance object with extra cmidnumber and modname property
- * @param mixed optional array/object of grade(s); 'reset' means reset grades in gradebook
- * @return int 0 if ok, error code otherwise
+ * @param stdClass $dmelearn Instance object with extra cmidnumber and modname property.
+ * @param bool $reset Reset grades in the gradebook.
+ * @return void.
  */
-function dmelearn_grade_item_update($dmelearn, $grades = null) {
+function dmelearn_grade_item_update($dmelearn, $reset=false) {
     global $CFG;
     require_once($CFG->libdir.'/gradelib.php');
 
+    $item = array();
+    $item['itemname'] = clean_param($dmelearn->name, PARAM_NOTAGS);
+    $item['gradetype'] = GRADE_TYPE_VALUE;
+
     if (array_key_exists('cmidnumber', $dmelearn)) {
-        $params = array('itemname' => $dmelearn->name, 'idnumber' => $dmelearn->cmidnumber);
-    } else {
-        $params = array('itemname' => $dmelearn->name);
-    }
-    if ($dmelearn->grade > 0) {
-        $params['gradetype']  = GRADE_TYPE_VALUE;
-        $params['grademax']   = $dmelearn->grade;
-        $params['grademin']   = 0;
-        $params['multfactor'] = 1.0;
-    } else if ($dmelearn->grade < 0) {
-        $params['gradetype'] = GRADE_TYPE_SCALE;
-        $params['scaleid']   = -$dmelearn->grade;
-    } else {
-        $params['gradetype']  = GRADE_TYPE_NONE;
-        $params['multfactor'] = 1.0;
-    }
-    if ($grades === 'reset') {
-        $params['reset'] = true;
-        $grades = null;
+        $item['idnumber'] = $dmelearn->cmidnumber;
     }
 
-    grade_update('mod/dmelearn', $dmelearn->course, 'mod', 'dmelearn',
-        $dmelearn->id, 0, $grades, $params);
+    if ($dmelearn->grade > 0) {
+        $item['gradetype']  = GRADE_TYPE_VALUE;
+        $item['grademax']   = $dmelearn->grade;
+        $item['grademin']   = 0;
+        $item['multfactor'] = 1.0;
+    } else if ($dmelearn->grade < 0) {
+        $item['gradetype'] = GRADE_TYPE_SCALE;
+        $item['scaleid']   = -$dmelearn->grade;
+    } else {
+        $item['gradetype']  = GRADE_TYPE_NONE;
+        $item['multfactor'] = 1.0;
+    }
+    if ($reset) {
+        $item['reset'] = true;
+    }
+
+    grade_update('mod/dmelearn', $dmelearn->course, 'mod', 'dmelearn', $dmelearn->id, 0, null, $item);
 }
 
 /**
- * Delete grade item for given dmelearn instance
+ * Delete grade item for given dmelearn instance.
  *
- * @param stdClass $dmelearn instance object
- * @return grade_item
+ * @param stdClass $dmelearn Instance object.
+ * @return grade_item.
  */
 function dmelearn_grade_item_delete($dmelearn) {
     global $CFG;
     require_once($CFG->libdir.'/gradelib.php');
 
-    return grade_update(
-        'mod/dmelearn',
-        $dmelearn->course,
-        'mod',
-        'dmelearn',
-        $dmelearn->id,
-        0,
-        null,
-        array('deleted' => 1)
-    );
+    return grade_update('mod/dmelearn', $dmelearn->course, 'mod', 'dmelearn',
+        $dmelearn->id, 0, null, array('deleted' => 1));
 }
 
 /**
- * Update dmelearn grades in the gradebook
+ * Update dmelearn grades in the gradebook.
  *
  * Needed by {@link grade_update_mod_grades()}.
  *
- * @param stdClass $dmelearn instance object with extra cmidnumber and modname property
- * @param int $userid update grade_grades of specific user only, 0 means all participants
- * @param boolean $nullifnone null if grade does not exist
+ * @param stdClass $dmelearn Instance object with extra cmidnumber and modname property.
+ * @param int $userid Update grade of specific user only, 0 means all participants.
+ * @param bool $nullifnone null if grade does not exist
  */
-function dmelearn_update_grades(stdClass $dmelearn = null, $userid = 0, $nullifnone = false) {
+function dmelearn_update_grades($dmelearn = null, $userid = 0, $nullifnone = false) {
     global $CFG, $DB;
     require_once($CFG->libdir . '/gradelib.php');
 
+    // Populate array of grade objects indexed by userid.
     if ($dmelearn != null) {
         if ($grades = dmelearn_get_user_grades($dmelearn, $userid)) {
             dmelearn_grade_item_update($dmelearn, $grades);
