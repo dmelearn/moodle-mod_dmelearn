@@ -27,8 +27,8 @@ require_once(__DIR__.'/lib.php');
 
 $id = required_param('id', PARAM_INT); // Course ID.
 
-if (!$course = $DB->get_record("course", array("id" => $id))) {
-    print_error("Course ID is incorrect");
+if (! $course = $DB->get_record('course', array('id' => $id))) {
+    print_error('Course ID is incorrect');
 }
 
 require_course_login($course);
@@ -101,11 +101,11 @@ foreach ($elmos as $elmo) {
     if (!$elmo->visible) {
         // Show dimmed if the mod is hidden.
         $table->data[$i][] = "<a class=\"dimmed\" href=\"view.php?id=$elmo->coursemodule\">"
-            . $elmoname . "</a>";
+            . $elmoname . '</a>';
     } else {
         // Show normal if the mod is visible.
         $table->data[$i][] = "<a href=\"view.php?id=$elmo->coursemodule\">"
-            . $elmoname . "</a>";
+            . $elmoname . '</a>';
     }
 
     // Description.
@@ -113,13 +113,13 @@ foreach ($elmos as $elmo) {
 
     // Entries info.
     if (!empty($managersomewhere)) {
-        $table->data[$i][] = "";
+        $table->data[$i][] = '';
     }
 
     $i++;
 }
 
-echo "<br />";
+echo '<br />';
 
 echo html_writer::table($table);
 

@@ -184,7 +184,7 @@ function dmelearn_user_complete($course, $user, $mod, $dmelearn) {
     if ($entry = $DB->get_record('dmelearn_entries', array('userid' => $user->id, 'dmelearn' => $dmelearn->id))) {
         echo $OUTPUT->box_start();
         if ($entry->modified) {
-            echo "<p>" . get_string("lastedited") . ": " . userdate($entry->modified) . "</p>";
+            echo '<p>' . get_string('lastedited') . ': ' . userdate($entry->modified) . '</p>';
         }
         echo $OUTPUT->box_end();
     } else {
@@ -326,11 +326,7 @@ function dmelearn_get_extra_capabilities() {
 function dmelearn_scale_used($dmelearnid, $scaleid) {
     global $DB;
 
-    if ($scaleid and $DB->record_exists('dmelearn', array('id' => $dmelearnid, 'grade' => -$scaleid))) {
-        return true;
-    } else {
-        return false;
-    }
+    return $scaleid && $DB->record_exists('dmelearn', array('id' => $dmelearnid, 'grade' => -$scaleid));
 }
 
 /**
@@ -344,11 +340,7 @@ function dmelearn_scale_used($dmelearnid, $scaleid) {
 function dmelearn_scale_used_anywhere($scaleid) {
     global $DB;
 
-    if ($scaleid and $DB->record_exists('dmelearn', array('grade' => -$scaleid))) {
-        return true;
-    } else {
-        return false;
-    }
+    return $scaleid && $DB->record_exists('dmelearn', array('grade' => -$scaleid));
 }
 
 /**
@@ -395,7 +387,7 @@ function dmelearn_grade_item_update($dmelearn, $reset=false) {
  * Delete grade item for given dmelearn instance.
  *
  * @param stdClass $dmelearn Instance object.
- * @return grade_item.
+ * @return int grade_item
  */
 function dmelearn_grade_item_delete($dmelearn) {
     global $CFG;
@@ -440,11 +432,11 @@ function dmelearn_update_grades($dmelearn = null, $userid = 0, $nullifnone = fal
                 ON cm.instance = dm.id
                 WHERE m.name = 'dmelearn'";
         if ($recordset = $DB->get_records_sql($sql)) {
-            foreach ($recordset as $dmelearn) {
-                if ($dmelearn->grade != false) {
-                    dmelearn_update_grades($dmelearn);
+            foreach ($recordset as $dminstance) {
+                if ($dminstance->grade != false) {
+                    dmelearn_update_grades($dminstance);
                 } else {
-                    dmelearn_grade_item_update($dmelearn);
+                    dmelearn_grade_item_update($dminstance);
                 }
             }
         }
@@ -679,55 +671,54 @@ function dmelearn_print_overview($courses, &$htmlarray) {
 }
 
 /**
- * @param $dmelearn
- * @param int $userid optional
- * @return bool
+ * Get Grade Information from the dmelearn_entries table.
+ *
+ * @param stdClass $dmelearn Instance object with extra cmidnumber and modname property.
+ * @param int $userid optional User ID
+ * @return array|bool grades or false
  */
 function dmelearn_get_user_grades($dmelearn, $userid = 0) {
     global $DB;
 
     if (!$dmelearn) {
         return false;
-    } else {
-        // A $dmelearn supplied.
-        if ($userid) {
-            // User ID supplied.
-            $params = array($dmelearn->id, $userid);
-            $sql = "SELECT userid,
-                modified AS datesubmitted,
-                grade AS rawgrade
-                FROM {dmelearn_entries}
-                WHERE dmelearn = ?
-                AND userid = ?";
-            $grades = $DB->get_records_sql($sql, $params);
-        } else {
-            // User ID Not supplied.
-            $params = array($dmelearn->id);
-            $sql = "SELECT userid,
-                modified AS datesubmitted,
-                grade AS rawgrade
-                FROM {dmelearn_entries}
-                WHERE dmelearn = ?";
-            $grades = $DB->get_records_sql($sql, $params);
-        }
-
-        if ($grades) {
-            foreach ($grades as $key => $grade) {
-                $grades[$key]->id = $grade->userid;
-            }
-        } else {
-            return false;
-        }
-        return $grades;
     }
+    // Dmelearn instance supplied.
+    if ($userid) {
+        // User ID supplied.
+        $params = array($dmelearn->id, $userid);
+        $sql = "SELECT userid, modified AS datesubmitted, grade AS rawgrade
+            FROM {dmelearn_entries}
+            WHERE dmelearn = ?
+            AND userid = ?";
+        $grades = $DB->get_records_sql($sql, $params);
+    } else {
+        // User ID Not supplied.
+        $params = array($dmelearn->id);
+        $sql = "SELECT userid, modified AS datesubmitted, grade AS rawgrade
+            FROM {dmelearn_entries}
+            WHERE dmelearn = ?";
+        $grades = $DB->get_records_sql($sql, $params);
+    }
+
+    if ($grades) {
+        foreach ($grades as $key => $grade) {
+            $grades[$key]->id = $grade->userid;
+        }
+    } else {
+        return false;
+    }
+    return $grades;
 }
 
 /* Other SQL Functions */
 
 /**
+ * Get Dmelearn data
+ *
  * @param $dmelearn
  * @param $currentgroup
- * @return null
+ * @return array|null
  */
 function dmelearn_get_users_done($dmelearn, $currentgroup) {
     global $DB;
@@ -769,7 +760,7 @@ function dmelearn_get_users_done($dmelearn, $currentgroup) {
         $canadd = has_capability('mod/dmelearn:addentries', $context, $user);
         $entriesmanager = has_capability('mod/dmelearn:manageentries', $context, $user);
 
-        if (!$entriesmanager and !$canadd) {
+        if (!$entriesmanager && !$canadd) {
             unset($dmelearns[$key]);
         }
     }
@@ -852,7 +843,7 @@ function dmelearn_log_info($log) {
 /**
  * Returns the dmelearn instance course_module id
  *
- * @param integer $elearnid
+ * @param integer $elearnid instance id
  * @return object
  */
 function dmelearn_get_coursemodule($elearnid) {

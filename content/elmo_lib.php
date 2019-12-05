@@ -45,8 +45,7 @@ use mod_dmelearn\cache\Cache;
 /**
  * @return StdClass
  */
-function get_key_courses()
-{
+function get_key_courses() {
     global $CFG, $USER;
 
     // Some User data needed to make a request.
