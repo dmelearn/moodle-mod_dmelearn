@@ -1,18 +1,18 @@
 <?php
-// This file is part of moodle-mod_dmelearn for Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/
 //
-// moodle-mod_dmelearn is free software: you can redistribute it and/or modify
+// Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
-// moodle-mod_dmelearn is distributed in the hope that it will be useful,
+// Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * Basic Methods for requesting data in ELMO Web Services
@@ -177,7 +177,7 @@ function set_activity_storage_request(&$client, $path, $headers, $post_data = nu
 function elmo_url_exists($file) {
     // Clamp it from spitting errors on invalid URLS.
     $file_headers = @get_headers($file);
-    return ($file_headers[0] == ('HTTP/1.1 404 Not Found' || 'HTTP/1.0 404 Not Found') ) ? false : true;
+    return $file_headers[0] != ('HTTP/1.1 404 Not Found' || 'HTTP/1.0 404 Not Found');
 }
 
 /**
@@ -219,7 +219,7 @@ function get_ajax_content($url) {
     $result = curl_exec($curl);
     curl_close($curl);
     $path_explode = explode('/', $url);
-    $result = preg_replace_callback('/src="([^"]+)"/i', function ($matches) {
+    return preg_replace_callback('/src="([^"]+)"/i', function ($matches) {
         global $path_explode;
         if (strpos($matches[0], "http://") !== 0) {
             return str_replace('src="', 'src="http://' . $path_explode[2].'/', $matches[0]);
@@ -227,7 +227,6 @@ function get_ajax_content($url) {
             return ("21".$matches[0]);
         }
     }, $result);
-    return $result;
 }
 
 /**
@@ -240,7 +239,7 @@ function support_course_num($version_num) {
     // Array containing the course version numbers supported by this dmelearn plugin version.
     $supported = array(1, 2, 2.1, 3, 4);
 
-    return (in_array($version_num, $supported)) ? true : false;
+    return in_array($version_num, $supported);
 }
 
 /**

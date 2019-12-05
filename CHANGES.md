@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.10.0 (2019120500)
+- Moodle Code Style fixes, PHPDoc updates, PHP security improvements.
+- Remove deprecated function calls in index.php
+
 ## v1.9.2 (2019120300)
 - Update completion information for a course when activity is completed or reset.
 - New minimum requirement of Moodle 2.7+, 2.6 and below not supported.

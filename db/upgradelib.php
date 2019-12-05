@@ -15,16 +15,25 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Internal library of functions for moodle-mod_dmelearn
+ * Plugin upgrade helper functions are defined here.
  *
- * All the moodle-mod_dmelearn specific functions, needed to implement the module
- * logic, should go here. Never include this file from your lib.php!
- *
- * @package       mod_dmelearn
- * @author        AJ Dunn
- * @copyright     Digital Media e-learning
- * @version       1.0.0
- * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     mod_dmelearn
+ * @category    upgrade
+ * @copyright   2019 Digital Media
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
+
+/**
+ * Helper function used by the upgrade.php file.
+ */
+function mod_dmelearn_helper_function() {
+    global $DB;
+
+    // Please note that you should always be performing any task using raw (low
+    // level) database access exclusively, avoiding any use of the Moodle APIs.
+    //
+    // For more information please read the available Moodle documentation:
+    // https://docs.moodle.org/dev/Upgrade_API
+}

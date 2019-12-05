@@ -132,7 +132,7 @@
         <div id="maincontent" class="course-body clearfix">
             <?php if (isset($page_data['data']['assessment_summary'])) : ?>
                 <?php $this->insert('layouts/2.1/assessment_summary'); ?>
-            <?php else if (isset($page_data['content'])) : ?>
+            <?php elseif (isset($page_data['content'])) : ?>
                 <?= $page_data['content'] ?>
             <?php endif; ?>
             <?php //Next and back buttons at bottom of screen ?>

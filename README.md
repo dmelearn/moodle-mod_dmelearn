@@ -32,7 +32,7 @@ This includes [Gulp](http://gulpjs.com/), [gulp-rename](https://www.npmjs.com/pa
 If you do not wish to use these proxy settings for the plugin please enter the API URL int the ``Proxy bypass hosts`` field on this page.
 
 ## Requirements
-- PHP 5.4.0 or above with short echo tag support and the [cURL extension](http://php.net/manual/en/book.curl.php).
+- PHP 5.4.4 or above with short echo tag support and the [cURL extension](http://php.net/manual/en/book.curl.php).
 - Moodle 2.7, 2.8, 2.9, 3.x+
 - https://docs.moodle.org/25/en/Installing_Moodle#Requirements
 

@@ -44,7 +44,7 @@
         <div id="maincontent" class="span9 course_body">
             <?php if (isset($page_data['data']['assessment_summary'])) : ?>
                 <?php $this->insert('partials/assessment_summary'); ?>
-            <?php else if (isset($page_data['content'])) : ?>
+            <?php elseif (isset($page_data['content'])) : ?>
                 <?=$page_data['content']?>
             <?php endif; ?>
         </div>
