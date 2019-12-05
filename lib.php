@@ -125,8 +125,8 @@ function dmelearn_update_instance($dmelearn, $mform = null) {
 function dmelearn_delete_instance($id) {
     global $DB;
 
-    $exists = $DB->get_record('dmelearn', array('id' => $id));
-    if (!$exists) {
+    $dmelearn = $DB->get_record('dmelearn', array('id' => $id));
+    if (!$dmelearn) {
         return false;
     }
 
