@@ -25,7 +25,7 @@
 require_once(__DIR__.'/../../config.php');
 require_once(__DIR__.'/lib.php');
 
-$id = required_param('id', PARAM_INT); // Course.
+$id = required_param('id', PARAM_INT); // Course ID.
 
 if (!$course = $DB->get_record("course", array("id" => $id))) {
     print_error("Course ID is incorrect");
@@ -47,18 +47,15 @@ echo $OUTPUT->header();
 echo $OUTPUT->heading($strelmos);
 
 if (!$elmos = get_all_instances_in_course('dmelearn', $course)) {
-    notice(get_string('thereareno',
-        'moodle',
-        get_string('modulenameplural', 'dmelearn')),
-        "../../course/view.php?id=$course->id"
-    );
-    die;
+    notice(get_string('thereareno', 'moodle', get_string('modulenameplural', 'dmelearn')), "../../course/view.php?id=$course->id");
+    die();
 }
 
 // Sections.
 $usesections = course_format_uses_sections($course->format);
 if ($usesections) {
-    $sections = get_all_sections($course->id);
+    $modinfo = get_fast_modinfo($course);
+    $sections = $modinfo->get_section_info_all();
 }
 
 $timenow = time();
@@ -81,7 +78,7 @@ $table->align[] = 'left';
 $currentsection = '';
 $i = 0;
 foreach ($elmos as $elmo) {
-    $context = get_context_instance(CONTEXT_MODULE, $elmo->coursemodule);
+    $context = context_module::instance($elmo->coursemodule);
 
     // Section.
     $printsection = '';
@@ -100,18 +97,19 @@ foreach ($elmos as $elmo) {
     }
 
     // Link.
+    $elmoname = format_string($elmo->name, true, array('context' => $context));
     if (!$elmo->visible) {
         // Show dimmed if the mod is hidden.
         $table->data[$i][] = "<a class=\"dimmed\" href=\"view.php?id=$elmo->coursemodule\">"
-            . format_string($elmo->name, true) . "</a>";
+            . $elmoname . "</a>";
     } else {
         // Show normal if the mod is visible.
         $table->data[$i][] = "<a href=\"view.php?id=$elmo->coursemodule\">"
-            . format_string($elmo->name, true) . "</a>";
+            . $elmoname . "</a>";
     }
 
     // Description.
-    $table->data[$i][] = format_text($elmo->intro, $elmo->introformat);
+    $table->data[$i][] = format_text($elmo->intro, $elmo->introformat, array('context' => $context));
 
     // Entries info.
     if (!empty($managersomewhere)) {
