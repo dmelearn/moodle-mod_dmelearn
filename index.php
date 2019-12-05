@@ -22,8 +22,8 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once("../../config.php");
-require_once("lib.php");
+require_once(__DIR__.'/../../config.php');
+require_once(__DIR__.'/lib.php');
 
 $id = required_param('id', PARAM_INT); // Course.
 
@@ -122,6 +122,7 @@ foreach ($elmos as $elmo) {
 }
 
 echo "<br />";
+
 echo html_writer::table($table);
 
 // Use the new Moodle 2.7+ $event->trigger() for logging.

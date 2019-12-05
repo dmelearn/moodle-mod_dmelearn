@@ -21,7 +21,8 @@
  * @version       1.1.0
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-require_once("../../../config.php");
+
+require_once(__DIR__.'/../../../config.php');
 // Require gradelib to update grades correctly with grade_update function.
 require_once($CFG->libdir . '/gradelib.php');
 
