@@ -368,7 +368,6 @@ function dmelearn_grade_item_update($dmelearn, $reset=false) {
     $item['itemname'] = clean_param($dmelearn->name, PARAM_NOTAGS);
     $item['gradetype'] = GRADE_TYPE_VALUE;
 
-    if (array_key_exists('cmidnumber', $dmelearn)) {
         $item['idnumber'] = $dmelearn->cmidnumber;
     }
 
