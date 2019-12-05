@@ -177,7 +177,7 @@ function set_activity_storage_request(&$client, $path, $headers, $post_data = nu
 function elmo_url_exists($file) {
     // Clamp it from spitting errors on invalid URLS.
     $file_headers = @get_headers($file);
-    return ($file_headers[0] == ('HTTP/1.1 404 Not Found' || 'HTTP/1.0 404 Not Found') ) ? false : true;
+    return $file_headers[0] != ('HTTP/1.1 404 Not Found' || 'HTTP/1.0 404 Not Found');
 }
 
 /**
@@ -219,7 +219,7 @@ function get_ajax_content($url) {
     $result = curl_exec($curl);
     curl_close($curl);
     $path_explode = explode('/', $url);
-    $result = preg_replace_callback('/src="([^"]+)"/i', function ($matches) {
+    return preg_replace_callback('/src="([^"]+)"/i', function ($matches) {
         global $path_explode;
         if (strpos($matches[0], "http://") !== 0) {
             return str_replace('src="', 'src="http://' . $path_explode[2].'/', $matches[0]);
@@ -227,7 +227,6 @@ function get_ajax_content($url) {
             return ("21".$matches[0]);
         }
     }, $result);
-    return $result;
 }
 
 /**
@@ -240,7 +239,7 @@ function support_course_num($version_num) {
     // Array containing the course version numbers supported by this dmelearn plugin version.
     $supported = array(1, 2, 2.1, 3, 4);
 
-    return (in_array($version_num, $supported)) ? true : false;
+    return in_array($version_num, $supported);
 }
 
 /**

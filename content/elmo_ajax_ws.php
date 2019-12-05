@@ -59,7 +59,7 @@ $data = array('data' => filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING));
 
 // Workout what the request actually is for.
 // Regex sucks in PHP, strip the first slash if it exists.
-if (substr($path, 0, 1) == '/') {
+if (substr($path, 0, 1) === '/') {
     $path = substr($path, 1, strlen($path));
 }
 $path_explode = explode('/', $path);
