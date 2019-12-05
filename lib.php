@@ -223,15 +223,15 @@ function dmelearn_print_recent_activity($course, $viewfullnames, $timestart) {
     $modinfo = & get_fast_modinfo($course);
     foreach ($logs as $log) {
         // Get elmo info.  It will be needed later.
-        $j_log_info = dmelearn_log_info($log);
+        $dm_log_info = dmelearn_log_info($log);
 
-        $coursemodule = $modinfo->instances['dmelearn'][$j_log_info->id];
+        $coursemodule = $modinfo->instances['dmelearn'][$dm_log_info->id];
         if (!$coursemodule->uservisible) {
             continue;
         }
 
         if (!isset($dmelearns[$log->info])) {
-            $dmelearns[$log->info] = $j_log_info;
+            $dmelearns[$log->info] = $dm_log_info;
             $dmelearns[$log->info]->time = $log->time;
             $dmelearns[$log->info]->url = str_replace('&', '&amp;', $log->url);
         }
@@ -839,7 +839,6 @@ function dmelearn_count_entries($dmelearn, $groupid = 0) {
 function dmelearn_log_info($log) {
     global $DB;
 
-    $params = array($log->info);
     $sql = "SELECT dm.*, u.firstname, u.lastname
             FROM {dmelearn} dm
             JOIN {dmelearn_entries} dme
@@ -847,7 +846,7 @@ function dmelearn_log_info($log) {
             JOIN {user} u
             ON u.id = dme.userid
             WHERE dme.id = ?";
-    return $DB->get_record_sql($sql);
+    return $DB->get_record_sql($sql, array($log->info));
 }
 
 /**
