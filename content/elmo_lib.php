@@ -23,7 +23,7 @@
  *
  */
 
-require_once(__DIR__.'/../../../config.php');
+require_once(dirname(dirname(dirname(dirname(__FILE__)))).'/config.php');
 require_once('elmo_web_service_hash.php');
 
 // BrightCookie to put the lms setting back to ELMO content page.

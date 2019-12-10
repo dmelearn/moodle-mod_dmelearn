@@ -22,7 +22,7 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(__DIR__.'/../../../config.php');
+include_once(dirname(dirname(dirname(dirname(__FILE__)))) . '/config.php');
 // Require gradelib to update grades correctly with grade_update function.
 require_once($CFG->libdir . '/gradelib.php');
 
@@ -220,7 +220,7 @@ function update_the_gradebook($elearnid, $course_complete, $percentage) {
                 OFFSET 0";
         $grade_grades = $DB->get_record_sql($sql, $params);
 
-        // Check if record exists in grade_grades ana
+        // Check if record exists in grade_grades.
         if (!$grade_grades) {
             // This is for moodle 2.7 or older.
             // Record in grade_grades does not exist.
@@ -385,7 +385,7 @@ function clear_completion_dates($purge_completion = false) {
 }
 
 /**
- * Get Coures Module ID
+ * Get Course Module ID
  * 
  * @return int|null
  */

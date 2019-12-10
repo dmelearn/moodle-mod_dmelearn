@@ -16,8 +16,6 @@
 
 namespace mod_dmelearn\cache;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Class Cache
  * @package       mod_dmelearn\cache

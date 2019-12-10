@@ -19,7 +19,7 @@ $this->insert('partials/html');
     <meta charset="utf-8">
     <?php // CSS. ?>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo $constants['base_css']; ?>main_v2.css">
+    <link rel="stylesheet" type="text/css" href="<?=$constants['base_css']?>main_v2.css">
     <?php // jQuery UI Bootstrap Theme. ?>
     <link rel="stylesheet" href="<?=$constants['base_css']?>jquery-ui-for-bootstrap.css">
     <?php // Font Awesome 3.2.1. ?>

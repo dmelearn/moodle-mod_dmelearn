@@ -326,7 +326,7 @@ function dmelearn_get_extra_capabilities() {
 function dmelearn_scale_used($dmelearnid, $scaleid) {
     global $DB;
 
-    return $scaleid && $DB->record_exists('dmelearn', array('id' => $dmelearnid, 'grade' => -$scaleid));
+    return ($scaleid && $DB->record_exists('dmelearn', array('id' => $dmelearnid, 'grade' => -$scaleid)));
 }
 
 /**
@@ -340,7 +340,7 @@ function dmelearn_scale_used($dmelearnid, $scaleid) {
 function dmelearn_scale_used_anywhere($scaleid) {
     global $DB;
 
-    return $scaleid && $DB->record_exists('dmelearn', array('grade' => -$scaleid));
+    return ($scaleid && $DB->record_exists('dmelearn', array('grade' => -$scaleid)));
 }
 
 /**

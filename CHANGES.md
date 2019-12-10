@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.10.1 (2019121000)
+- Changes to attempt to fix Totara incompatibility. Remove usage of __DIR__.
+
 ## v1.10.0 (2019120500)
 - Moodle Code Style fixes, PHPDoc updates, PHP security improvements.
 - Remove deprecated function calls in index.php
