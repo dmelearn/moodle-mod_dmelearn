@@ -24,17 +24,17 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(__DIR__.'/../../config.php');
-require_once(__DIR__.'/lib.php');
+require_once(dirname(dirname(dirname(__FILE__))) . '/config.php');
+require_once('lib.php');
 
 $id = required_param('id', PARAM_INT); // Course Module ID.
 
 if (!$coursemodule = get_coursemodule_from_id('dmelearn', $id)) {
-    print_error("Course Module ID was incorrect");
+    print_error('Course Module ID was incorrect');
 }
 
 if (!$course = $DB->get_record('course', array('id' => $coursemodule->course))) {
-    print_error("Course is misconfigured");
+    print_error('Course is misconfigured');
 }
 
 $context = context_module::instance($coursemodule->id);
@@ -48,22 +48,24 @@ if (!$canview) {
 }
 
 if (!$elmo = $DB->get_record('dmelearn', array('id' => $coursemodule->instance))) {
-    print_error("Course module is incorrect");
+    print_error('Course module is incorrect, instance');
 }
 
 if (!$cw = $DB->get_record('course_sections', array('id' => $coursemodule->section))) {
-    print_error("Course module is incorrect");
+    print_error('Course module is incorrect, section');
 }
 
 // Use the new Moodle 2.7+ $event->trigger() for logging.
-$event = \mod_dmelearn\event\course_module_viewed::create(array(
-    'objectid' => $PAGE->cm->instance,
-    'context' => $PAGE->context,
-));
-$event->add_record_snapshot('course', $PAGE->course);
+if ($CFG->version >= 2014051200) {
+    $event = \mod_dmelearn\event\course_module_viewed::create(array(
+        'objectid' => $PAGE->cm->instance,
+        'context' => $PAGE->context,
+    ));
+    $event->add_record_snapshot('course', $PAGE->course);
 // In the next line you can use $PAGE->activityrecord if it is set, or skip this line if you don't have a record
 // $event->add_record_snapshot($PAGE->cm->modname, $activityrecord);
-$event->trigger();
+    $event->trigger();
+}
 
 header("location: {$CFG->wwwroot}/mod/dmelearn/content/?id={$elmo->id}");
 die();

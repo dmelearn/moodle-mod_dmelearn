@@ -219,7 +219,7 @@ function get_ajax_content($url) {
     $result = curl_exec($curl);
     curl_close($curl);
     $path_explode = explode('/', $url);
-    return preg_replace_callback('/src="([^"]+)"/i', function ($matches) {
+    $result = preg_replace_callback('/src="([^"]+)"/i', function ($matches) {
         global $path_explode;
         if (strpos($matches[0], "http://") !== 0) {
             return str_replace('src="', 'src="http://' . $path_explode[2].'/', $matches[0]);
@@ -227,6 +227,7 @@ function get_ajax_content($url) {
             return ("21".$matches[0]);
         }
     }, $result);
+    return $result;
 }
 
 /**
@@ -251,7 +252,7 @@ function make_guzzle_proxy_config() {
     global $CFG;
     $proxy = null;
 
-    if (!empty($CFG->proxyhost) && !is_proxybypass(API_URL)) {
+    if (isset($CFG->proxyhost) && !empty($CFG->proxyhost) && !is_proxybypass(API_URL)) {
         $proxy = ''; // Add Protocol (Could also be http:// or sock5://). Empty string should work for both.
         if (!empty($CFG->proxyuser) && !empty($CFG->proxypassword)) {
             $proxy .= $CFG->proxyuser . ':' . $CFG->proxypassword . '@';
@@ -293,20 +294,32 @@ function update_course_completion_status($courseID, $courseModuleID, $userID, $c
     // Update completion state.
     $completion = new completion_info($course);
 
-    if ($completion->is_enabled($courseModule)) {
-        if ($courseCompleted === true) {
-            $completion->update_state(
-                $courseModule,
-                COMPLETION_COMPLETE,
-                $userID
-            );
-        }
-        if ($courseCompleted === false) {
-            $completion->update_state(
-                $courseModule,
-                COMPLETION_INCOMPLETE,
-                $userID
-            );
+    if (is_object($completion)) {
+        if ($completion->is_enabled($courseModule)) {
+            if ($courseCompleted === true) {
+                if (defined('COMPLETION_COMPLETE')) {
+                    $ccomplete = COMPLETION_COMPLETE;
+                } else {
+                    $ccomplete = 1;
+                }
+                $completion->update_state(
+                    $courseModule,
+                    $ccomplete,
+                    $userID
+                );
+            }
+            if ($courseCompleted === false) {
+                if (defined('COMPLETION_INCOMPLETE')) {
+                    $cincomplete = COMPLETION_INCOMPLETE;
+                } else {
+                    $cincomplete = 0;
+                }
+                $completion->update_state(
+                    $courseModule,
+                    $cincomplete,
+                    $userID
+                );
+            }
         }
     }
     return true;

@@ -22,8 +22,8 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(__DIR__.'/../../config.php');
-require_once(__DIR__.'/lib.php');
+require_once(dirname(dirname(dirname(__FILE__))) . '/config.php'); // Moodle Config.
+require_once('lib.php');
 
 $id = required_param('id', PARAM_INT); // Course ID.
 
@@ -97,7 +97,7 @@ foreach ($elmos as $elmo) {
     }
 
     // Link.
-    $elmoname = format_string($elmo->name, true, array('context' => $context));
+    $elmoname = format_string($elmo->name, true);
     if (!$elmo->visible) {
         // Show dimmed if the mod is hidden.
         $table->data[$i][] = "<a class=\"dimmed\" href=\"view.php?id=$elmo->coursemodule\">"
@@ -109,7 +109,7 @@ foreach ($elmos as $elmo) {
     }
 
     // Description.
-    $table->data[$i][] = format_text($elmo->intro, $elmo->introformat, array('context' => $context));
+    $table->data[$i][] = format_text($elmo->intro, $elmo->introformat);
 
     // Entries info.
     if (!empty($managersomewhere)) {
@@ -124,11 +124,13 @@ echo '<br />';
 echo html_writer::table($table);
 
 // Use the new Moodle 2.7+ $event->trigger() for logging.
-$params = array(
-    'context' => context_course::instance($course->id)
-);
-$event = \mod_dmelearn\event\course_module_instance_list_viewed::create($params);
-$event->add_record_snapshot('course', $course);
-$event->trigger();
+if ($CFG->version >= 2014051200) {
+    $params = array(
+        'context' => context_course::instance($course->id)
+    );
+    $event = \mod_dmelearn\event\course_module_instance_list_viewed::create($params);
+    $event->add_record_snapshot('course', $course);
+    $event->trigger();
 
-echo $OUTPUT->footer();
+    echo $OUTPUT->footer();
+}

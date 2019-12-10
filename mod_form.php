@@ -44,7 +44,7 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         global $CFG;
         global $USER;
 
-        include_once(__DIR__.'/content/elmo_lib.php');
+        include_once('content/elmo_lib.php');
 
         // Get array of available Courses.
         $elmocourses = get_key_courses();
