@@ -24,7 +24,7 @@
  * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once($CFG->dirroot.'/mod/journal/lib.php');
+require_once($CFG->dirroot.'/mod/dmelearn/lib.php');
 
 /**
  * Execute mod_dmelearn upgrade from the given old version.
