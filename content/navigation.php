@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - https://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -12,7 +12,7 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 namespace mod_dmelearn\navigation;
 
@@ -24,8 +24,8 @@ namespace mod_dmelearn\navigation;
  * @package    mod_dmelearn\navigation
  * @author     Chris Barton, AJ Dunn, Digital Media e-learning
  * @copyright  2015-2016 Chris Barton, Digital Media e-learning
- * @version    1.5.0
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @since      1.5.0
+ * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
 class Navigation

@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - https://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -12,28 +12,28 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * The main mod_dmelearn configuration form.
  *
- * @package       mod_dmelearn
- * @author        Kien Vu, AJ Dunn, CJ Faulkner
- * @copyright     2015 BrightCookie (http://www.brightcookie.com.au), Digital Media e-learning
- * @version       1.0.2
- * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     mod_dmelearn
+ * @author      Kien Vu, AJ Dunn, CJ Faulkner
+ * @copyright   2015 - 2022 WCHN Digital Learning & Design, 2015 BrightCookie (http://www.brightcookie.com.au)
+ * @since       1.0.2
+ * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . '/course/moodleform_mod.php');
+require_once($CFG->dirroot.'/course/moodleform_mod.php');
 
 /**
  * Module instance settings form.
  *
- * @package    mod_dmelearn
- * @copyright  2019 Digital Media
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     mod_dmelearn
+ * @copyright   2015 - 2022 WCHN Digital Learning & Design
+ * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class mod_dmelearn_mod_form extends moodleform_mod {
 
@@ -101,7 +101,7 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         $select2 = $mform->addElement('select', 'preventearlierthanyear', get_string('dmelearnpreventearlierthanyear', 'dmelearn'), $preventEarlierThanYear);
         $mform->addHelpButton('preventearlierthanyear', 'dmelearnpreventearlierthanyear', 'dmelearn');
 
-        // Adding the "general" fieldset, where all the common settings are showed.
+        // Adding the "general" fieldset, where all the common settings are shown.
         $mform->addElement('header', 'general', get_string('general', 'form'));
 
         // Adding the standard "name" field.
@@ -112,6 +112,7 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         } else {
             $mform->setType('name', PARAM_CLEAN);
         }
+
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
         $mform->addHelpButton('name', 'dmelearnname', 'dmelearn');
@@ -121,7 +122,7 @@ class mod_dmelearn_mod_form extends moodleform_mod {
             $this->standard_intro_elements();
         } else {
             // Use the old method for adding editor introduction field. (Moodle is 2.8 or older).
-             $this->add_intro_editor();
+            $this->add_intro_editor();
         }
 
         $mform->addRule('coursepath', null, 'required', null, 'client');
@@ -134,7 +135,7 @@ class mod_dmelearn_mod_form extends moodleform_mod {
         // Add standard elements, common to all modules.
         $this->standard_coursemodule_elements();
 
-        // Add standard buttons, common to all modules.
+        // Add standard buttons.
         $this->add_action_buttons();
     }
 

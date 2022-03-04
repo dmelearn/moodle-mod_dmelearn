@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - https://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -12,7 +12,7 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Client Application
@@ -26,7 +26,7 @@
  * @package   mod_dmelearn
  * @author    Chris Barton, AJ Dunn, CJ Faulkner
  * @copyright 2015 Chris Barton, Digital Media e-learning
- * @version   1.5.0
+ * @since     1.5.0
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 // Include guzzle and the libs we need.
@@ -93,18 +93,27 @@ try {
     } else {
         // We are authorised but another issue has occurred.
         // Dump Guzzle exception message if debug is enabled in Moodle.
-        if (isset($CFG->debug) && !$CFG->debug == 0) {
+        if (isset($CFG->debug) && $CFG->debug > 15) {
             echo $e->getMessage();
+            // Throw Moodle Exception.
+            throw new moodle_exception('course_client_exception', 'dmelearn');
         }
-        // Throw Moodle Exception.
-        throw new moodle_exception('course_client_exception', 'dmelearn');
+
+        // DM API doesn't exist
+        $apiMissing = true;
+        include_once('include/noAccess.php');
+        die();
     }
 } catch (GuzzleHttp\Exception\RequestException $e) {
-    if (isset($CFG->debug) && !$CFG->debug == 0) {
+    if (isset($CFG->debug) && $CFG->debug > 15) {
         echo $e->getMessage();
+        throw new moodle_exception('course_request_exception', 'dmelearn');
     }
-    // Throw Moodle Exception.
-    throw new moodle_exception('course_request_exception', 'dmelearn');
+
+    // URL DOES NOT EXIST
+    $urlMissing = true;
+    include_once('include/noAccess.php');
+    die();
 }
 
 // Check if this plugin can support the course version.

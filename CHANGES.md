@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.11.0 (2022030400)
+- Final release. This project is archived. Please use LTI going-forward (https://www.imsglobal.org/activity/learning-tools-interoperability)
+
 ## v1.10.1 (2019121000)
 - Changes to attempt to fix Totara incompatibility. Remove usage of __DIR__.
 

@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - https://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -12,17 +12,17 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Basic Methods for requesting data in ELMO Web Services
  *
  * @uses Guzzle Make sure you have Guzzle loaded first
  * @see Also make sure that Elmo_web_service_hash class is loaded too
- * @author        Chris Barton, AJ Dunn
- * @copyright     2015 Digital Media e-learning
+ * @author      Chris Barton, AJ Dunn
+ * @copyright   2015 - 2022 WCHN Digital Learning & Design
  * @since         1.0.0
- * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
 

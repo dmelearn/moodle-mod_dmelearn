@@ -4,6 +4,7 @@
     "homepage": "http://digitalmedialearning.com.au",
     "license": "proprietary",
     "require": {
+        "php": "^5.4.4 || ^7.0",
         "guzzlehttp/guzzle": "^5.3",
         "league/plates": "^3.3"
     },
@@ -12,7 +13,7 @@
     },
     "config": {
         "platform": {
-            "php": "5.4"
+            "php": "5.4.4"
         },
         "sort-packages": true
     }

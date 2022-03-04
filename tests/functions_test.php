@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - https://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -12,15 +12,15 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * @package       mod_dmelearn
+ * @package     mod_dmelearn
  * @category      phpunit
- * @author        AJ Dunn, CJ Faulkner
- * @copyright     2015 Digital Media e-learning
- * @version       1.0.0
- * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @author      AJ Dunn, CJ Faulkner
+ * @copyright   2015 - 2022 WCHN Digital Learning & Design
+ * @since       1.0.0
+ * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -30,8 +30,8 @@ defined('MOODLE_INTERNAL') || die();
  * Run with command: vendor/bin/phpunit mod_dmelearn_functions_testcase
  *
  * @package    mod_dmelearn
- * @copyright  2015 Digital Media e-learning
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2015 - 2022 WCHN Digital Learning & Design
+ * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class mod_dmelearn_functions_testcase extends advanced_testcase {
 

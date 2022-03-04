@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - https://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -12,17 +12,19 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Plugin strings are defined here.
  *
- * @package       mod_dmelearn
- * @author        Kien Vu, CJ Faulkner
- * @copyright     2015 BrightCookie (http://www.brightcookie.com.au), Digital Media e-Learning
- * @since         1.0.0
- * @license       http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     mod_dmelearn
+ * @category    string
+ * @author      Kien Vu, CJ Faulkner
+ * @copyright   2015 - 2022 WCHN Digital Learning & Design, 2015 BrightCookie (http://www.brightcookie.com.au)
+ * @since       1.0.0
+ * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 defined('MOODLE_INTERNAL') || die();
 
 $string['modulename'] = 'DM e-Learning';
@@ -67,7 +69,7 @@ You can see it appended to your Digital Media e-Learning entry:
     {$a->url}';
 $string['dmelearnmailhtml'] = '{$a->teacher} has posted some feedback on your
 Digital Media e-Learning entry for \'<i>{$a->ELMO}</i>\'<br /><br />
-You can see it appended to your <a href="{$a->url}">Digital Media e­Learning entry</a>.';
+You can see it appended to your <a href="{$a->url}">Digital Media eLearning entry</a>.';
 $string['dmelearnquestion'] = 'Digital Media e-Learning question';
 $string['mailsubject'] = 'Digital Media e-Learning feedback';
 $string['newdmelearnentries'] = 'New Digital Media e-Learning entries';
@@ -87,7 +89,7 @@ $string['viewallentries'] = 'View {$a} Digital Media e-Learning entries';
 $string['viewentries'] = 'View entries';
 // For mod_form.php.
 $string['mfnocourses'] = '<style>.mf-info{color:#e32f0b;font-weight:bold;}</style><div><span class="mf-info">Information:</span> The DM e-Learning server did not return any available courses. Please contact Digital Media for help.</div><br>';
-$string['mfinstructions'] = '<style>.mf-instruct{color:#2ca02c;font-weight:bold;}</style><div><span class="mf-instruct">Instructions:</span> The form will let you add a DM e-Learning course into an activity within your Moodle Course.
+$string['mfinstructions'] = '<style>.mf-instruct{color:#2ca02c;font-weight:bold;}.mf-deprecated{color:red;font-weight:bold;}</style><div><span class="mf-deprecated">WARNING: This Plugin should no longer be used.</span> <span class="mf-instruct">Instructions:</span> The form will let you add a DM e-Learning course into an activity within your Moodle Course.
 <ol><li>Select a DM e-Learning Course from the dropdown below.</li><li>OPTIONAL: Enter the number of months that you will allow access to a course after it has been 100% completed on DM e-Learning. If expired, users will need to reset the course and Moodle Grade before gaining access. (DEFAULT: 0 = No course expiry limits).</li>
 <li>Provide a name for the Moodle Activity.</li><li>Save your selection.</li></ol></div>';
 $string['mfselectcourse'] = 'Please select a course ...';

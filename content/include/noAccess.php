@@ -13,26 +13,46 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
+?>
+<!DOCTYPE html>
+<?php
 /**
  * Display an error on page if course is not available
  *
- * @copyright   2015 Digital Media e-learning
+ * @copyright   2015 - 2022 WCHN Digital Learning & Design
  * @since       1.0.1
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  */
 
 echo $lmsmenu; // Show the LMS Top Menu Navigation. ?>
-<div style="font-size: 20px;margin:25px;font-family: Arial, Helvetica, sans-serif;">
 
-<br><p><strong>Error:
-<?php if (isset($unauthorised)) : ?>
-This Digital Media e-Learning course is not currently available. Please ensure your email address in Moodle is valid and current. Please contact your Moodle Administrator.
+<style>.lmsmenu {box-shadow: none;border-bottom: 1px solid #B9B9B9;}</style>
+
+<div style="font-size: 20px;margin:25px;font-family: Arial, Helvetica, sans-serif; text-align: center;">
+
+<br><br><br><p><strong>Notice</strong><br><br>
+<?php if (isset($unauthorised) && $unauthorised) : ?>
+
+This legacy Digital Media e-Learning course is not currently available.<br>
+<em>Your past results are still on record</em><br>
+A newer improved version of this course may exist on this eLearning site in another place<br>
+Please check with your eLearning Support Team for assistance.
+
+<?php elseif ((isset($apiMissing) && $apiMissing) || (isset($urlMissing) && $urlMissing)) : ?>
+
+This legacy Digital Media e-Learning course is no longer available. (API URL is inactive)<br>
+<em>Your past results are still on record</em><br>
+A newer improved version of this course may exist on this eLearning site in another place<br>
+Please check with your eLearning Support Team for assistance.
+
 <?php else : ?>
+
 This Digital Media e-Learning course is not currently available. Please contact your Moodle Administrator.
+
 <?php endif; ?>
-</strong></p><br>
+
+</p><br>
 
 <?php if (isset($course_version)) : ?>
 <p>Course type <?php echo $course_version; ?> is unsupported in this version of the Digital Media e-Learning Plugin.</p>

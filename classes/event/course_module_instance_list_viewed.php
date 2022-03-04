@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - https://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -12,7 +12,7 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 namespace mod_dmelearn\event;
 
@@ -23,8 +23,8 @@ defined('MOODLE_INTERNAL') || die();
  *
  * @package     mod_dmelearn\event
  * @author      AJ Dunn, Digital Media e-learning
- * @copyright   2015 Digital Media e-learning
- * @version     1.0.0
+ * @copyright   2015 - 2022 WCHN Digital Learning & Design
+ * @since       1.0.0
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class course_module_instance_list_viewed extends \core\event\course_module_instance_list_viewed {
