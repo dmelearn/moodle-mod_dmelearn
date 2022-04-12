@@ -1,5 +1,6 @@
 # DEPRECATED
  This project is archived. Please use LTI for Interoperability between LMS sites (https://www.imsglobal.org/activity/learning-tools-interoperability)
+ **Please DO NOT uninstall this plugin from your moodle if you wish to keep your past results.**
 
 # moodle-mod_dmelearn
 [![Code Climate](https://codeclimate.com/github/dmelearn/moodle-mod_dmelearn/badges/gpa.svg)](https://codeclimate.com/github/dmelearn/moodle-mod_dmelearn)
